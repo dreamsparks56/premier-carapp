@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">parcialTp3Ort</string>
+    <string name="car_model">Car Model</string>
+    <string name="car_model_description">The model of the car</string>
+    <string name="car_fuel_text">Fuel Type</string>
+    <string name="car_drive_Text">Gear Type</string>
+    <string name="car_year_text">Release Year</string>
+    <string name="car_class_text">Class</string>
 </resources>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@mipmap/unsplash_WPVtT0MEM00"
+    android:background="@drawable/unsplash_wpvtt0mem00_1_"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,28 +18,34 @@
 
         <EditText
             android:id="@+id/editTextTextPersonName"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/stylo_borde_editext"
-            android:ems="10"
+            android:background="@drawable/stylo_bordes_edit_text"
             android:hapticFeedbackEnabled="true"
             android:inputType="textPersonName"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="Name"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="19dp" />
 
         <EditText
             android:id="@+id/editTextTextPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/stylo_borde_editext"
-            android:ems="10"
+            android:background="@drawable/stylo_bordes_edit_text"
             android:inputType="textPassword"
             android:radius="50dp"
+            android:text="122"
+
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="19dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -50,7 +57,7 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

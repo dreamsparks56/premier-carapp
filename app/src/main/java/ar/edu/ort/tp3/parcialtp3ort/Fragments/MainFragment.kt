@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -21,6 +22,7 @@ class MainFragment : Fragment() {
      lateinit var navHostFragment: NavHostFragment
      lateinit var drawerLayout: DrawerLayout
      lateinit var navigationView: NavigationView
+     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,10 @@ class MainFragment : Fragment() {
         drawerLayout = viewMainFrag.findViewById(R.id.drawer_layout_main_container)
         navigationView = viewMainFrag.findViewById(R.id.nav_view)
         navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
         setupBottomNavBar()
+        setupDrawerLayout()
+
 
         return viewMainFrag
     }
@@ -46,10 +51,25 @@ class MainFragment : Fragment() {
 
     private fun setupBottomNavBar() {
         val navHostFragment =
-            requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+            childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
         viewMainFrag.findViewById<BottomNavigationView>(R.id.bottom_bar).setupWithNavController(navController)
+    }
+
+
+    private fun setupDrawerLayout() {
+        val activity = requireActivity() as AppCompatActivity
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_view) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navigationView.setupWithNavController(navController)
+
+        // Listener para cuando se realiza la navegación
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            // Aquí configuras el icono izquierdo de la appbar como el del drawer
+            activity.supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_icon)
+        }
     }
 
 

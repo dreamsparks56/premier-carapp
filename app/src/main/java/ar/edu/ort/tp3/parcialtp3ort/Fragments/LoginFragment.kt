@@ -33,11 +33,8 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         viewLogin = inflater.inflate(R.layout.fragment_login, container, false)
         btnLogin = viewLogin.findViewById(R.id.button_login)
-
-        btnLogin.setOnClickListener{
-           val action =  LoginFragmentDirections.actionLoginFragmentToMainFragment()
-            viewLogin.findNavController().navigate(action)
-        }
+        user = viewLogin.findViewById(R.id.usuario_login)
+        pass = viewLogin.findViewById(R.id.pass_login)
 
         return viewLogin
 
@@ -53,6 +50,18 @@ class LoginFragment : Fragment() {
         viewModel.usuario.observe(viewLifecycleOwner, Observer { result ->
             user.setText(result.toString())
         })
+
+        viewModel.usuario.observe(viewLifecycleOwner, Observer { result ->
+            user.setText(result.toString())
+        })
+
+        btnLogin.setOnClickListener{
+            viewModel.guardarCredenciales(user.text.toString(), pass.text.toString())
+           val action =  LoginFragmentDirections.actionLoginFragmentToMainFragment()
+            viewLogin.findNavController().navigate(action)
+        }
+
+
 
     }
 

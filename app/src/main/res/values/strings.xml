@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textoHeader">Hola</string>
     <string name="notificaciones">Notificaciones</string>
+    <string name="modoOsucro">Modo oscuro</string>
+    <string name="Notifiaciones">Notificaciones</string>
 </resources>

@@ -5,24 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 
 class MainFragment : Fragment() {
+    lateinit var viewModel: LoginViewModel
     lateinit var viewMainFrag:View
      lateinit var navHostFragment: NavHostFragment
      lateinit var drawerLayout: DrawerLayout
      lateinit var navigationView: NavigationView
      lateinit var navController: NavController
+     lateinit var  nombreUsuario:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +47,9 @@ class MainFragment : Fragment() {
         navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         setupBottomNavBar()
-        setupDrawerLayout()
+       // setupDrawerLayout()
+        asignarNombreUsuarioAlMenu()
+
 
 
         return viewMainFrag
@@ -70,6 +77,13 @@ class MainFragment : Fragment() {
             // Aquí configuras el icono izquierdo de la appbar como el del drawer
             activity.supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_icon)
         }
+    }
+
+    private fun asignarNombreUsuarioAlMenu(){
+        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        val headerView = navigationView.getHeaderView(0)
+        nombreUsuario = headerView.findViewById<TextView>(R.id.nameUser_headerNav)
+        nombreUsuario.text = viewModel.usuario.value.toString()
     }
 
 

@@ -1,7 +1,9 @@
 package ar.edu.ort.tp3.parcialtp3ort.models
 
+import com.google.gson.annotations.SerializedName
+
 data class CarResponse(
-    val car_class: String,
+    @SerializedName(value = "class") val car_class: String,
     val drive: String,
     val fuel_type: String,
     val make: String,

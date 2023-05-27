@@ -45,7 +45,7 @@
 
                 <ImageView
                     android:id="@+id/carModelImg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/car_model_description"

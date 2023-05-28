@@ -1,4 +1,4 @@
-package ar.edu.ort.tp3.parcialtp3ort.adapter
+package ar.edu.ort.tp3.parcialtp3ort.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.models.CarResponse
 import com.bumptech.glide.Glide
 
-class RecyclerViewAdapter ( private val carList: List<CarResponse>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class CarAdapter (private val carList: List<CarResponse>): RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val carModel: TextView = itemView.findViewById<TextView>(R.id.carModel)

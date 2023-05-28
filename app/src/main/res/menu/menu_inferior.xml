@@ -6,10 +6,10 @@
     android:icon="@drawable/home_icon"
         />
     <item android:title="Autos"
-        android:id="@+id/autosFragment"
+        android:id="@+id/autoFragment"
         android:icon="@drawable/store_icon"/>
     <item android:title="Buscar"
-        android:id="@id/autosFragment"
+        android:id="@id/autoFragment"
         android:icon="@drawable/search_icon"/>
 
     <item android:title="Perfil"

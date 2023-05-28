@@ -5,7 +5,6 @@ import android.os.Parcelable
 
 class Make(name: String?, count: Int?) : Parcelable {
     var name: String = ""
-
     var count: Int = 0
 
     constructor(parcel: Parcel) : this(

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
 import ar.edu.ort.tp3.parcialtp3ort.R
-import ar.edu.ort.tp3.parcialtp3ort.adapter.RecyclerViewAdapter
+import ar.edu.ort.tp3.parcialtp3ort.adapters.CarAdapter
 import ar.edu.ort.tp3.parcialtp3ort.models.CarResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -61,7 +61,7 @@ class AutoFragment : Fragment() {
     private fun showData(carBunch: List<CarResponse>) {
         carList.apply {
            layoutManager = LinearLayoutManager(context)
-            adapter = RecyclerViewAdapter(carBunch)
+            adapter = CarAdapter(carBunch)
         }
     }
 

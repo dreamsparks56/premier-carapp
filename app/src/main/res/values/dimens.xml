@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_container_margin">16dp</dimen>
+    <dimen name="default_card_separation">16dp</dimen>
     <dimen name="default_make_card_width">90dp</dimen>
     <dimen name="default_make_size">50dp</dimen>
     <dimen name="make_count_size">12sp</dimen>

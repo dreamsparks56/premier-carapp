@@ -12,4 +12,13 @@
     <string name="makeCount">+X</string>
     <string name="titleMarcas">Marcas</string>
     <string name="brandDescription">El logo de la marca</string>
+
+    <!-- car attributes-->
+
+    <string name="car_model">Car Model</string>
+    <string name="car_model_description">The model of the car</string>
+    <string name="car_fuel_text">Fuel Type</string>
+    <string name="car_drive_text">Gear Type</string>
+    <string name="car_year_text">Release Year</string>
+    <string name="car_class_text">Class</string>
 </resources>

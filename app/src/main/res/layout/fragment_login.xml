@@ -12,7 +12,6 @@
         layout="@layout/title_proyect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +55,8 @@
             android:inputType="textPassword"
             android:radius="50dp"
             android:text="122"
-
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:textAlignment="center"
             android:textSize="19dp" />
 

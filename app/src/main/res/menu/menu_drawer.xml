@@ -3,13 +3,16 @@
 
 
 
-    <item android:title="Perfil"
-        android:id="@+id/perfilFragment2"
+    <item android:title="@string/opcionPerfil"
+        android:id="@+id/perfilFragment"
         android:icon="@drawable/profile_icon"/>
 
-    <item android:title="Confiuguración"
-        android:id="@+id/configuracionFragment2"
+    <item android:title="@string/opcionConfiguracion"
+        android:id="@+id/configuracionFragment"
         android:icon="@drawable/settings_icon"/>
+
+    <item android:title="@string/opcionFavoritos"
+        android:icon="@drawable/notificaciones_vacio_icon"/>
 
 
 </menu>

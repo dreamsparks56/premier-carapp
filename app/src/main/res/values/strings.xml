@@ -21,4 +21,10 @@
     <string name="car_drive_text">Gear Type</string>
     <string name="car_year_text">Release Year</string>
     <string name="car_class_text">Class</string>
+    <string name="opcionHome">Home</string>
+    <string name="opcionAutos">Autos</string>
+    <string name="opcionBusqueda">Buscar</string>
+    <string name="opcionPerfil">Perfil</string>
+    <string name="opcionConfiguracion">Configuración</string>
+    <string name="opcionFavoritos">Favoritos</string>
 </resources>

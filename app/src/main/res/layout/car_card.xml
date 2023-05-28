@@ -8,20 +8,23 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/carCard"
-        style="?attr/materialCardViewElevatedStyle"
         android:layout_width="match_parent"
         android:layout_height="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        style="?attr/materialCardViewElevatedStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:baselineAligned="true"
+            android:divider="@android:drawable/divider_horizontal_bright"
+            android:dividerPadding="@dimen/default_container_margin"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:showDividers="middle">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

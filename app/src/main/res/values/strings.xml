@@ -8,4 +8,10 @@
     <string name="Notifiaciones">Notificaciones</string>
     <string name="title_part_1">Premier</string>
     <string name="title_part_2">RentCar</string>
+    <string name="opcionHome">Home</string>
+    <string name="opcionAutos">Autos</string>
+    <string name="opcionBusqueda">Buscar</string>
+    <string name="opcionPerfil">Perfil</string>
+    <string name="opcionConfiguracion">Configuración</string>
+    <string name="opcionFavoritos">Favoritos</string>
 </resources>

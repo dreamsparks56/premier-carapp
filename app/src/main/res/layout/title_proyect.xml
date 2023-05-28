@@ -26,8 +26,7 @@
         android:textStyle="normal"
         android:fontFamily="@font/fira_sans_bold"
         android:textSize="25dp"
-android:textColor="@color/black"
+        android:textColor="@color/black"
         android:background="@color/yellow"
-
         android:text="@string/title_part_2" />
 </LinearLayout>

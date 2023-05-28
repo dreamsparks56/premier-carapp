@@ -8,4 +8,8 @@
     <string name="Notifiaciones">Notificaciones</string>
     <string name="title_part_1">Premier</string>
     <string name="title_part_2">RentCar</string>
+    <string name="makeNameTitle">Marca</string>
+    <string name="makeCount">+X</string>
+    <string name="titleMarcas">Marcas</string>
+    <string name="brandDescription">El logo de la marca</string>
 </resources>

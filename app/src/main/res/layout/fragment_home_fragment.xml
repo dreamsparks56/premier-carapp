@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Home_fragment">
 
-    <TextView
-        android:id="@+id/textView2"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/homeMarcasList"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.MarcasFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

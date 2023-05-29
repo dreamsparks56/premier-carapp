@@ -5,6 +5,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.entities.Make
+import com.bumptech.glide.Glide
 
 class MakeHolder( v: View) : RecyclerView.ViewHolder(v) {
 
@@ -25,9 +27,16 @@ class MakeHolder( v: View) : RecyclerView.ViewHolder(v) {
         val txt = this.view.findViewById<TextView>(R.id.makeCount)
         txt.text = count.toString()
     }
-    fun callImg(make: String): String {
-        val thumbImageDirection = "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/%s.png"
-        return String.format(thumbImageDirection, make)
+    fun callImg(make: String) {
+            Glide
+                .with(this.itemView)
+                .load(Make.Constants.getImage(make)).fitCenter()
+                .error(
+                    Glide
+                        .with(this.itemView)
+                        .load(Make.Constants.getImage("international"))
+                )
+                .into(this.carMakeImg)
     }
 
 }

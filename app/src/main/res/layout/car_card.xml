@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/default_card_separation">
+    android:layout_marginBottom="@dimen/default_car_card_separation">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/carCard"

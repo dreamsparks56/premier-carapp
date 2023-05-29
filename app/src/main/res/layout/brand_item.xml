@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/make_count_margin_top"
                 android:text="@string/makeCount"
+                android:textColor="@color/light_blue"
                 android:textSize="@dimen/make_count_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

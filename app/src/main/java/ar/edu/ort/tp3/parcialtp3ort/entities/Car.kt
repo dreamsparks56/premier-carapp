@@ -5,9 +5,19 @@ class Car() {
 
 
     companion object {
-        val THUMB_IMAGE_DIRECTION: String = "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/%s.png"
-        fun getImage(carMake: String): String {
-            return String.format(THUMB_IMAGE_DIRECTION, carMake)
+
+        fun getFullDriveName(drive: String?): String {
+            val fullDrive: String
+            when(drive) {
+                "2wd" -> fullDrive = "Front Wheel"
+                "rwd" -> fullDrive = "Rear Wheel"
+                "awd" -> fullDrive = "All Wheel"
+                "4wd" -> fullDrive = "Four Wheel"
+                else -> {
+                    fullDrive = "Unspecified"
+                }
+            }
+            return fullDrive
         }
     }
 }

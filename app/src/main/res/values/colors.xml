@@ -11,6 +11,8 @@
     <color name="whiteToolbar">#FFFFFF</color>
     <color name="yellow">#FFCC00</color>
     <color name="blue">#3330E5</color>
+    <color name="secondary_blue">#001D42</color>
+    <color name="light_blue">#007BFF</color>
 
 
 </resources>

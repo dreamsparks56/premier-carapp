@@ -21,6 +21,7 @@
             android:layout_height="match_parent"
             android:baselineAligned="true"
             android:divider="@android:drawable/divider_horizontal_bright"
+            android:layout_weight="1"
             android:dividerPadding="@dimen/default_container_margin"
             android:gravity="center"
             android:orientation="horizontal"
@@ -40,12 +41,14 @@
                     android:layout_marginTop="6dp"
                     android:fontFamily="sans-serif-black"
                     android:gravity="center"
+                    android:textAlignment="center"
                     android:text="@string/car_model"
-                    android:textColor="#000000"
+                    android:textColor="@color/secondary_blue"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <ImageView
                     android:id="@+id/carModelImg"
@@ -62,17 +65,12 @@
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center_horizontal"
-                    android:layout_weight="1"
                     android:orientation="vertical"
+                    android:layout_weight="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -82,32 +80,42 @@
                         android:id="@+id/carDriveText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_drive_text"
+                        android:textColor="@color/secondary_blue"
                         app:drawableLeftCompat="@drawable/icon_park_solid_manual_gear" />
 
                     <TextView
                         android:id="@+id/carFuelText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_fuel_text"
-                        app:drawableLeftCompat="@drawable/fuel_type" />
+                        android:textColor="@color/secondary_blue"
+                        app:drawableLeftCompat="@drawable/fuel_type"
+                        app:drawableTint="@color/secondary_blue"/>
 
                     <TextView
                         android:id="@+id/carYearText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_year_text"
-                        app:drawableLeftCompat="@drawable/year" />
+                        android:textColor="@color/secondary_blue"
+                        app:drawableLeftCompat="@drawable/year"
+                        app:drawableTint="@color/secondary_blue" />
 
                     <TextView
                         android:id="@+id/carClassText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_class_text"
-                        app:drawableLeftCompat="@drawable/fuel_type" />
+                        android:textColor="@color/secondary_blue"
+                        app:drawableLeftCompat="@drawable/gear"
+                        app:drawableTint="@color/secondary_blue"/>
 
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

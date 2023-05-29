@@ -20,12 +20,12 @@ class MakeHolder( v: View) : RecyclerView.ViewHolder(v) {
 
     fun setName(name: String) {
         val txt = this.view.findViewById<TextView>(R.id.makeName)
-        txt.text = name
+        txt.text = name.replaceFirstChar { it.titlecase() }
     }
 
     fun setCount(count: Int) {
         val txt = this.view.findViewById<TextView>(R.id.makeCount)
-        txt.text = count.toString()
+        txt.text = String.format("+%s", count.toString())
     }
     fun callImg(make: String) {
             Glide

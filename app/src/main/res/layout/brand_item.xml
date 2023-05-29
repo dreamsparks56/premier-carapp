@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/default_make_card_width"
-    android:layout_height="@dimen/default_make_card_height">
+    android:layout_height="@dimen/default_make_card_height"
+    android:layout_marginHorizontal="@dimen/default_brand_card_separation">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -11,7 +12,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        style="?attr/materialCardViewElevatedStyle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,10 +25,12 @@
                 android:id="@+id/marcaImg"
                 android:layout_width="@dimen/default_make_size"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/default_make_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/avatar_car" />
+                tools:srcCompat="@drawable/avatar_car"
+                android:contentDescription="@string/brandDescription"/>
 
             <TextView
                 android:id="@+id/makeName"

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
 import ar.edu.ort.tp3.parcialtp3ort.holders.MakeHolder
-import com.bumptech.glide.Glide
 
 
 class MakeAdapter(private val makeList: MutableList<Make>) : RecyclerView.Adapter<MakeHolder>()
@@ -22,6 +21,6 @@ class MakeAdapter(private val makeList: MutableList<Make>) : RecyclerView.Adapte
         val make = makeList[position]
         holder.setName(make.name)
         holder.setCount(make.count)
-        Glide.with(holder.itemView).load(holder.callImg(make.name)).fitCenter().into(holder.carMakeImg)
+        holder.callImg(make.name)
     }
 }

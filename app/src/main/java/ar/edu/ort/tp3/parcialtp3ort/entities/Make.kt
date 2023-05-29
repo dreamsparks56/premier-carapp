@@ -12,6 +12,14 @@ class Make(name: String?, count: Int?) : Parcelable {
         parcel.readInt()
     )
 
+    class Constants {
+        companion object {
+            val THUMB_IMAGE_DIRECTION: String = "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/%s.png"
+            fun getImage(carMake: String): String = String.format(THUMB_IMAGE_DIRECTION, carMake)
+        }
+
+    }
+
     init {
         this.name = name!!
         this.count = count!!
@@ -35,4 +43,6 @@ class Make(name: String?, count: Int?) : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }

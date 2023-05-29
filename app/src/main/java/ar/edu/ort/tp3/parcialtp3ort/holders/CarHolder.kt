@@ -6,8 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
-import ar.edu.ort.tp3.parcialtp3ort.entities.Make
-import com.bumptech.glide.Glide
+import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 
 class CarHolder( v: View) : RecyclerView.ViewHolder(v) {
     val carModelImg: ImageView = itemView.findViewById<ImageView>(R.id.carModelImg)
@@ -43,15 +42,7 @@ class CarHolder( v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun callImg(make: String) {
-        Glide
-            .with(this.itemView)
-            .load(Make.Constants.getImage(make)).fitCenter()
-            .error(
-                Glide
-                    .with(this.itemView)
-                    .load(Make.Constants.getImage("international"))
-            )
-            .into(this.carModelImg)
+        ImageFetching.getImageManaged(this.itemView, this.carModelImg, make)
     }
 
 

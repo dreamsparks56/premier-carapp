@@ -14,7 +14,11 @@
         android:id="@+id/home_fragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.Home_fragment"
         android:label="fragment_home_fragment"
-        tools:layout="@layout/fragment_home_fragment" />
+        tools:layout="@layout/fragment_marcas" >
+        <action
+            android:id="@+id/action_home_fragment_to_autoFragment"
+            app:destination="@id/autoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/configuracionFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.configuracionFragment"
@@ -23,5 +27,7 @@
     <fragment
         android:id="@+id/autoFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.AutoFragment"
-        android:label="AutoFragment" />
+        android:label="AutoFragment" >
+
+    </fragment>
 </navigation>

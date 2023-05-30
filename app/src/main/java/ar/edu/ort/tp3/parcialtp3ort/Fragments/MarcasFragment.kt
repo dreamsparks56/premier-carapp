@@ -1,23 +1,19 @@
 package ar.edu.ort.tp3.parcialtp3ort.Fragments
 
-import AutoViewModel
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
+import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
-import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
@@ -59,24 +55,21 @@ class MarcasFragment : Fragment() {
 
         btnSportF.setOnClickListener{
             viewModel.buscar("gas", "fuel_type")
-            //val action = MarcasFragmentDirections.actionMarcasFragmentToAutoFilteredFragment()
+            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
             Log.d("btnSportF", "gas")
-            // TODO: Navigate to AutoFragment - viewModel
-            //v.findNavController().navigate(action)
+            findNavController().navigate(action)
         }
         btnSuvF.setOnClickListener{
             viewModel.buscar("diesel", "fuel_type")
-            //val action =  MarcasFragmentDirections.actionMarcasFragmentToAutoFilteredFragment()
+            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
             Log.d("btnSuvF", "diesel")
-            // TODO: Navigate to AutoFragment - viewModel
-            //v.findNavController().navigate(action)
+            findNavController().navigate(action)
         }
         btnElectricF.setOnClickListener{
             viewModel.buscar("electric", "fuel_type")
             Log.d("btnElectricF", "electric")
-            //val action =MarcasFragmentDirections.actionMarcasFragmentToAutoFilteredFragment()
-            // TODO: Navigate to AutoFragment - viewModel
-            //v.findNavController().navigate(action)
+            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
+            findNavController().navigate(action)
         }
     }
     private fun getAllCars() {
@@ -162,7 +155,9 @@ class MarcasFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         marcasListView.layoutManager = linearLayoutManager
         Log.d("Lista de marcas", marcasList.size.toString())
-        marcasListView.adapter = MakeAdapter(marcasList)
+        val navController = findNavController()
+
+        marcasListView.adapter = MakeAdapter(marcasList,requireActivity(),navController)
 
     }
 

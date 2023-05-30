@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navegations_cars"
-    app:startDestination="@id/marcasFragment">
+    app:startDestination="@id/navegation_fragments">
     <fragment
         android:id="@+id/marcasFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.MarcasFragment"
@@ -17,4 +17,11 @@
         android:id="@+id/autoFilteredFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.AutoFragment"
         android:label="AutoFragment" />
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/navegation_fragments">
+        <include app:graph="@navigation/navegations_fragments" />
+        <action
+            android:id="@+id/action_global_marcasFragment"
+            app:destination="@id/marcasFragment" />
+    </navigation>
 </navigation>

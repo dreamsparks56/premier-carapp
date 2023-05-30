@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/stylo_borde_perfil"
     android:backgroundTint="#F5F5F5"
-    tools:context=".Fragments.perfilFragment">
+    tools:context=".fragments.perfilFragment">
 
 
 

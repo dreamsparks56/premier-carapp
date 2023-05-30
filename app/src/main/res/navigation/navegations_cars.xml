@@ -6,7 +6,7 @@
     app:startDestination="@id/navegation_fragments">
     <fragment
         android:id="@+id/marcasFragment"
-        android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.MarcasFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.MarcasFragment"
         android:label="fragment_marcas"
         tools:layout="@layout/fragment_marcas" >
         <action

@@ -1,4 +1,4 @@
-package ar.edu.ort.tp3.parcialtp3ort.Fragments
+package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

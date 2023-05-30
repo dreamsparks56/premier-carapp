@@ -1,4 +1,4 @@
-package ar.edu.ort.tp3.parcialtp3ort.Fragments
+package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -111,7 +111,7 @@ class MarcasFragment : Fragment() {
 
     fun getData(carList: List<CarResponse>) {
             for(car in carList) {
-                var exists: Boolean = false
+                var exists = false
                     for(marca in marcasList) {
                         val isEqual = marca.name == car.marca
                         if(isEqual) {

@@ -1,11 +1,10 @@
-package ar.edu.ort.tp3.parcialtp3ort.Fragments
+package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -105,11 +104,11 @@ class MainFragment : Fragment() {
         nombreUsuario.text = viewModel.usuario.value.toString()
     }
 
-     fun onSupportNavigateUp(): Boolean {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
+     private fun onSupportNavigateUp(): Boolean {
+        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.openDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
 
         return false

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".Fragments.MarcasFragment">
+    android:layout_height="match_parent"
+    tools:context=".fragments.MarcasFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:backgroundTint="#FECB00"
                 android:contentDescription="@string/sport_filter"
                 android:padding="10dp"
-                android:src="@drawable/sport_car" />
+                android:src="@drawable/sport_car"/>
 
             <ImageButton
                 android:id="@+id/suvFilter"
@@ -47,28 +47,27 @@
                 android:contentDescription="@string/electric_filter"
                 android:padding="10dp"
                 android:src="@drawable/electric_car" />
+            <TextView
+                android:id="@+id/marcasTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titleMarcas"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/carTypes" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/marcasListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/make_list_vertical_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/marcasTitle" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/marcasTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titleMarcas"
-            android:textSize="@dimen/title_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carTypes" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/marcasListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/make_list_vertical_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/marcasTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

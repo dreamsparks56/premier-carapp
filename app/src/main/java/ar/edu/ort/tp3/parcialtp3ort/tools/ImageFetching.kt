@@ -11,15 +11,16 @@ class ImageFetching {
     companion object {
         fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String?) {
             val defaultImg = R.drawable.avatar_car
-
             Glide
                 .with(view)
                 .load(path).fitCenter()
                 .placeholder(defaultImg)
+                .thumbnail()
                 .error(
                     Glide
                         .with(view)
                         .load(Make.Constants.getImage(altPath)).fitCenter()
+                        .placeholder(defaultImg)
                         .error(
                             Glide
                                 .with(view)

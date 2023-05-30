@@ -14,10 +14,12 @@
         android:id="@+id/home_fragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.Home_fragment"
         android:label="fragment_home_fragment"
-        tools:layout="@layout/fragment_marcas" >
+        tools:layout="@layout/fragment_home_fragment" >
         <action
             android:id="@+id/action_home_fragment_to_autoFragment"
-            app:destination="@id/autoFragment" />
+            app:destination="@id/autoFragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/configuracionFragment"
@@ -27,10 +29,5 @@
     <fragment
         android:id="@+id/autoFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.AutoFragment"
-        android:label="AutoFragment" >
-
-        <action
-            android:id="@+id/action_autoFragment_to_home_fragment"
-            app:destination="@id/home_fragment" />
-    </fragment>
+        android:label="AutoFragment" />
 </navigation>

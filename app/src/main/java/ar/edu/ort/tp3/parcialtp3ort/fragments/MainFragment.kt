@@ -54,14 +54,13 @@ class MainFragment : Fragment() {
 
 
         //Asigno mi toolbar nueva en el lugar del appBar.
-        toolbar = viewMainFrag.findViewById(R.id.toolbar);
+        toolbar = viewMainFrag.findViewById(R.id.toolbar)
         activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(toolbar)
         activity.supportActionBar?.setDisplayShowTitleEnabled(false) //Elimine el titulo del fragment
         setupBottomNavBar()
         setupDrawerLayout()
         asignarNombreUsuarioAlMenu()
-        onSupportNavigateUp()
 
 
 
@@ -105,11 +104,12 @@ class MainFragment : Fragment() {
     }
 
      private fun onSupportNavigateUp(): Boolean {
-        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.openDrawer(GravityCompat.START)
-        } else {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START)
         }
+
 
         return false
     }

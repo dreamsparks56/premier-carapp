@@ -32,8 +32,8 @@ class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val na
             viewModel.buscar(inputTxt, "make")
             Log.d("Search By Make ", inputTxt)
             val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
-            navController.navigate(action)        }
-
+            navController.navigate(action)
+        }
     }
 
     fun setCount(count: Int) {

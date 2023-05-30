@@ -43,8 +43,8 @@
                     android:gravity="center"
                     android:textAlignment="center"
                     android:text="@string/car_model"
-                    android:textColor="@color/secondary_blue"
                     android:textSize="16sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -82,8 +82,9 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_drive_text"
-                        android:textColor="@color/secondary_blue"
-                        app:drawableLeftCompat="@drawable/icon_park_solid_manual_gear" />
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:drawableLeftCompat="@drawable/icon_park_solid_manual_gear"
+                        app:drawableTint="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
                         android:id="@+id/carFuelText"
@@ -91,9 +92,9 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_fuel_text"
-                        android:textColor="@color/secondary_blue"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         app:drawableLeftCompat="@drawable/fuel_type"
-                        app:drawableTint="@color/secondary_blue"/>
+                        app:drawableTint="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
                         android:id="@+id/carYearText"
@@ -101,9 +102,9 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_year_text"
-                        android:textColor="@color/secondary_blue"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         app:drawableLeftCompat="@drawable/year"
-                        app:drawableTint="@color/secondary_blue" />
+                        app:drawableTint="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
                         android:id="@+id/carClassText"
@@ -111,9 +112,9 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/default_car_text_icon_padding"
                         android:text="@string/car_class_text"
-                        android:textColor="@color/secondary_blue"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         app:drawableLeftCompat="@drawable/gear"
-                        app:drawableTint="@color/secondary_blue"/>
+                        app:drawableTint="?attr/colorOnSurfaceVariant"/>
 
                 </LinearLayout>
         </LinearLayout>

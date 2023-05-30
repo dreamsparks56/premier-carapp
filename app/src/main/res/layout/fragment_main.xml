@@ -32,12 +32,12 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:background="@drawable/stylo_borde_perfil"
-            android:backgroundTint="#F5F5F5"
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="382dp"
             android:layout_height="435dp"
+            android:background="@drawable/stylo_borde_perfil"
+            android:backgroundTint="?attr/colorSurface"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/bottom_bar"
             app:layout_constraintEnd_toEndOf="parent"

@@ -15,6 +15,7 @@ class ImageFetching {
                 .with(view)
                 .load(path).fitCenter()
                 .placeholder(defaultImg)
+                .onlyRetrieveFromCache(true)
                 .thumbnail()
                 .error(
                     Glide

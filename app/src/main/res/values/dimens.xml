@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_container_margin">16dp</dimen>
+    <dimen name="default_container_margin_horizontal">16dp</dimen>
+    <dimen name="default_container_margin_vertical">8dp</dimen>
     <dimen name="default_car_card_separation">16dp</dimen>
     <dimen name="default_brand_card_separation">8dp</dimen>
     <dimen name="default_make_card_width">90dp</dimen>
@@ -16,4 +17,6 @@
     <dimen name="make_list_vertical_margin">10dp</dimen>
     <dimen name="make_name_margin_top">12dp</dimen>
     <dimen name="title_size">24sp</dimen>
+    <dimen name="default_corner_radius_card">24dp</dimen>
+    <dimen name="default_corner_radius_card_marca">16dp</dimen>
 </resources>

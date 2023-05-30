@@ -14,7 +14,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="?attr/materialCardViewElevatedStyle">
+        app:cardCornerRadius="@dimen/default_corner_radius_card_marca"
+        style="?attr/materialCardViewElevatedStyle"
+        android:elevation="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,9 +39,14 @@
                 android:id="@+id/makeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:breakStrategy="simple"
                 android:layout_marginTop="@dimen/make_name_margin_top"
+                android:breakStrategy="simple"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="@string/makeNameTitle"
+                android:textAlignment="center"
                 android:textSize="@dimen/make_name_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

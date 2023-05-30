@@ -22,7 +22,7 @@
             android:baselineAligned="true"
             android:divider="@android:drawable/divider_horizontal_bright"
             android:layout_weight="1"
-            android:dividerPadding="@dimen/default_container_margin"
+            android:dividerPadding="@dimen/default_container_margin_horizontal"
             android:gravity="center"
             android:orientation="horizontal"
             android:showDividers="middle">

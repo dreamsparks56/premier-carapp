@@ -4,11 +4,13 @@
     <dimen name="default_car_card_separation">16dp</dimen>
     <dimen name="default_brand_card_separation">8dp</dimen>
     <dimen name="default_make_card_width">90dp</dimen>
-    <dimen name="default_make_card_height">112dp</dimen>
+    <dimen name="default_make_card_height">140dp</dimen>
     <dimen name="default_make_size">40dp</dimen>
     <dimen name="make_count_size">12sp</dimen>
-    <dimen name="make_name_size">14sp</dimen>
+    <dimen name="make_name_size">12sp</dimen>
     <dimen name="make_count_margin_top">8dp</dimen>
+    <dimen name="default_card_separation">10dp</dimen>
+    <dimen name="cardview_default_leftMargin">5dp</dimen>
     <dimen name="make_padding">8dp</dimen>
     <dimen name="make_list_vertical_margin">10dp</dimen>
     <dimen name="make_name_margin_top">12dp</dimen>

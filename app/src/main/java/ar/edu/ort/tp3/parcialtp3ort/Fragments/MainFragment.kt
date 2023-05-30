@@ -25,13 +25,13 @@ import com.google.android.material.navigation.NavigationView
 class MainFragment : Fragment() {
     lateinit var viewModel: LoginViewModel
     lateinit var viewMainFrag:View
-     lateinit var navHostFragment: NavHostFragment
-     lateinit var drawerLayout: DrawerLayout
-     lateinit var navigationView: NavigationView
-     lateinit var navController: NavController
-     lateinit var  nombreUsuario:TextView
-     lateinit var toolbar:Toolbar
-     lateinit var activity:AppCompatActivity
+    lateinit var navHostFragment: NavHostFragment
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navigationView: NavigationView
+    lateinit var navController: NavController
+    lateinit var nombreUsuario:TextView
+    lateinit var toolbar:Toolbar
+    lateinit var activity:AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +54,9 @@ class MainFragment : Fragment() {
 
 
 
-        //Asigno mi toolbar nueva en el luigar del appBar.
+        //Asigno mi toolbar nueva en el lugar del appBar.
         toolbar = viewMainFrag.findViewById(R.id.toolbar);
-         activity = requireActivity() as AppCompatActivity
+        activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(toolbar)
         activity.supportActionBar?.setDisplayShowTitleEnabled(false) //Elimine el titulo del fragment
         setupBottomNavBar()

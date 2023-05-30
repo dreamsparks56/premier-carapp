@@ -22,6 +22,6 @@ class MakeAdapter(private val makeList: MutableList<Make>) : RecyclerView.Adapte
         val make = makeList[position]
         holder.setName(make.name)
         holder.setCount(make.count)
-        Glide.with(holder.itemView).load(holder.callImg(make.name)).fitCenter().into(holder.carMakeImg)
+        Glide.with(holder.itemView).load(make.url).placeholder(R.drawable.avatar_car).error(holder.callImg(make.name)).fitCenter().into(holder.carMakeImg)
     }
 }

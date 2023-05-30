@@ -1,16 +1,33 @@
 package ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder
 
-import ar.edu.ort.tp3.parcialtp3ort.models.CarResponse
+import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.Header
+import retrofit2.http.Query
 
 interface CarService {
 
-        @Headers("X-Api-Key:2fecMa9Ih8H14zWmhVlyKg==8Hy7KtF4A80Zsey6")
-        @GET("cars?limit=50&fuel_type=electricity")
+        @GET("cars")
+        fun getCarsList(
+                @Query("limit") limit: Int = 50,
+        ): Call<List<CarResponse>>
 
-        fun getCarList(): Call<List<CarResponse>>
+        @GET("cars")
+        fun getCarsByFuel(
+                @Query("fuel_type") fuelType: String,
+                @Query("limit") limit: Int = 50,
+        ): Call<List<CarResponse>>
 
+        @GET("cars")
+        fun getCarsByManufacturer(
+                @Query("make") manufacturer: String,
+                @Query("limit") limit: Int = 25,
+        ): Call<List<CarResponse>>
 
+        @GET("cars")
+        fun getCarsByModel(
+                @Query("model") model: String,
+                @Query("limit") limit: Int = 25,
+        ): Call<List<CarResponse>>
 }

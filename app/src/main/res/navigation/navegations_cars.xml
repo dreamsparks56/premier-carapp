@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegations_cars"
+    app:startDestination="@id/marcasFragment">
+    <fragment
+        android:id="@+id/marcasFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.Fragments.MarcasFragment"
+        android:label="fragment_marcas"
+        tools:layout="@layout/fragment_marcas" >
+        <action
+            android:id="@+id/action_marcasFragment_to_autoFilteredFragment"
+            app:destination="@id/autoFilteredFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/autoFilteredFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.AutoFragment"
+        android:label="AutoFragment" />
+</navigation>

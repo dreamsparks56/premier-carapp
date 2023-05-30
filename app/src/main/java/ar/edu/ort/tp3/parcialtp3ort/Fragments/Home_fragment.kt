@@ -13,9 +13,6 @@ class Home_fragment : Fragment() {
     lateinit var viewHome: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
     }
 
     override fun onCreateView(
@@ -24,6 +21,7 @@ class Home_fragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         viewHome = inflater.inflate(R.layout.fragment_home_fragment, container, false)
+
         return viewHome
     }
 

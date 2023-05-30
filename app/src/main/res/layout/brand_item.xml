@@ -7,8 +7,10 @@
     android:layout_marginHorizontal="@dimen/default_brand_card_separation">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/cardview_default_leftMargin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +38,7 @@
                 android:id="@+id/makeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:breakStrategy="simple"
                 android:layout_marginTop="@dimen/make_name_margin_top"
                 android:text="@string/makeNameTitle"
                 android:textSize="@dimen/make_name_size"
@@ -45,6 +48,7 @@
 
             <TextView
                 android:id="@+id/makeCount"
+                android:breakStrategy="simple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/make_count_margin_top"

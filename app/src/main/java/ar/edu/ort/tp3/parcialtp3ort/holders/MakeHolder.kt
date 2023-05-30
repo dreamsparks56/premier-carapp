@@ -1,10 +1,13 @@
 package ar.edu.ort.tp3.parcialtp3ort.holders
 
+import AutoViewModel
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
+import com.google.android.material.card.MaterialCardView
 
 class MakeHolder( v: View) : RecyclerView.ViewHolder(v) {
 
@@ -19,6 +22,12 @@ class MakeHolder( v: View) : RecyclerView.ViewHolder(v) {
     fun setName(name: String) {
         val txt = this.view.findViewById<TextView>(R.id.makeName)
         txt.text = name
+        this.view.findViewById<MaterialCardView>(R.id.cardView).setOnClickListener {
+            var viewModel: AutoViewModel = AutoViewModel()
+            viewModel.buscar(name, "make")
+            Log.d("Search By Make ", name)
+            // TODO: Navigate to AutoFragment - viewModel
+        }
     }
 
     fun setCount(count: Int) {

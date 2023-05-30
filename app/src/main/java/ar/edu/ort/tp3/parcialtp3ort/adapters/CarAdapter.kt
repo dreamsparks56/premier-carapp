@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
-import ar.edu.ort.tp3.parcialtp3ort.models.CarResponse
+import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import com.bumptech.glide.Glide
 
 class CarAdapter (private val carList: List<CarResponse>): RecyclerView.Adapter<CarAdapter.ViewHolder>() {
@@ -37,14 +37,14 @@ class CarAdapter (private val carList: List<CarResponse>): RecyclerView.Adapter<
         position: Int,
     ) {
         val car= carList[position]
-        val carMake = car.make
-        val fullCarModel = String.format("%s %s", carMake, car.model)
+        val carMake = car.marca
+        val fullCarModel = String.format("%s %s", carMake, car.modelo)
         holder.carModel.text = fullCarModel
-        holder.drive.text = car.drive
-        holder.fuelType.text = car.fuel_type
-        holder.year.text = car.year
-        holder.carClass.text = car.car_class
-        Glide.with(holder.itemView).load(Car.getImage(carMake)).fitCenter().into(holder.carModelImg)
+        holder.drive.text = car.tipoConduccion
+        holder.fuelType.text = car.combustible
+        holder.year.text = car.ano
+        holder.carClass.text = car.descripcionAuto
+        Glide.with(holder.itemView).load(car.image).placeholder(R.drawable.avatar_car).error(Car.getImage(carMake)).fitCenter().into(holder.carModelImg)
     }
 
 

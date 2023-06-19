@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "568195962001",
+    "project_id": "premier-rentcar",
+    "storage_bucket": "premier-rentcar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568195962001:android:ac6e98f6b72226c31cdb30",
+        "android_client_info": {
+          "package_name": "ar.edu.ort.tp3.parcialtp3ort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568195962001-315no1qc9regmcrhhev8l0mj0kd9dm2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuRdCr4TToLm_uJMQ-C4DuLZ_TL2SzVXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568195962001-315no1qc9regmcrhhev8l0mj0kd9dm2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

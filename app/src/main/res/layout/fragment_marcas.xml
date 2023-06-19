@@ -21,28 +21,33 @@
 
             <ImageButton
                 android:id="@+id/sportFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/category_height"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/category_button_shape"
                 android:backgroundTint="#FECB00"
                 android:contentDescription="@string/sport_filter"
-                android:padding="10dp"
-                android:src="@drawable/sport_car"/>
+                android:padding="@dimen/default_corner_radius_card_category"
+                android:src="@drawable/sport_car" />
 
             <ImageButton
                 android:id="@+id/suvFilter"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/category_height"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/category_button_shape"
                 android:backgroundTint="#3330E4"
                 android:contentDescription="@string/suv_filter"
+                android:padding="@dimen/default_corner_radius_card_category"
                 android:src="@drawable/suv_car" />
 
             <ImageButton
                 android:id="@+id/electricFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/category_height"
+                android:background="@drawable/category_button_shape"
                 android:backgroundTint="#04D8FE"
+                android:padding="@dimen/default_corner_radius_card_category"
                 android:contentDescription="@string/electric_filter"
                 android:src="@drawable/electric_car" />
         </LinearLayout>

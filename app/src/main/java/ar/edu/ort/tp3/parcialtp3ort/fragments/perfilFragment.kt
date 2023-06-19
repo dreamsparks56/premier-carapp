@@ -14,9 +14,10 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 
 
 class perfilFragment : Fragment() {
-    lateinit var vista:View;
+    lateinit var vista:View
     lateinit var viewModel:LoginViewModel
     lateinit var nombre:TextView
+    lateinit var email:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +27,19 @@ class perfilFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         vista=  inflater.inflate(R.layout.fragment_perfil, container, false)
 
         nombre = vista.findViewById(R.id.nameUser_perfil)
+        email = vista.findViewById(R.id.emailUser_perfil)
 
         // Obtener referencia al ViewModel
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
         // Acceder a las propiedades o métodos del ViewModel según sea necesario
         nombre.text = viewModel.usuario.value.toString()
+        email.text = viewModel.email.value.toString()
 
 
 

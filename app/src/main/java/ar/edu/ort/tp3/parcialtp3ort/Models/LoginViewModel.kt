@@ -7,7 +7,8 @@ import com.google.firebase.auth.FirebaseUser
 class LoginViewModel:ViewModel() {
 
     val usuario = MutableLiveData<String>()
-    val clave = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+    //val clave = MutableLiveData<String>()
 
 
     /*fun guardarCredenciales(nombre: String, password: String) {
@@ -18,6 +19,7 @@ class LoginViewModel:ViewModel() {
         user?.let {
             // Name, email address, and profile photo Url
             usuario.value = it.displayName
+            email.value = it.email
 
             // Check if user's email is verified
             //val emailVerified = it.isEmailVerified

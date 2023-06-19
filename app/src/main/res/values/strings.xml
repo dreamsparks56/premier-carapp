@@ -32,4 +32,10 @@
     <string name="sport_filter">sport car filter</string>
     <string name="profile_description">The profile picture</string>
     <string name="notifications_description">Notifications icon</string>
+
+    <!-- login-->
+    <string name="email_placeholder">Enter your email…</string>
+    <string name="password_placeholder">Enter your password…</string>
+    <string name="password_forgotten">Olvidé mi contraseña</string>
+    <string name="login_signin">Ingresar</string>
 </resources>

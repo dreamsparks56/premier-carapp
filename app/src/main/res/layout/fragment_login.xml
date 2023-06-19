@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/unsplash_wpvtt0mem00_1_"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -35,14 +34,15 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="20dp"
+            android:autofillHints="username"
             android:background="@drawable/stylo_bordes_edit_text"
             android:hapticFeedbackEnabled="true"
+            android:hint="@string/email_placeholder"
             android:inputType="textPersonName"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:text="Name"
             android:textAlignment="center"
-            android:textSize="19dp" />
+            android:textSize="@dimen/login_font_size" />
 
         <EditText
             android:id="@+id/pass_login"
@@ -51,20 +51,21 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
+            android:autofillHints="password"
             android:background="@drawable/stylo_bordes_edit_text"
+            android:hint="@string/password_placeholder"
             android:inputType="textPassword"
-            android:radius="50dp"
-            android:text="122"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
+            android:radius="50dp"
             android:textAlignment="center"
-            android:textSize="19dp" />
+            android:textSize="@dimen/login_font_size" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Olvidé mi contraseña"
+            android:text="@string/password_forgotten"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
@@ -76,13 +77,12 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:backgroundTint="#212121"
-            android:lineHeight="28sp"
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
             android:paddingRight="40dp"
             android:paddingBottom="20dp"
-            android:text="Ingresar"
-            android:textSize="19dp"
+            android:text="@string/login_signin"
+            android:textSize="@dimen/login_font_size"
             app:cornerRadius="74sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -23,4 +23,7 @@
     <dimen name="profile_mail">20sp</dimen>
     <dimen name="profile_field">15sp</dimen>
     <dimen name="profile_main_padding">16dp</dimen>
+
+    <!-->login values -->
+    <dimen name="login_font_size">19sp</dimen>
 </resources>

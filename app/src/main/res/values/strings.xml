@@ -30,4 +30,6 @@
     <string name="electric_filter">electric car filter</string>
     <string name="suv_filter">suv car filter</string>
     <string name="sport_filter">sport car filter</string>
+    <string name="profile_description">The profile picture</string>
+    <string name="notifications_description">Notifications icon</string>
 </resources>

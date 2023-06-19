@@ -19,4 +19,8 @@
     <dimen name="title_size">24sp</dimen>
     <dimen name="default_corner_radius_card">24dp</dimen>
     <dimen name="default_corner_radius_card_marca">16dp</dimen>
+    <dimen name="profile_title">32sp</dimen>
+    <dimen name="profile_mail">20sp</dimen>
+    <dimen name="profile_field">15sp</dimen>
+    <dimen name="profile_main_padding">16dp</dimen>
 </resources>

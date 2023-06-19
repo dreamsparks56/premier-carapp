@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/stylo_borde_perfil"
     android:backgroundTint="?attr/colorSurface"
+    android:paddingVertical="@dimen/profile_main_padding"
     tools:context=".fragments.perfilFragment">
 
 
@@ -36,8 +37,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15sp"
             android:text="nameUser"
-            android:textColor="@color/celeste"
-            android:textSize="32sp" />
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="@dimen/profile_title" />
         <TextView
             android:id="@+id/emailUser_perfil"
             android:layout_width="wrap_content"
@@ -45,8 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15sp"
             android:text="nameUser"
-            android:textColor="@color/celeste"
-            android:textSize="32sp" />
+            android:textSize="@dimen/profile_mail" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,9 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:shadowColor="@color/celeste"
+                android:shadowColor="?attr/colorOnSecondary"
                 android:text="@string/notificaciones"
-                android:textColor="@color/celeste" />
+                android:textColor="?attr/colorOnSecondary"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,22 +77,15 @@
                 android:layout_marginStart="15dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/icon2Notifiaciones_perfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:backgroundTint="@color/celeste"
-                    android:contentDescription="@string/notifications_description"
-                    android:src="@drawable/notificaciones_vacio_icon" />
-
                 <TextView
                     android:id="@+id/descripcionNotificacioens_perfil"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/notificaciones"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:drawableStartCompat="@drawable/notificaciones_vacio_icon"
+                    android:drawablePadding="@dimen/default_car_text_icon_padding"/>
             </LinearLayout>
 
         </LinearLayout>

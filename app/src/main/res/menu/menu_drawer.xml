@@ -14,5 +14,9 @@
     <item android:title="@string/opcionFavoritos"
         android:icon="@drawable/notificaciones_vacio_icon"/>
 
+    <item android:title="@string/opcionCerrarSesion"
+        android:id="@+id/loginFragment"
+        android:icon="@drawable/baseline_logout_24"/>
+
 
 </menu>

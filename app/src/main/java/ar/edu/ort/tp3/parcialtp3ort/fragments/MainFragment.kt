@@ -1,6 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -41,7 +44,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         viewMainFrag = inflater.inflate(R.layout.fragment_main, container, false)
 
@@ -92,6 +95,11 @@ class MainFragment : Fragment() {
         toolbar.setNavigationOnClickListener {
             onSupportNavigateUp()
         }
+        navigationView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
+            signOut()
+            true
+            //TODO: Solve crash on signout
+        }
         //esto lo llamo desde la toolbar q ya tiene el manejo del action bar original.
 
     }
@@ -113,6 +121,21 @@ class MainFragment : Fragment() {
 
         return false
     }
+    private fun signOut() {
+        // [START auth_fui_signout]
+        Log.d("start", "signout has started")
+        AuthUI.getInstance()
+            .signOut(this.requireContext())
+            .addOnCompleteListener {
+                // ...
+            }
+        // [END auth_fui_signout]
+        Log.d("end", "signout has ended")
+        val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
+        viewMainFrag.findNavController().navigate(action)
+
+    }
+
 
 
 

@@ -27,6 +27,7 @@
     <string name="opcionPerfil">Perfil</string>
     <string name="opcionConfiguracion">Configuración</string>
     <string name="opcionFavoritos">Favoritos</string>
+    <string name="opcionCerrarSesion">Cerrar sesión</string>
     <string name="electric_filter">electric car filter</string>
     <string name="suv_filter">suv car filter</string>
     <string name="sport_filter">sport car filter</string>

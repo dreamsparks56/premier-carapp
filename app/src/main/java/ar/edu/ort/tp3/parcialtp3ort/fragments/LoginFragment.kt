@@ -67,7 +67,7 @@ class LoginFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            reload()
+            updateUI(currentUser)
         }
     }
 
@@ -76,10 +76,6 @@ class LoginFragment : Fragment() {
         viewModel.guardarCredenciales(user)
         val action =  LoginFragmentDirections.actionLoginFragmentToMainFragment()
         viewLogin.findNavController().navigate(action)
-    }
-
-    private fun reload() {
-
     }
 
     private fun signIn(email: String, password: String) {

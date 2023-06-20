@@ -2,19 +2,14 @@ package ar.edu.ort.tp3.parcialtp3ort
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.firebase.auth.ActionCodeSettings
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private val signInLauncher = registerForActivityResult(
+    /*private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract(),
     ) { res ->
         this.onSignInResult(res)
-    }
+    }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun createSignInIntent() {
+    /*private fun createSignInIntent() {
         // [START auth_fui_create_intent]
         // Choose authentication providers
         val providers = arrayListOf(
@@ -91,15 +86,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // [END auth_fui_email_link_catch]
-    }
-    private fun signOut() {
-        // [START auth_fui_signout]
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                // ...
-            }
-        // [END auth_fui_signout]
-    }
+    }*/
+
 
    }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -22,6 +23,9 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MainFragment : Fragment() {
@@ -34,9 +38,12 @@ class MainFragment : Fragment() {
     lateinit var nombreUsuario:TextView
     lateinit var toolbar:Toolbar
     lateinit var activity:AppCompatActivity
+    private lateinit var fireBaseAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fireBaseAuth = Firebase.auth
 
 
     }
@@ -122,18 +129,11 @@ class MainFragment : Fragment() {
         return false
     }
     private fun signOut() {
-        // [START auth_fui_signout]
-        Log.d("start", "signout has started")
-        AuthUI.getInstance()
-            .signOut(this.requireContext())
-            .addOnCompleteListener {
-                // ...
-            }
-        // [END auth_fui_signout]
-        Log.d("end", "signout has ended")
+        fireBaseAuth.signOut()
+        Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
+
         val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
         viewMainFrag.findNavController().navigate(action)
-
     }
 
 

@@ -20,8 +20,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
-import com.firebase.ui.auth.AuthUI
+//import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -129,11 +130,26 @@ class MainFragment : Fragment() {
         return false
     }
     private fun signOut() {
-        fireBaseAuth.signOut()
-        Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+        dialog.setTitle("Cerrar sesión")
+        dialog.setMessage("¿Estas seguro que queres cerrar sesión?")
 
-        val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
-        viewMainFrag.findNavController().navigate(action)
+        dialog.setPositiveButton("Yeah") { _, _ ->
+            fireBaseAuth.signOut()
+            Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
+            val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
+            viewMainFrag.findNavController().navigate(action)
+        }
+        dialog.setNeutralButton("Cancel") { _, _ ->
+            Toast.makeText(this.context, "Cancelled", Toast.LENGTH_SHORT).show()
+        }
+        dialog.create()
+        dialog.setCancelable(false)
+        dialog.show()
+
+
+
+
     }
 
 

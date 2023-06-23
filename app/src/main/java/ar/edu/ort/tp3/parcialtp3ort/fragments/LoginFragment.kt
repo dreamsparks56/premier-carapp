@@ -125,11 +125,9 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-
                     // Sign in success, update UI with the signed-in user's information
                     //  Log.d(TAG, "signInWithCredential:success")
                     Toast.makeText(this.context, "Inicio de sesión con google correcto :)", Toast.LENGTH_SHORT).show()
-
                     val user = auth.currentUser
                     updateUI(user!!)
                     //Aca voy a ir al HOME.

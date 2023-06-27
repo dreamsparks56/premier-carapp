@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/unsplash_wpvtt0mem00_1_"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
+    tools:context=".fragments.Registro">
 
     <include
         android:id="@+id/include2"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.337">
 
         <EditText
-            android:id="@+id/usuario_login"
+            android:id="@+id/mail_registro1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -50,7 +50,25 @@
             android:textSize="@dimen/login_font_size" />
 
         <EditText
-            android:id="@+id/pass_login"
+            android:id="@+id/pass_registro1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:autofillHints="password"
+            android:layout_marginBottom="20dp"
+
+            android:background="@drawable/stylo_bordes_edit_text"
+            android:hint="@string/password_placeholder"
+            android:inputType="textPassword"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:radius="50dp"
+            android:textAlignment="center"
+            android:textSize="@dimen/login_font_size" />
+
+        <EditText
+            android:id="@+id/pass_registro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -63,50 +81,12 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:radius="50dp"
-
             android:textAlignment="center"
             android:textSize="@dimen/login_font_size" />
 
-        <TextView
-            android:id="@+id/btnText_olvideContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_marginBottom="20dp"
-            android:text="@string/password_forgotten"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
-        <TextView
-            android:id="@+id/btnText_registro_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:text="@string/btn_registro_log"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_google_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#212121"
-            android:padding="10dp"
-            android:text="@string/googleSignIn"
-            android:textAllCaps="false"
-            android:textSize="19sp"
-            app:cornerRadius="30dp"
-            app:icon="@drawable/googleg_standard_color_18"
-            app:iconGravity="textStart"
-            app:iconPadding="8dp"
-            app:iconSize="24dp"
-            app:iconTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/btnText_olvideContraseña" />
-
 
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/button_registro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -115,8 +95,7 @@
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
             android:paddingRight="40dp"
-            android:paddingBottom="20dp"
-            android:text="@string/login_signin"
+            android:text="@string/registro_button"
             android:textSize="@dimen/login_font_size"
             app:cornerRadius="74sp"
             app:layout_constraintBottom_toBottomOf="parent"

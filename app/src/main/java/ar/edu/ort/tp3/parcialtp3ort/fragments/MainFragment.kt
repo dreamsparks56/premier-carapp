@@ -137,7 +137,7 @@ class MainFragment : Fragment() {
         dialog.setPositiveButton("Yeah") { _, _ ->
             fireBaseAuth.signOut()
             Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
-            val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
+            val action =  MainFragmentDirections.actionMainFragmentToLoginFragment() //a mi se me crashea acá.
             viewMainFrag.findNavController().navigate(action)
         }
         dialog.setNeutralButton("Cancel") { _, _ ->

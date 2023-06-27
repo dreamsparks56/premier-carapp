@@ -40,4 +40,8 @@
     <string name="password_forgotten">Olvidé mi contraseña</string>
     <string name="login_signin">Ingresar</string>
     <string name="googleSignIn">Iniciar sesion con google</string>
+    <string name="titleRecuperoClave">RECUPERAR CLAVE</string>
+    <string name="pass_recupero">Recuperar</string>
+    <string name="registro_button">Registrarme\n</string>
+    <string name="btn_registro_log">Registrarme</string>
 </resources>

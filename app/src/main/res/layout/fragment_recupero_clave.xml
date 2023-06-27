@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    android:background="@drawable/unsplash_wpvtt0mem00_1_"
+    tools:context=".fragments.RecuperoClaveFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/title_proyect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleRecuperoClave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:background="@color/black"
+        android:text="@string/titleRecuperoClave"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleRecuperoClave"
+        app:layout_constraintVertical_bias="0.34">
+
+
+        <EditText
+            android:id="@+id/mail_recuperarClave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints="password"
+            android:background="@drawable/stylo_bordes_edit_text"
+            android:hint="@string/password_placeholder"
+            android:inputType="textPassword"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:radius="50dp"
+            android:textAlignment="center"
+            android:textSize="@dimen/login_font_size" />
+
+
+        <Button
+            android:id="@+id/button_recuperoClave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#212121"
+            android:paddingLeft="40dp"
+            android:paddingTop="20dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp"
+            android:text="@string/pass_recupero"
+            android:textSize="@dimen/login_font_size"
+            app:cornerRadius="74sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

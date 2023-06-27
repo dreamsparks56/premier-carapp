@@ -1,5 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
+
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,10 +19,13 @@ import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
+import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MarcasFragment : Fragment() {
     lateinit var v: View
@@ -73,40 +78,51 @@ class MarcasFragment : Fragment() {
         }
     }
     private fun getAllCars() {
-        val service = APIServiceBuilder.createCarService()
-        service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
-            override fun onResponse(
-                call: Call<List<CarResponse>>,
-                response: Response<List<CarResponse>>
-            ) {
-                getData(response.body()!!)
-            }
-            override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
-                //Not yet implemented
-            }
-        })
-        service.getCarsByFuel("diesel").enqueue(object: Callback<List<CarResponse>> {
-            override fun onResponse(
-                call: Call<List<CarResponse>>,
-                response: Response<List<CarResponse>>
-            ) {
-                getData(response.body()!!)
-            }
-            override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
-                //Not yet implemented
-            }
-        })
-        service.getCarsByFuel("electricity").enqueue(object: Callback<List<CarResponse>> {
-            override fun onResponse(
-                call: Call<List<CarResponse>>,
-                response: Response<List<CarResponse>>
-            ) {
-                getData(response.body()!!)
-            }
-            override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
-                //Not yet implemented
-            }
-        })
+        val mDbHelper = DBHelper.getIntance()//(context,null)
+        val carList : List<CarResponse> = mDbHelper.getAllCars()
+
+        if(carList.size <= 2){
+            val service = APIServiceBuilder.createCarService()
+            service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
+                override fun onResponse(
+                    call: Call<List<CarResponse>>,
+                    response: Response<List<CarResponse>>
+                ) {
+                    mDbHelper.addCars(response.body()!!)
+                    getData(response.body()!!)
+                }
+                override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
+                    //Not yet implemented
+                }
+            })
+            service.getCarsByFuel("diesel").enqueue(object: Callback<List<CarResponse>> {
+                override fun onResponse(
+                    call: Call<List<CarResponse>>,
+                    response: Response<List<CarResponse>>
+                ) {
+                    mDbHelper.addCars(response.body()!!)
+                    getData(response.body()!!)
+                }
+                override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
+                    //Not yet implemented
+                }
+            })
+            service.getCarsByFuel("electricity").enqueue(object: Callback<List<CarResponse>> {
+                override fun onResponse(
+                    call: Call<List<CarResponse>>,
+                    response: Response<List<CarResponse>>
+                ) {
+                    mDbHelper.addCars(response.body()!!)
+                    getData(response.body()!!)
+                }
+                override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
+                    //Not yet implemented
+                }
+            })
+
+        }else{
+            getData(carList)
+        }
     }
 
     fun getData(carList: List<CarResponse>) {
@@ -127,27 +143,45 @@ class MarcasFragment : Fragment() {
         getLogoImages()
     }
     private fun getLogoImages() {
+        val mDbHelper = DBHelper.getIntance()//(context,null)
+        val logoList : List<LogoResponse> = mDbHelper.getAllLogos()
+        if(logoList.size < marcasList.size) {
 
-        val logoService = APIServiceBuilder.createLogoService()
-        for (marca in marcasList) {
-            if(marca.url.isNullOrEmpty()){
-                logoService.getLogoByName(marca.name).enqueue(object: Callback<List<LogoResponse>> {
-                    override fun onResponse(call: Call<List<LogoResponse>>, response: Response<List<LogoResponse>>) {
-                        if (response.isSuccessful) {
-                            val logos = response.body()
-                            if (!logos.isNullOrEmpty()) {
-                                marca.url = logos[0].imagenURL
-                                setupRecView()
+            val logoService = APIServiceBuilder.createLogoService()
+            for (marca in marcasList) {
+                if (marca.url.isNullOrEmpty()) {
+                    logoService.getLogoByName(marca.name)
+                        .enqueue(object : Callback<List<LogoResponse>> {
+                            override fun onResponse(
+                                call: Call<List<LogoResponse>>,
+                                response: Response<List<LogoResponse>>
+                            ) {
+                                if (response.isSuccessful) {
+                                    val logos = response.body()
+                                    if (!logos.isNullOrEmpty()) {
+                                        marca.url = logos[0].imagenURL
+                                        mDbHelper.addLogos(logos)
+                                        setupRecView()
+                                    }
+                                } else {
+                                    // Handle error
+                                }
                             }
-                        } else {
-                            // Handle error
-                        }
-                    }
 
-                    override fun onFailure(call: Call<List<LogoResponse>>, t: Throwable) {
-                        // Handle failure
+                            override fun onFailure(call: Call<List<LogoResponse>>, t: Throwable) {
+                                // Handle failure
+                            }
+                        })
+                }
+            }
+        } else{
+            for(marca in marcasList){
+                if(marca.url.isNullOrEmpty()){
+                    if(logoList.find{it.nombre == marca.name} != null){
+                        marca.url = logoList.find{it.nombre == marca.name}!!.imagenURL
+                        setupRecView()
                     }
-                })
+                }
             }
         }
     }

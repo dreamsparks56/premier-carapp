@@ -114,7 +114,7 @@ class AutoFragment : Fragment() {
             })
         }else{
             cars.addAll(carList)
-            getData(carList)
+            getData(cars)
         }
     }
     private fun getDieselCars(){
@@ -137,7 +137,7 @@ class AutoFragment : Fragment() {
             })
         }else{
             cars.addAll(carList)
-            getData(carList)
+            getData(cars)
         }
     }
     private fun getElectricCars(){
@@ -161,12 +161,12 @@ class AutoFragment : Fragment() {
             })
         }else{
             cars.addAll(carList)
-            getData(carList)
+            getData(cars)
         }
     }
     private fun searchCarsByMake(manu : String){
         val mDbHelper = DBHelper.getIntance()//(context,null)
-        val carList : List<CarResponse> = mDbHelper.searchCars("make",manu)
+        val carList : List<CarResponse> = mDbHelper.searchCars(manu,"make")
 
         if(carList.size <= 2){
             val service = APIServiceBuilder.createCarService()
@@ -196,12 +196,12 @@ class AutoFragment : Fragment() {
         }else{
             cars  = mutableListOf<CarResponse>()
             cars.addAll(carList)
-            getData(carList)
+            getData(cars)
         }
     }
     private fun searchCarsByModel(model:String){
         val mDbHelper = DBHelper.getIntance()//(context,null)
-        val carList : List<CarResponse> = mDbHelper.searchCars("model",model)
+        val carList : List<CarResponse> = mDbHelper.searchCars(model,"model")
 
         if(carList.isEmpty()){
             val service = APIServiceBuilder.createCarService()
@@ -230,7 +230,7 @@ class AutoFragment : Fragment() {
         }else{
             cars  = mutableListOf<CarResponse>()
             cars.addAll(carList)
-            getData(carList)
+            getData(cars)
         }
     }
 
@@ -272,10 +272,11 @@ class AutoFragment : Fragment() {
                 if(marca.url.isNullOrEmpty()){
                     if(logoList.find{it.nombre == marca.name } != null){
                         marca.url = logoList.find{it.nombre == marca.name}!!.imagenURL
-                        showData(cars)
+
                     }
                 }
             }
+            showData(cars)
         }
     }
     private fun showData(carBunch: List<CarResponse>) {

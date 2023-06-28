@@ -19,7 +19,12 @@ import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
+import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
 import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
+import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
+import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getIntance
+import ar.edu.ort.tp3.parcialtp3ort.entities.Car
+import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -78,18 +83,22 @@ class MarcasFragment : Fragment() {
         }
     }
     private fun getAllCars() {
-        val mDbHelper = DBHelper.getIntance()//(context,null)
-        val carList : List<CarResponse> = mDbHelper.getAllCars()
+        //val mDbHelper = DBHelper.getIntance()//(context,null)
+        //val carList : List<CarResponse> = mDbHelper.getAllCars()
+        //var db: appDatabase? = getIntance()//appDatabase.getAppDataBase(v.context)//getIntance()//appDatabase.getAppDataBase(v.context)
+        var carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
 
-        if(carList.size <= 2){
+        if(carList== null || (carList != null && carList.size <= 2)){
             val service = APIServiceBuilder.createCarService()
             service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    mDbHelper.addCars(response.body()!!)
-                    getData(response.body()!!)
+                    //mDbHelper.addCars(response.body()!!)
+                    //getData(response.body()!!)
+                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getData(getIntance()?.carDao()?.getCarsByCombustible("gas"))
                 }
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
@@ -100,8 +109,10 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    mDbHelper.addCars(response.body()!!)
-                    getData(response.body()!!)
+                    //mDbHelper.addCars(response.body()!!)
+                    //getData(response.body()!!)
+                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getData(getIntance()?.carDao()?.getCarsByCombustible("diesel"))
                 }
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
@@ -112,8 +123,10 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    mDbHelper.addCars(response.body()!!)
-                    getData(response.body()!!)
+                    //mDbHelper.addCars(response.body()!!)
+                    //getData(response.body()!!)
+                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getData(getIntance()?.carDao()?.getCarsByCombustible("electricity"))
                 }
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
@@ -125,9 +138,12 @@ class MarcasFragment : Fragment() {
         }
     }
 
-    fun getData(carList: List<CarResponse>) {
-            for(car in carList) {
-                var exists = false
+    fun getData(carList: MutableList<Car>?) {//(carList: List<CarResponse>) {
+            if(carList != null)
+            {
+                for(car in carList)
+                {
+                    var exists = false
                     for(marca in marcasList) {
                         val isEqual = marca.name == car.marca
                         if(isEqual) {
@@ -136,11 +152,13 @@ class MarcasFragment : Fragment() {
                         }
                     }
                     if(!exists) {
-                        marcasList.add(Make(car.marca, "",1))
+                        marcasList.add(Make(car.marca, car.image,1))
                     }
                 }
-        Log.d("Lista de marcas pre setup", marcasList.size.toString())
-        getLogoImages()
+                Log.d("Lista de marcas pre setup", marcasList.size.toString())
+                //getLogoImages()
+                setupRecView()
+            }
     }
     private fun getLogoImages() {
         val mDbHelper = DBHelper.getIntance()//(context,null)

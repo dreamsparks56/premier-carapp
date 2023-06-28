@@ -20,6 +20,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
+import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
 //import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -41,11 +43,9 @@ class MainFragment : Fragment() {
     lateinit var activity:AppCompatActivity
     private lateinit var fireBaseAuth: FirebaseAuth
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fireBaseAuth = Firebase.auth
-
 
     }
 

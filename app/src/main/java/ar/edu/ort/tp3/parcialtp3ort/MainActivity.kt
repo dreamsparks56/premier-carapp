@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
+import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Probando repo git
-        DBHelper.initDatabaseInstance(getApplicationContext())
+        //DBHelper.initDatabaseInstance(getApplicationContext())
+        appDatabase.getAppDataBase(getApplicationContext())
+
         //val db : DBHelper = DBHelper(getApplicationContext(),null)
 
     }

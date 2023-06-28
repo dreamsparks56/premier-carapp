@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.holders.CarHolder
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
+import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 
-class CarAdapter (private val carList: List<CarResponse>): RecyclerView.Adapter<CarHolder>() {
+class CarAdapter (private val carList: MutableList<Car>): RecyclerView.Adapter<CarHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -31,7 +32,7 @@ class CarAdapter (private val carList: List<CarResponse>): RecyclerView.Adapter<
         holder.setModelDrive(car.tipoConduccion)
         holder.setFuelType(car.combustible)
         holder.setYear(car.ano)
-        holder.setClass(car.descripcionAuto)
+        holder.setClass(car.descripcion)
         holder.callImg(car.image, car.marca)
     }
 

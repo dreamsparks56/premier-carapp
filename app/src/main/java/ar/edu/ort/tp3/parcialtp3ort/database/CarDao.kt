@@ -18,8 +18,9 @@ interface CarDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(cars: MutableList<Car>?)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateCar(car: Car?)
+
 
     @Delete
     fun delete(car: Car?)
@@ -38,5 +39,7 @@ interface CarDao {
 
     @Query("SELECT * FROM cars WHERE favorito = :favorite  ORDER BY favorito desc, modelo")
     fun getFavoriteCars(favorite: Boolean): MutableList<Car>?
+
+
 
 }

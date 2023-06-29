@@ -46,7 +46,7 @@ class AutoFragment : Fragment() {
         cars  = mutableListOf<Car>()//mutableListOf<CarResponse>()
         carList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(cars)
+            adapter = CarAdapter(cars, context, false)
         }
         if(viewModel.campo.value.toString().isNullOrEmpty()) {
             Log.d("VIEWMODEL empty", viewModel.tipoBusqueda.value.toString())
@@ -321,7 +321,7 @@ class AutoFragment : Fragment() {
 
         carList.apply {
            layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(carBunch)
+            adapter = CarAdapter(carBunch, context, false)
         }
         //CleanUp
         viewModel.buscar("", "")

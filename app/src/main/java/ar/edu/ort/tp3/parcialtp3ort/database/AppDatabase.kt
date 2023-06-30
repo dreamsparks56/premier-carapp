@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
+import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 
-@Database(entities = [Car::class], version = 1, exportSchema = false)
+@Database(entities = [Car::class, Favorito::class], version = 2, exportSchema = false)
 abstract class appDatabase : RoomDatabase() {
 
     abstract fun carDao(): CarDao
+    abstract fun favDao(): FavDao
 
     companion object {
 
@@ -23,7 +25,9 @@ abstract class appDatabase : RoomDatabase() {
                         context.applicationContext,
                         appDatabase::class.java,
                         "PremierRentCarRoom"
-                    ).allowMainThreadQueries().build() // No es lo mas recomendable que se ejecute en el mainthread
+                    )   .fallbackToDestructiveMigration() // Permitir migraciones destructivas xq cambie la version de la BD.
+                        .allowMainThreadQueries().build() // No es lo mas recomendable que se ejecute en el mainthread
+
                 }
             }
             return INSTANCE

@@ -10,6 +10,7 @@ import ar.edu.ort.tp3.parcialtp3ort.holders.CarHolder
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
+import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -97,7 +98,14 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
         appDatabase.getIntance()?.carDao()?.updateCar(car)
         println("Favorito es: " + car.favorito)
 
-       val favoritos =  appDatabase.getIntance()?.carDao()?.getFavoriteCars(true)
+        val fav = Favorito(idAuto = car.id)
+        //print("El id Fav es: " + fav.id + " y el del auto " + fav.idAuto)
+        appDatabase.getIntance()?.favDao()?.insertFav(fav)
+        val valores = appDatabase.getIntance()?.favDao()?.getAllCars()
+       // println("El id del primer favorito es: " + valores?.get(0)!!.id)
+
+
+        val favoritos =  appDatabase.getIntance()?.carDao()?.getFavoriteCars(true)
        // println(favoritos!![2].id)
     //    notifyDataSetChanged() //Le avisa al recycler q refresque xq hay alguna actualización de la bd.
 

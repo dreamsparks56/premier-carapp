@@ -90,6 +90,12 @@ class LoginFragment : Fragment() {
             viewLogin.findNavController().navigate(action)
         }
 
+        btnRecupero.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRecuperoClaveFragment()
+            viewLogin.findNavController().navigate(action)
+        }
+
+
 
 
         return viewLogin

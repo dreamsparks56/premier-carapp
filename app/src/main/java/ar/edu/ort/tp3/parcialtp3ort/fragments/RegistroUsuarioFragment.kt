@@ -68,6 +68,7 @@ class RegistroUsuarioFragment : Fragment() {
         fireBaseAuth.createUserWithEmailAndPassword(mail, pass)
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
+
                     sentEmailVerification()
                     Toast.makeText(this.context, "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
                     println("x ahora no hay error")

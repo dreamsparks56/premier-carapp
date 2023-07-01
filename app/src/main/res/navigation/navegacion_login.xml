@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registroUsuarioFragment"
             app:destination="@id/registroUsuarioFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_recuperoClaveFragment"
+            app:destination="@id/recuperoClaveFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -38,6 +41,17 @@
             android:id="@+id/action_registroUsuarioFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/registroUsuarioFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/recuperoClaveFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.RecuperoClaveFragment"
+        android:label="fragment_recupero_clave"
+        tools:layout="@layout/fragment_recupero_clave" >
+        <action
+            android:id="@+id/action_recuperoClaveFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/recuperoClaveFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

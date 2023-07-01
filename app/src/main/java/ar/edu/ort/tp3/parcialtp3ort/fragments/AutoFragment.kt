@@ -21,6 +21,9 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Make
 import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -35,6 +38,8 @@ class AutoFragment : Fragment() {
     var marcasList: MutableList<Make> = ArrayList<Make>()
     private lateinit var cars : MutableList<Car>//MutableList<CarResponse>
     private lateinit var viewModel: AutoViewModel
+    private lateinit var fireBaseAuth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +49,10 @@ class AutoFragment : Fragment() {
         carList =  v.findViewById<RecyclerView>(R.id.carListView)
         viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
         cars  = mutableListOf<Car>()//mutableListOf<CarResponse>()
+        fireBaseAuth = Firebase.auth
         carList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(cars, context, false)
+            adapter = CarAdapter(cars, context, false, fireBaseAuth.currentUser?.email.toString())
         }
         if(viewModel.campo.value.toString().isNullOrEmpty()) {
             Log.d("VIEWMODEL empty", viewModel.tipoBusqueda.value.toString())
@@ -321,7 +327,7 @@ class AutoFragment : Fragment() {
 
         carList.apply {
            layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(carBunch, context, false)
+            adapter = CarAdapter(carBunch, context, false, fireBaseAuth.currentUser?.email.toString())
         }
         //CleanUp
         viewModel.buscar("", "")

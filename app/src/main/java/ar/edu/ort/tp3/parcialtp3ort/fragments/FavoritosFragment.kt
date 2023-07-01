@@ -12,12 +12,17 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.CarAdapter
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class FavoritosFragment : Fragment() {
     lateinit var v:View
     lateinit var vistaReciclable:RecyclerView
     lateinit var autos:MutableList<Car>
+    private lateinit var fireBaseAuth: FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +37,16 @@ class FavoritosFragment : Fragment() {
         // Inflate the layout for this fragment
         v =  inflater.inflate(R.layout.fragment_favoritos, container, false)
         vistaReciclable = v.findViewById(R.id.reciclyerFavs)
+        fireBaseAuth = Firebase.auth
         showData()
         return v
     }
 
     private fun showData() {
-       autos = appDatabase.getIntance()?.carDao()?.getFavoriteCars(favorite = true)!!
+       autos = appDatabase.getIntance()?.carDao()?.getFavoritosB(fireBaseAuth.currentUser?.email.toString())!!
         vistaReciclable.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(autos, context, true)
+            adapter = CarAdapter(autos, context, true,fireBaseAuth.currentUser?.email.toString())
         }
     }
 

@@ -40,8 +40,9 @@ interface CarDao {
     @Query("SELECT * FROM cars WHERE favorito = :favorite  ORDER BY favorito desc, modelo")
     fun getFavoriteCars(favorite: Boolean): MutableList<Car>?
 
-    @Query("SELECT a.* FROM cars a INNER JOIN favoritos f on a.id = f.idAuto")
-    fun getFavoritosB():MutableList<Car>?
+    @Query("SELECT a.* FROM cars a INNER JOIN favoritos f on a.id = f.idAuto AND f.mail == :email")
+    fun getFavoritosB(email:String):MutableList<Car>?
+
 
 
 

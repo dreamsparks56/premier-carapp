@@ -17,7 +17,10 @@ interface FavDao {
         @Delete
         fun deleteFav(fav: Favorito?)
 
-        @Query("SELECT * FROM favoritos ORDER BY id desc ")
+        @Query("SELECT * FROM favoritos ORDER BY mail desc ")
         fun getAllCars(): MutableList<Favorito>?
+
+        @Query("SELECT * FROM favoritos where mail == :mailUsuario ORDER BY mail desc ")
+        fun getAllCars(mailUsuario:String): MutableList<Favorito>?
 
 }

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "favoritos",
+    primaryKeys = ["mail","idAuto"],
     foreignKeys = [ForeignKey(
         entity = Car::class,
         parentColumns = ["id"],
@@ -15,10 +16,15 @@ import androidx.room.PrimaryKey
     )]
 )
 class Favorito(mail:String, idAuto:Int) {
-    @PrimaryKey
-    @ColumnInfo(name = "mail")
-    lateinit var mail: String
 
-    @ColumnInfo(name = "idAuto")
+     var mail: String
+
+
     var idAuto: Int = idAuto
+
+    init{
+        this.mail = mail
+        this.idAuto = idAuto
+    }
+
 }

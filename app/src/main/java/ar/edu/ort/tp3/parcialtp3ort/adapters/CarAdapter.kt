@@ -14,7 +14,7 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
-class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, val reciclerFav:Boolean): RecyclerView.Adapter<CarHolder>() {
+class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, val reciclerFav:Boolean, val email:String): RecyclerView.Adapter<CarHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -55,7 +55,8 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
             dialog2.setTitle("Eliminar favorito")
                 .setMessage("¿Deseas eliminar este auto de tus favoritos?")
                 .setPositiveButton("Eliminar") { dialog, _ ->
-                    eliminar(car, position)
+                  //  eliminar(car, position)
+                    eliminar2(car, position)
                 }.setNegativeButton("Cancelar") { dialog, _ ->
                     dialog.dismiss()
                 }
@@ -66,13 +67,16 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
         }
     }
 
-    private fun eliminar(car: Car, position: Int) {
-        car.favorito = false
-        appDatabase.getIntance()?.carDao()?.updateCar(car)
+
+    private fun eliminar2(car: Car, position: Int) {
+        appDatabase.getIntance()?.carDao()?.delete(car)
         carList.removeAt(position) //La saco de la list actual.
-        notifyItemRemoved(position) //Actualiza la vista xq se borro algo.
-     //notifyItemRemoved(position)//Le notifico q posición se borro para q la saque de la vista.
+        notifyItemRemoved(position)
+    //Actualiza la vista xq se borro algo.
+        //notifyItemRemoved(position)//Le notifico q posición se borro para q la saque de la vista.
     }
+
+
 
     private fun opcionFavoritos(holder: CarHolder, car: Car) {
         holder.itemView.setOnClickListener {
@@ -80,7 +84,7 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
             dialog.setTitle("Añadir a favoritos")
                 .setMessage("¿Deseas añadir este auto a tus favoritos?")
                 .setPositiveButton("Agregar") { dialog, _ ->
-                    añadorFavorito(car)
+                    añadirFavorito(car)
                 }
 
                 .setNegativeButton("Cancelar") { dialog, _ ->
@@ -92,25 +96,12 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
         }
     }
 
-    private fun añadorFavorito(car: Car) {
-        println("Favorito es: " + car.favorito)
-        car.favorito = true
-        appDatabase.getIntance()?.carDao()?.updateCar(car)
-        println("Favorito es: " + car.favorito)
-
-        val fav = Favorito(idAuto = car.id)
-        //print("El id Fav es: " + fav.id + " y el del auto " + fav.idAuto)
+    private fun añadirFavorito(car: Car) {
+        val fav = Favorito(email, idAuto = car.id)
         appDatabase.getIntance()?.favDao()?.insertFav(fav)
-        val valores = appDatabase.getIntance()?.favDao()?.getAllCars()
-       // println("El id del primer favorito es: " + valores?.get(0)!!.id)
-
-
-        val favoritos =  appDatabase.getIntance()?.carDao()?.getFavoriteCars(true)
-       // println(favoritos!![2].id)
-    //    notifyDataSetChanged() //Le avisa al recycler q refresque xq hay alguna actualización de la bd.
-
 
     }
+
 
 
 }

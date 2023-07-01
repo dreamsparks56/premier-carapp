@@ -41,4 +41,6 @@
     <string name="login_signin">Ingresar</string>
     <string name="googleSignIn">Iniciar sesion con google</string>
     <string name="title_favs">Tus favoritos\n</string>
+    <string name="name">Nombre completo</string>
+    <string name="email">Email</string>
 </resources>

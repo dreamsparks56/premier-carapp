@@ -1,5 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.Models
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
@@ -8,6 +9,7 @@ class LoginViewModel:ViewModel() {
 
     val usuario = MutableLiveData<String>()
     val email = MutableLiveData<String>()
+    var photoUrl: Uri? = Uri.EMPTY
     //val clave = MutableLiveData<String>()
 
 
@@ -18,6 +20,7 @@ class LoginViewModel:ViewModel() {
     fun guardarCredenciales(user: FirebaseUser?) {
         user?.let {
             // Name, email address, and profile photo Url
+            photoUrl = it.photoUrl
             usuario.value = it.displayName
             email.value = it.email
 

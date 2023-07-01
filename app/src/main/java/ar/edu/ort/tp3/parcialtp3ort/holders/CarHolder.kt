@@ -42,7 +42,7 @@ class CarHolder( v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun callImg(makeN: String?, make: String?) {
-        ImageFetching.getImageManaged(this.itemView, this.carModelImg, makeN, make)
+        ImageFetching.getImageManaged(this.itemView, this.carModelImg, makeN, make, R.drawable.avatar_car)
     }
 
 

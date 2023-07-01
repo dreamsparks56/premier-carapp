@@ -1,8 +1,10 @@
 package ar.edu.ort.tp3.parcialtp3ort.adapters
 
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
@@ -97,8 +99,16 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
     }
 
     private fun añadirFavorito(car: Car) {
-        val fav = Favorito(email, idAuto = car.id)
-        appDatabase.getIntance()?.favDao()?.insertFav(fav)
+
+        try {
+            val fav = Favorito(email, idAuto = car.id)
+            appDatabase.getIntance()?.favDao()?.insertFav(fav)
+            println("------No arroja expecion-------------")
+        }catch (e: Exception){
+            Toast.makeText(contexto,"Error. Este auto ya esta registrado como favorito", Toast.LENGTH_SHORT).show()
+            println("------arroja expecion-------------")
+
+        }
 
     }
 

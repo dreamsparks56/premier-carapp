@@ -11,7 +11,7 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 @Dao
 interface FavDao {
 
-        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        @Insert(onConflict = OnConflictStrategy.ABORT) //Para q lance un expeción si hay error en este conflicto.
         fun insertFav(fav: Favorito?)
 
         @Delete

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -33,6 +34,8 @@ class LoginFragment : Fragment() {
     lateinit var btnLogin: Button
     lateinit var user:EditText
     lateinit var pass:EditText
+    lateinit var  btnRegistro :TextView
+    lateinit var  btnRecupero :TextView
     lateinit var  btnGoogleSignIn :Button
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 62870
@@ -51,6 +54,9 @@ class LoginFragment : Fragment() {
         btnLogin = viewLogin.findViewById(R.id.button_login)
         user = viewLogin.findViewById(R.id.usuario_login)
         pass = viewLogin.findViewById(R.id.pass_login)
+        btnRegistro = viewLogin.findViewById(R.id.id_button_registro_login)
+        btnRecupero = viewLogin.findViewById(R.id.id_button_recuperoClave_login)
+
         btnGoogleSignIn = viewLogin.findViewById(R.id.btn_google_sign_in)
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
@@ -78,6 +84,11 @@ class LoginFragment : Fragment() {
             .build() // Finalmente, este método construye y devuelve la instancia de GoogleSignInOptions con la configuración proporcionada.
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+
+        btnRegistro.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegistroUsuarioFragment()
+            viewLogin.findNavController().navigate(action)
+        }
 
 
 
@@ -144,9 +155,10 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser != null) {
+        if (currentUser != null && currentUser.isEmailVerified) {
             updateUI(currentUser)
         }
     }
@@ -184,13 +196,13 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
                     val user = auth.currentUser
-                //    val verificado = user?.isEmailVerified
-                //    if(verificado == true) {
+                   val verificado = user?.isEmailVerified
+                   if(verificado == true) {
                         Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
                         updateUI(user!!) // este método lo derivará al inicio.
-                //    } else {
+                  } else {
                         Toast.makeText(this.context,"Error. Falta confirmar cuenta. Revisá tu mail", Toast.LENGTH_SHORT).show()
-                 //   }
+                  }
 
                 }else {
                     Toast.makeText(this.context,"Error de email y/o password", Toast.LENGTH_SHORT).show()

@@ -12,6 +12,9 @@
     <string name="makeCount">+X</string>
     <string name="titleMarcas">Marcas</string>
     <string name="brandDescription">El logo de la marca</string>
+    <string name="usuario_placeHolder">Ingrese su nombre de usuario...</string>
+
+
 
     <!-- car attributes-->
 
@@ -35,10 +38,11 @@
     <string name="notifications_description">Notifications icon</string>
 
     <!-- login-->
-    <string name="email_placeholder">Enter your email…</string>
+    <string name="email_placeholder">Ingrese su email…</string>
     <string name="password_placeholder">Enter your password…</string>
     <string name="password_forgotten">Olvidé mi contraseña</string>
     <string name="login_signin">Ingresar</string>
     <string name="googleSignIn">Iniciar sesion con google</string>
     <string name="title_favs">Tus favoritos\n</string>
+    <string name="nuevoUsuarioLogin">Registrarme</string>
 </resources>

@@ -20,7 +20,6 @@ class LoginViewModel:ViewModel() {
             // Name, email address, and profile photo Url
             usuario.value = it.displayName
             email.value = it.email
-
             // Check if user's email is verified
             //val emailVerified = it.isEmailVerified
 

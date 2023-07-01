@@ -65,8 +65,8 @@ class LoginFragment : Fragment() {
             //signIn(user.text.toString(), pass.text.toString())
 
             if(user.text.toString().length> 2 && pass.text.toString().length > 2)  {
-                //    signIn(mail.text.toString(), pass.text.toString())
-                signInMilConfirmado(user.text.toString(), pass.text.toString())
+                    signIn(user.text.toString(), pass.text.toString())
+                //signInMilConfirmado(user.text.toString(), pass.text.toString())
             }else {
                 Toast.makeText(this.context,"Error. El mail y el pass tiene q tener un mínimo de 2 caracteres", Toast.LENGTH_SHORT).show()
 
@@ -175,7 +175,7 @@ class LoginFragment : Fragment() {
         val action =  LoginFragmentDirections.actionLoginFragmentToMainFragment()
         viewLogin.findNavController().navigate(action)
     }
-/*
+
     private fun signIn(email: String, password: String) {
         Log.d("The email", email)
         auth.signInWithEmailAndPassword(email, password)
@@ -196,8 +196,8 @@ class LoginFragment : Fragment() {
                 }
             }
     }
-*/
-    private fun signInMilConfirmado(email:String, password:String){
+
+   private fun signInMilConfirmado(email:String, password:String){
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
@@ -205,7 +205,7 @@ class LoginFragment : Fragment() {
                    val verificado = user?.isEmailVerified
                    if(verificado == true) {
                         Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
-                        updateUI(user!!) // este método lo derivará al inicio.
+                        updateUI(user) // este método lo derivará al inicio.
                   } else {
                         Toast.makeText(this.context,"Error. Falta confirmar cuenta. Revisá tu mail", Toast.LENGTH_SHORT).show()
                   }

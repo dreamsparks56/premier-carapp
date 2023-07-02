@@ -19,9 +19,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 //import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -34,9 +36,12 @@ class MainFragment : Fragment() {
     lateinit var navHostFragment: NavHostFragment
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
+    lateinit var headerView: View
     lateinit var navController: NavController
     lateinit var nombreUsuario:TextView
     lateinit var toolbar:Toolbar
+    lateinit var toolbarPic: ShapeableImageView
+    lateinit var drawerPic: ShapeableImageView
     lateinit var activity:AppCompatActivity
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -68,10 +73,10 @@ class MainFragment : Fragment() {
         activity.supportActionBar?.setDisplayShowTitleEnabled(false) //Elimine el titulo del fragment
         setupBottomNavBar()
         setupDrawerLayout()
+        viewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        headerView = navigationView.getHeaderView(0)
         asignarNombreUsuarioAlMenu()
-
-
-
+        asignarImagenesDePerfil()
 
         return viewMainFrag
     }
@@ -111,10 +116,15 @@ class MainFragment : Fragment() {
     }
 
     private fun asignarNombreUsuarioAlMenu(){
-        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
-        val headerView = navigationView.getHeaderView(0)
         nombreUsuario = headerView.findViewById<TextView>(R.id.nameUser_headerNav)
         nombreUsuario.text = viewModel.usuario.value.toString()
+    }
+
+    private fun asignarImagenesDePerfil() {
+        toolbarPic = viewMainFrag.findViewById(R.id.toolbarProfilePicture)
+        drawerPic = headerView.findViewById(R.id.drawerHeaderProfilePicture)
+        ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
+        ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
     }
 
      private fun onSupportNavigateUp(): Boolean {

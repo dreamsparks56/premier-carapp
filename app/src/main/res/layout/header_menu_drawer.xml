@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="@dimen/drawer_header_height">
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="@dimen/drawer_header_margin_start"
         android:gravity="clip_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,18 +17,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/drawerHeaderProfilePicture"
+            android:layout_width="@dimen/drawer_profile_picture_size"
+            android:layout_height="@dimen/drawer_profile_picture_size"
+            android:layout_marginEnd="@dimen/drawer_profile_picture_margin_end"
             android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/profile_description"
+            android:scaleType="centerCrop"
             android:src="@drawable/avatar_car"
             app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/CircleShape"
+            app:strokeColor="?attr/colorPrimary"
+            app:strokeWidth="3dp"
             tools:layout_editor_absoluteY="22dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/drawer_text_margin_top"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -36,13 +44,13 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/textoHeader"/>
+                android:text="@string/textoHeader" />
 
             <TextView
                 android:id="@+id/nameUser_headerNav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/username" />
         </LinearLayout>
 
 

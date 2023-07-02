@@ -42,11 +42,14 @@ class CameraFragment : Fragment() {
     private lateinit var v: View
 
     private lateinit var viewModel: LoginViewModel
+
+
+    private val camFailMsg =  "Error en la captura de imágenes: %s"
+    private val camSuccMsg = "La imagen fue tomada exitosamente: %s"
+    private val imgUpdMsg = "Imagen actualizada exitosamente"
+    private val imgFailMsg = "Algo salió mal en el cambio de imagen"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
     }
 
     override fun onCreateView(
@@ -102,22 +105,20 @@ class CameraFragment : Fragment() {
         // been taken
         imageCapture.takePicture(
             outputOptions, ContextCompat.getMainExecutor(this.requireContext()), object : ImageCapture.OnImageSavedCallback {
-                val action = CameraFragmentDirections.actionCameraFragmentToMainFragment()
                 override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Error en la captura de imágenes: ${exc.message}", exc)
-                    requireParentFragment().findNavController().navigate(action)
+                    val msg = String.format(camFailMsg, exc.message)
+                    Log.e(TAG, msg, exc)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = output.savedUri
-                    val msg = "La imagen fue tomada exitosamente: $savedUri"
-                    Toast.makeText(requireContext(), msg, LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
+                    Log.d(TAG, String.format(camSuccMsg, savedUri))
                     updateImage(savedUri!!)
-                    requireParentFragment().findNavController().navigate(action)
-
                 }
             })
+        backToMain()
+
+
     }
 
     private fun startCamera() {
@@ -187,11 +188,16 @@ class CameraFragment : Fragment() {
         user!!.updateProfile(imageChange)
             .addOnCompleteListener(this.requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    com.google.android.material.snackbar.Snackbar.make(v, "Imagen actualizada exitosamente", LENGTH_SHORT).show()
+                    Log.d("La imagen", imgUpdMsg)
                 } else {
-                    Log.d("Error con la imagen","Algo salió mal en el cambio de imagen")
+                    Log.e("Error con la imagen", imgFailMsg)
                 }
             }
+    }
+    private fun backToMain() {
+        val action = CameraFragmentDirections.actionCameraFragmentToMainFragment()
+        requireParentFragment().findNavController().navigate(action)
+        com.google.android.material.snackbar.Snackbar.make(requireView(), imgUpdMsg, LENGTH_SHORT).show()
     }
 
     companion object {

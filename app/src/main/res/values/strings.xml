@@ -48,4 +48,6 @@
     <string name="profile_modal_title">Opciones de foto de perfil</string>
     <string name="profile_picture_change">Nueva imagen</string>
     <string name="take_photo">Sacar foto</string>
+
+    <string name="username">Nombre de usuario</string>
 </resources>

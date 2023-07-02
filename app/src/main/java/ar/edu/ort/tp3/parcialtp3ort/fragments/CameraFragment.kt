@@ -43,11 +43,6 @@ class CameraFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
 
-
-    private val camFailMsg =  "Error en la captura de imágenes: %s"
-    private val camSuccMsg = "La imagen fue tomada exitosamente: %s"
-    private val imgUpdMsg = "Imagen actualizada exitosamente"
-    private val imgFailMsg = "Algo salió mal en el cambio de imagen"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -201,10 +196,15 @@ class CameraFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "CameraXBasic"
+        private const val TAG = "PremierRentcar"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CAMERA_PERMISSION = 10
+
+        private const val camFailMsg =  "Error en la captura de imágenes: %s"
+        private const val camSuccMsg = "La imagen fue tomada exitosamente: %s"
+        private const val imgUpdMsg = "Imagen actualizada exitosamente"
+        private const val imgFailMsg = "Algo salió mal en el cambio de imagen"
     }
 }

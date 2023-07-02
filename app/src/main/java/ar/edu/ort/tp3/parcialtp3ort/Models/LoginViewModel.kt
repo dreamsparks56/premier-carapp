@@ -4,9 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginViewModel:ViewModel() {
-
+    val auth = Firebase.auth
     val usuario = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     var photoUrl: Uri? = Uri.EMPTY
@@ -32,5 +34,9 @@ class LoginViewModel:ViewModel() {
             // FirebaseUser.getIdToken() instead.
             //val uid = it.uid
         }
+    }
+
+    fun currentUser(): FirebaseUser? {
+        return auth.currentUser
     }
 }

@@ -35,5 +35,11 @@
         android:id="@+id/cameraFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.CameraFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/cameraFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

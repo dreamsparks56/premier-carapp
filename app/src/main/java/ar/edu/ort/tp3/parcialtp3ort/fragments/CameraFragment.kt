@@ -3,6 +3,7 @@ package ar.edu.ort.tp3.parcialtp3ort.fragments
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -21,7 +23,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
+import com.google.firebase.auth.UserProfileChangeRequest
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
@@ -35,8 +41,10 @@ class CameraFragment : Fragment() {
     private lateinit var viewFinder: PreviewView
     private lateinit var v: View
 
+    private lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
     }
@@ -62,6 +70,9 @@ class CameraFragment : Fragment() {
         cameraCaptureButton.setOnClickListener { takePhoto() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+        //Obtener view model
+        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+
         return v
     }
 
@@ -91,15 +102,20 @@ class CameraFragment : Fragment() {
         // been taken
         imageCapture.takePicture(
             outputOptions, ContextCompat.getMainExecutor(this.requireContext()), object : ImageCapture.OnImageSavedCallback {
+                val action = CameraFragmentDirections.actionCameraFragmentToMainFragment()
                 override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+                    Log.e(TAG, "Error en la captura de imágenes: ${exc.message}", exc)
+                    requireParentFragment().findNavController().navigate(action)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = output.savedUri
-                    val msg = "Photo capture succeeded: $savedUri"
-                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+                    val msg = "La imagen fue tomada exitosamente: $savedUri"
+                    Toast.makeText(requireContext(), msg, LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    updateImage(savedUri!!)
+                    requireParentFragment().findNavController().navigate(action)
+
                 }
             })
     }
@@ -153,7 +169,7 @@ class CameraFragment : Fragment() {
             } else {
                 Toast.makeText(this.requireContext(),
                     "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT).show()
+                    LENGTH_SHORT).show()
             }
         }
     }
@@ -162,7 +178,21 @@ class CameraFragment : Fragment() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+    private fun updateImage(imageUri: Uri){
+        val user = viewModel.currentUser()
+        val imageChange = UserProfileChangeRequest.Builder()
+            .setPhotoUri(imageUri)
+            .build()
 
+        user!!.updateProfile(imageChange)
+            .addOnCompleteListener(this.requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    com.google.android.material.snackbar.Snackbar.make(v, "Imagen actualizada exitosamente", LENGTH_SHORT).show()
+                } else {
+                    Log.d("Error con la imagen","Algo salió mal en el cambio de imagen")
+                }
+            }
+    }
 
     companion object {
         private const val TAG = "CameraXBasic"

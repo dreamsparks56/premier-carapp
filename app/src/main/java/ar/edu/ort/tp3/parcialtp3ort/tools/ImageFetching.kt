@@ -1,5 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.tools
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
@@ -23,6 +24,21 @@ class ImageFetching {
                             Glide
                                 .with(view)
                                 .load(defaultImg))
+                )
+                .into(element)
+        }
+
+        fun getImageWebOrLocal(view: View, element: ImageView, path: Uri?, defaultImg: Int) {
+
+
+            Glide
+                .with(view)
+                .load(path).fitCenter()
+                .placeholder(defaultImg)
+                .error(
+                    Glide
+                        .with(view)
+                        .load(defaultImg)
                 )
                 .into(element)
         }

@@ -28,4 +28,5 @@
     <dimen name="list_item_height">48dp</dimen>
     <!-->login values -->
     <dimen name="login_font_size">19sp</dimen>
+    <dimen name="profile_picture_size">150dp</dimen>
 </resources>

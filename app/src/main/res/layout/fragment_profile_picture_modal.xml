@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".fragments.ProfilePictureModal">
+
+        <TextView
+            android:id="@+id/profileModalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="@dimen/title_size"
+            tools:text="@string/profile_modal_title" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/newImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/profileModalChange"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_item_height"
+                android:drawablePadding="@dimen/default_car_text_icon_padding"
+                android:text="@string/profile_picture_change"
+                app:drawableStartCompat="@drawable/baseline_photo_camera_24"
+                tools:text="@string/profile_picture_change" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+</FrameLayout>

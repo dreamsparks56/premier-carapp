@@ -121,8 +121,8 @@ class MainFragment : Fragment() {
     }
 
     private fun asignarImagenesDePerfil() {
-        toolbarPic = viewMainFrag.findViewById(R.id.toolbarProfilePicture)
-        drawerPic = headerView.findViewById(R.id.drawerHeaderProfilePicture)
+        toolbarPic = viewMainFrag.findViewById(R.id.perfilFragment)
+        drawerPic = headerView.findViewById(R.id.perfilFragment)
         ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
         ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
     }

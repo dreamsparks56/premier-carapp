@@ -18,7 +18,7 @@
 
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/drawerHeaderProfilePicture"
+            android:id="@+id/perfilFragment"
             android:layout_width="@dimen/drawer_profile_picture_size"
             android:layout_height="@dimen/drawer_profile_picture_size"
             android:layout_marginEnd="@dimen/drawer_profile_picture_margin_end"
@@ -27,6 +27,7 @@
             android:contentDescription="@string/profile_description"
             android:scaleType="centerCrop"
             android:src="@drawable/avatar_car"
+            android:clickable="true"
             app:layout_constraintStart_toStartOf="parent"
             app:shapeAppearanceOverlay="@style/CircleShape"
             app:strokeColor="?attr/colorPrimary"
@@ -44,7 +45,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/textoHeader" />
+                android:text="@string/texto_header" />
 
             <TextView
                 android:id="@+id/nameUser_headerNav"

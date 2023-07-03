@@ -1,15 +1,12 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +17,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -32,11 +31,11 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     lateinit var viewLogin:View
     lateinit var btnLogin: Button
-    lateinit var user:EditText
-    lateinit var pass:EditText
+    lateinit var user: TextInputLayout
+    lateinit var pass: TextInputLayout
     lateinit var  btnRegistro :TextView
     lateinit var  btnRecupero :TextView
-    lateinit var  btnGoogleSignIn :Button
+    lateinit var  btnGoogleSignIn : MaterialButton
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 62870
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,13 +61,11 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
         btnLogin.setOnClickListener{
-            //signIn(user.text.toString(), pass.text.toString())
 
-            if(user.text.toString().length> 2 && pass.text.toString().length > 2)  {
-                    signIn(user.text.toString(), pass.text.toString())
-                //signInMilConfirmado(user.text.toString(), pass.text.toString())
+            if(user.editText.toString().length> 2 && pass.editText.toString().length > 2)  {
+                signInMilConfirmado(user.editText.toString(), pass.editText.toString())
             }else {
-                Toast.makeText(this.context,"Error. El mail y el pass tiene q tener un mínimo de 2 caracteres", Toast.LENGTH_SHORT).show()
+                user.error="Error. El mail y el pass tiene q tener un mínimo de 2 caracteres"
 
             }
         }
@@ -77,7 +74,6 @@ class LoginFragment : Fragment() {
             signInGoogle()
         }
 
-        //Login google:
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) // Esto crea un nuevo constructor de opciones de inicio de sesión de Google.
             .requestIdToken(getString(R.string.default_web_client_id)) //Aquí se solicita el token de identificación (idToken) del usuario. El método
             .requestEmail() //Esto es necesario para obtener el correo electrónico del usuario desde la cuenta de Google y utilizarlo en tu aplicación si es necesario.
@@ -125,11 +121,9 @@ class LoginFragment : Fragment() {
                     print(account.idToken!!)
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
-                    // Log.w(TAG, "Google sign in failed", e)
                     Toast.makeText(requireContext(), "Fallo inicio de sesión de google:(", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                // Log.w(TAG, exception.toString())
                 Toast.makeText(requireContext(), "Hubo algun error con google:(", Toast.LENGTH_SHORT).show()
 
             }
@@ -142,8 +136,6 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    //  Log.d(TAG, "signInWithCredential:success")
                     Toast.makeText(this.context, "Inicio de sesión con google correcto :)", Toast.LENGTH_SHORT).show()
                     val user = auth.currentUser
                     updateUI(user!!)
@@ -152,7 +144,6 @@ class LoginFragment : Fragment() {
 
                 } else {
                     // Error con el log
-                    // Log.w(TAG, "Error con login de google", task.exception)
                     Toast.makeText(this.context, "Fallo el  login con google :(", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -164,7 +155,7 @@ class LoginFragment : Fragment() {
 
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if (currentUser != null && currentUser.isEmailVerified) {
+        if (currentUser != null) {
             updateUI(currentUser)
         }
     }
@@ -176,27 +167,6 @@ class LoginFragment : Fragment() {
         viewLogin.findNavController().navigate(action)
     }
 
-    private fun signIn(email: String, password: String) {
-        Log.d("The email", email)
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this.requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user!!)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        this.context,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                }
-            }
-    }
-
    private fun signInMilConfirmado(email:String, password:String){
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(this.requireActivity()){task ->
@@ -205,9 +175,10 @@ class LoginFragment : Fragment() {
                    val verificado = user?.isEmailVerified
                    if(verificado == true) {
                         Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
-                        updateUI(user) // este método lo derivará al inicio.
+                        updateUI(user) // Este método lo derivará al inicio.
                   } else {
-                        Toast.makeText(this.context,"Error. Falta confirmar cuenta. Revisá tu mail", Toast.LENGTH_SHORT).show()
+                      auth.signOut()
+                      Toast.makeText(this.context,"Error. Falta confirmar cuenta. Revisá tu mail", Toast.LENGTH_SHORT).show()
                   }
 
                 }else {

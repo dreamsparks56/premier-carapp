@@ -7,16 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching.Companion.getImageWebOrLocal
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
-class perfilFragment : Fragment() {
+class PerfilFragment : Fragment() {
     lateinit var vista:View
     lateinit var viewModel:LoginViewModel
     lateinit var nombre:TextView
@@ -32,24 +29,15 @@ class perfilFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         vista=  inflater.inflate(R.layout.fragment_perfil, container, false)
 
         nombre = vista.findViewById(R.id.nameUser_perfil)
         email = vista.findViewById(R.id.emailUser_perfil)
         photoUrl = vista.findViewById(R.id.img_perfil)
         photoUrl.setOnClickListener{
-            val bottomSheet = BottomSheetDialog(this.requireContext())
-            bottomSheet.setContentView(R.layout.fragment_profile_picture_modal)
+            val bottomSheet = ProfilePictureModal()
 
-            val changePicture: CardView? = bottomSheet.findViewById(R.id.newImageButton)
-            bottomSheet.show()
-
-            changePicture?.setOnClickListener {
-                val action = MainFragmentDirections.actionMainFragmentToCameraFragment()
-                this.requireParentFragment().requireParentFragment().findNavController().navigate(action)
-                bottomSheet.dismiss()
-            }
+            bottomSheet.show(this.parentFragmentManager, ProfilePictureModal.TAG)
         }
 
 

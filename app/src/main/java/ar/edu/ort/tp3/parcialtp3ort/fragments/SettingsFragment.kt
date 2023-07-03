@@ -9,7 +9,7 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 
 
 
-class configuracionFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

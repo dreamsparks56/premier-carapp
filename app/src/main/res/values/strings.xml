@@ -2,17 +2,16 @@
     <string name="app_name">parcialTp3Ort</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="textoHeader">Hola</string>
+    <string name="texto_header">Hola</string>
     <string name="notificaciones">Notificaciones</string>
-    <string name="modoOsucro">Modo oscuro</string>
-    <string name="Notifiaciones">Notificaciones</string>
+    <string name="modo_oscuro">Modo oscuro</string>
     <string name="title_part_1">Premier</string>
     <string name="title_part_2">RentCar</string>
-    <string name="makeNameTitle">Marca</string>
+    <string name="make_name_title">Marca</string>
     <string name="makeCount">+X</string>
-    <string name="titleMarcas">Marcas</string>
-    <string name="brandDescription">El logo de la marca</string>
-    <string name="usuario_placeHolder">Ingrese su nombre de usuario...</string>
+    <string name="title_marcas">Marcas</string>
+    <string name="brand_description">El logo de la marca</string>
+    <string name="usuario_placeHolder">Ingrese su nombre de usuario</string>
 
 
 
@@ -24,6 +23,7 @@
     <string name="car_drive_text">Gear Type</string>
     <string name="car_year_text">Release Year</string>
     <string name="car_class_text">Class</string>
+    <!--Opciones de búsqueda -->
     <string name="opcionHome">Home</string>
     <string name="opcionAutos">Autos</string>
     <string name="opcionBusqueda">Buscar</string>
@@ -31,6 +31,7 @@
     <string name="opcionConfiguracion">Configuración</string>
     <string name="opcionFavoritos">Favoritos</string>
     <string name="opcionCerrarSesion">Cerrar sesión</string>
+
     <string name="electric_filter">electric car filter</string>
     <string name="suv_filter">suv car filter</string>
     <string name="sport_filter">sport car filter</string>
@@ -39,10 +40,10 @@
 
     <!-- login-->
     <string name="email_placeholder">Ingrese su email…</string>
-    <string name="password_placeholder">Enter your password…</string>
+    <string name="password_placeholder">Ingrese su contraseña</string>
     <string name="password_forgotten">Olvidé mi contraseña</string>
     <string name="login_signin">Ingresar</string>
-    <string name="googleSignIn">Iniciar sesion con google</string>
+    <string name="google_sign_in">Iniciar sesion con google</string>
     <string name="title_favs">Tus favoritos\n</string>
     <string name="name">Nombre completo</string>
     <string name="email">Email</string>

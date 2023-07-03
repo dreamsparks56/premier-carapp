@@ -9,7 +9,6 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 
 
 class Home_fragment : Fragment() {
-    // TODO: Rename and change types of parameters
     lateinit var viewHome: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

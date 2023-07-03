@@ -8,7 +8,7 @@
     android:background="@drawable/stylo_borde_perfil"
     android:backgroundTint="?attr/colorSurface"
     android:paddingVertical="@dimen/profile_main_padding"
-    tools:context=".fragments.perfilFragment">
+    tools:context=".fragments.PerfilFragment">
 
 
     <LinearLayout

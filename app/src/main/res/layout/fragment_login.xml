@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:background="@drawable/unsplash_wpvtt0mem00_1_"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -24,6 +22,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/profile_main_padding"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,40 +31,51 @@
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.337">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usuario_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="20dp"
-            android:autofillHints="username"
-            android:background="@drawable/stylo_bordes_edit_text"
-            android:hapticFeedbackEnabled="true"
             android:hint="@string/email_placeholder"
-            android:inputType="textPersonName"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+            app:endIconMode="clear_text"
+            style="?attr/textInputFilledStyle">
 
-        <EditText
-            android:id="@+id/pass_login"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:autofillHints="username"
+                android:hapticFeedbackEnabled="true"
+                android:inputType="textPersonName"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textAlignment="center"
+                android:textSize="@dimen/login_font_size" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints="password"
-            android:background="@drawable/stylo_bordes_edit_text"
+            android:id="@+id/pass_login"
             android:hint="@string/password_placeholder"
-            android:inputType="textPassword"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:radius="50dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+            app:endIconMode="password_toggle"
+            style="?attr/textInputFilledStyle">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints="password"
+                    android:inputType="textPassword"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:radius="50dp"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/login_font_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/id_button_recuperoClave_login"
             android:clickable="true"
@@ -85,15 +95,16 @@
             android:textAlignment="center"
             android:textColor="@color/white" />
 
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_google_sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#212121"
+            android:background="?attr/colorSurfaceVariant"
             android:padding="10dp"
-            android:text="@string/googleSignIn"
+            android:text="@string/google_sign_in"
             android:textAllCaps="false"
             android:textSize="19sp"
             app:cornerRadius="30dp"
@@ -105,13 +116,12 @@
             app:layout_constraintTop_toBottomOf="@id/id_button_registro_login" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:backgroundTint="#212121"
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
             android:paddingRight="40dp"

@@ -1,7 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,14 +18,11 @@ import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
-import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
 import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
-import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getIntance
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,9 +79,6 @@ class MarcasFragment : Fragment() {
         }
     }
     private fun getAllCars() {
-        //val mDbHelper = DBHelper.getIntance()//(context,null)
-        //val carList : List<CarResponse> = mDbHelper.getAllCars()
-        //var db: appDatabase? = getIntance()//appDatabase.getAppDataBase(v.context)//getIntance()//appDatabase.getAppDataBase(v.context)
         var carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
 
         if(carList== null || (carList != null && carList.size <= 2)){
@@ -95,8 +88,6 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    //mDbHelper.addCars(response.body()!!)
-                    //getData(response.body()!!)
                     getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("gas"))
                 }
@@ -109,8 +100,6 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    //mDbHelper.addCars(response.body()!!)
-                    //getData(response.body()!!)
                     getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("diesel"))
                 }
@@ -123,13 +112,10 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    //mDbHelper.addCars(response.body()!!)
-                    //getData(response.body()!!)
                     getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("electricity"))
                 }
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
-                    //Not yet implemented
                 }
             })
 
@@ -138,7 +124,7 @@ class MarcasFragment : Fragment() {
         }
     }
 
-    fun getData(carList: MutableList<Car>?) {//(carList: List<CarResponse>) {
+    fun getData(carList: MutableList<Car>?) {
             if(carList != null)
             {
                 for(car in carList)

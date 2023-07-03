@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.perfilFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.PerfilFragment"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" />
     <fragment
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/configuracionFragment"
-        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.configuracionFragment"
+        android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.SettingsFragment"
         android:label="fragment_configuracion"
         tools:layout="@layout/fragment_configuracion" />
     <fragment

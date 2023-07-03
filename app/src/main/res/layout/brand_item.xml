@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@drawable/avatar_car"
-                android:contentDescription="@string/brandDescription"/>
+                android:contentDescription="@string/brand_description"/>
 
             <TextView
                 android:id="@+id/makeName"
@@ -45,7 +45,7 @@
                 android:focusable="false"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@string/makeNameTitle"
+                android:text="@string/make_name_title"
                 android:textAlignment="center"
                 android:textSize="@dimen/make_name_size"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -25,7 +25,16 @@
     <dimen name="profile_mail">20sp</dimen>
     <dimen name="profile_field">15sp</dimen>
     <dimen name="profile_main_padding">16dp</dimen>
-
+    <dimen name="list_item_height">48dp</dimen>
     <!-->login values -->
     <dimen name="login_font_size">19sp</dimen>
+
+    <dimen name="profile_picture_size">150dp</dimen>
+    <dimen name="toolbar_profile_picture_size">50dp</dimen>
+    <!-->Drawer properties -->
+    <dimen name="drawer_profile_picture_size">60dp</dimen>
+    <dimen name="drawer_profile_picture_margin_end">16dp</dimen>
+    <dimen name="drawer_text_margin_top">8dp</dimen>
+    <dimen name="drawer_header_margin_start">16dp</dimen>
+    <dimen name="drawer_header_height">100dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "568195962001",
+    "firebase_url": "https://premier-rentcar-default-rtdb.firebaseio.com",
     "project_id": "premier-rentcar",
     "storage_bucket": "premier-rentcar.appspot.com"
   },
@@ -14,7 +15,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "568195962001-315no1qc9regmcrhhev8l0mj0kd9dm2o.apps.googleusercontent.com",
+          "client_id": "568195962001-duhdkg2d54qut06p5pr1g4luoeirhkb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ar.edu.ort.tp3.parcialtp3ort",
+            "certificate_hash": "f124bcb5038c50ed898f7be11544073c5b00127e"
+          }
+        },
+        {
+          "client_id": "568195962001-g5jikmo1614djujvgahq901mnbecds7a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ar.edu.ort.tp3.parcialtp3ort",
+            "certificate_hash": "291b5b5e3c71181d7155842fdebd85db841f2345"
+          }
+        },
+        {
+          "client_id": "568195962001-l8ho9ifao8f1v1qfu5p033e0pq8h45l0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

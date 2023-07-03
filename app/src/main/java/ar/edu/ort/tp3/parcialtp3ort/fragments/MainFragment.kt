@@ -1,7 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +19,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
-import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
-import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
+import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 //import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -37,9 +36,12 @@ class MainFragment : Fragment() {
     lateinit var navHostFragment: NavHostFragment
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
+    lateinit var headerView: View
     lateinit var navController: NavController
     lateinit var nombreUsuario:TextView
     lateinit var toolbar:Toolbar
+    lateinit var toolbarPic: ShapeableImageView
+    lateinit var drawerPic: ShapeableImageView
     lateinit var activity:AppCompatActivity
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -71,13 +73,14 @@ class MainFragment : Fragment() {
         activity.supportActionBar?.setDisplayShowTitleEnabled(false) //Elimine el titulo del fragment
         setupBottomNavBar()
         setupDrawerLayout()
+        viewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        headerView = navigationView.getHeaderView(0)
         asignarNombreUsuarioAlMenu()
-
-
-
+        asignarImagenesDePerfil()
 
         return viewMainFrag
     }
+
 
 
     private fun setupBottomNavBar() {
@@ -104,7 +107,7 @@ class MainFragment : Fragment() {
             onSupportNavigateUp()
         }
         navigationView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
-            signOut()
+            signOutDialog()
             true
             //TODO: Solve crash on signout
         }
@@ -113,10 +116,15 @@ class MainFragment : Fragment() {
     }
 
     private fun asignarNombreUsuarioAlMenu(){
-        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
-        val headerView = navigationView.getHeaderView(0)
         nombreUsuario = headerView.findViewById<TextView>(R.id.nameUser_headerNav)
         nombreUsuario.text = viewModel.usuario.value.toString()
+    }
+
+    private fun asignarImagenesDePerfil() {
+        toolbarPic = viewMainFrag.findViewById(R.id.toolbarProfilePicture)
+        drawerPic = headerView.findViewById(R.id.drawerHeaderProfilePicture)
+        ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
+        ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
     }
 
      private fun onSupportNavigateUp(): Boolean {
@@ -129,16 +137,13 @@ class MainFragment : Fragment() {
 
         return false
     }
-    private fun signOut() {
+    private fun signOutDialog() {
         val dialog = MaterialAlertDialogBuilder(requireContext())
         dialog.setTitle("Cerrar sesión")
         dialog.setMessage("¿Estas seguro que queres cerrar sesión?")
 
         dialog.setPositiveButton("Yeah") { _, _ ->
-            fireBaseAuth.signOut()
-            Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
-            val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
-            viewMainFrag.findNavController().navigate(action)
+            signOut()
         }
         dialog.setNeutralButton("Cancel") { _, _ ->
             Toast.makeText(this.context, "Cancelled", Toast.LENGTH_SHORT).show()
@@ -146,10 +151,13 @@ class MainFragment : Fragment() {
         dialog.create()
         dialog.setCancelable(false)
         dialog.show()
+    }
 
-
-
-
+    private fun signOut() {
+        fireBaseAuth.signOut()
+        Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
+        val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
+        viewMainFrag.findNavController().navigate(action)
     }
 
 

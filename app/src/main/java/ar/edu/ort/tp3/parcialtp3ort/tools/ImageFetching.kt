@@ -1,21 +1,19 @@
 package ar.edu.ort.tp3.parcialtp3ort.tools
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
 import com.bumptech.glide.Glide
 
 class ImageFetching {
 
     companion object {
-        fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String?) {
-            val defaultImg = R.drawable.avatar_car
+        fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String? = null, defaultImg: Int) {
             Glide
                 .with(view)
                 .load(path).fitCenter()
                 .placeholder(defaultImg)
-                .onlyRetrieveFromCache(true)
                 .thumbnail()
                 .error(
                     Glide
@@ -26,6 +24,21 @@ class ImageFetching {
                             Glide
                                 .with(view)
                                 .load(defaultImg))
+                )
+                .into(element)
+        }
+
+        fun getImageWebOrLocal(view: View, element: ImageView, path: Uri?, defaultImg: Int) {
+
+
+            Glide
+                .with(view)
+                .load(path).fitCenter()
+                .placeholder(defaultImg)
+                .error(
+                    Glide
+                        .with(view)
+                        .load(defaultImg)
                 )
                 .into(element)
         }

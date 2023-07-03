@@ -22,13 +22,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_perfil"
             android:contentDescription="@string/profile_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/profile_picture_size"
+            android:layout_height="@dimen/profile_picture_size"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:layout_gravity="center"
-            android:src="@drawable/fotoperfil" />
+            android:src="@drawable/fotoperfil"
+            app:shapeAppearanceOverlay="@style/CircleShape"
+            app:strokeWidth="3dp"
+            app:strokeColor="?attr/colorPrimary"/>
 
         <TextView
             android:id="@+id/nameUser_perfil"
@@ -37,7 +42,7 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:layout_marginBottom="15sp"
-            android:text="nameUser"
+            android:text="@string/name"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="@dimen/profile_title" />
         <TextView
@@ -46,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15sp"
-            android:text="nameUser"
+            android:text="@string/email"
             android:textSize="@dimen/profile_mail" />
 
         <LinearLayout

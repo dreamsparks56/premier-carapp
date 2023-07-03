@@ -17,7 +17,7 @@ class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val na
 
     private var view: View
     private var viewModel: AutoViewModel
-    val carMakeImg: ImageView = itemView.findViewById<ImageView>(R.id.marcaImg)
+    private var carMakeImg: ImageView = itemView.findViewById<ImageView>(R.id.marcaImg)
 
     init {
         this.view = v
@@ -41,7 +41,7 @@ class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val na
         txt.text = String.format("+%s", count.toString())
     }
     fun callImg(makeN: String?, make: String?) {
-        ImageFetching.getImageManaged(this.itemView, this.carMakeImg, makeN, make)
+        ImageFetching.getImageManaged(this.itemView, this.carMakeImg, makeN, make, R.drawable.avatar_car)
     }
 
 }

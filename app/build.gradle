@@ -20,7 +20,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,12 +39,16 @@ android {
 
 }
 
+
+
 dependencies {
+
 
     //implementation 'androidx.core:core-ktx:1.10.1'
     //implementation 'androidx.core:core-ktx:1.7.0'
-    def nav_version = "2.5.3"
-    def room_version = "2.2.3"
+    def nav_version = "2.6.0"
+    def room_version = "2.5.2"
+    def mat_version = "1.1.1"
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -51,8 +57,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation "androidx.compose.material3:material3:1.1.0"
-    implementation "androidx.compose.material3:material3-window-size-class:1.1.0"
+    implementation "androidx.compose.material3:material3:$mat_version"
+    implementation "androidx.compose.material3:material3-window-size-class:$mat_version"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
@@ -66,9 +72,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //Para drawer Layout necesito la siguientes librerias:
-    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
@@ -76,8 +82,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
-    //Firebase UI
-    //implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    //Firestore database
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
 
 
     //room
@@ -87,4 +93,14 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     //implementation 'com.wajahatkarim3:roomexplorer:0.0.2'
+
+    //Camera
+    def camerax_version = "1.2.3"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-video:${camerax_version}"
+
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
 }

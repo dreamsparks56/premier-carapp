@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import ar.edu.ort.tp3.parcialtp3ort.R
 
 
-class Home_fragment : Fragment() {
+class InicioFragment : Fragment() {
     lateinit var viewHome: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

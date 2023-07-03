@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import ar.edu.ort.tp3.parcialtp3ort.fragments.Home_fragmentDirections
 import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.fragments.InicioFragmentDirections
 import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 
 class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val navController: NavController) : RecyclerView.ViewHolder(v) {
@@ -31,7 +31,7 @@ class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val na
             val inputTxt = txt.text.toString()
             viewModel.buscar(inputTxt, "make")
             Log.d("Search By Make ", inputTxt)
-            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
+            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
             navController.navigate(action)
         }
     }

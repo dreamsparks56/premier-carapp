@@ -107,7 +107,6 @@
             android:text="@string/google_sign_in"
             android:textAllCaps="false"
             android:textSize="19sp"
-            app:cornerRadius="30dp"
             app:icon="@drawable/googleg_standard_color_18"
             app:iconGravity="textStart"
             app:iconPadding="8dp"

@@ -61,20 +61,20 @@ class MarcasFragment : Fragment() {
 
         btnSportF.setOnClickListener{
             viewModel.buscar("gas", "fuel_type")
-            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
+            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
             Log.d("btnSportF", "gas")
             findNavController().navigate(action)
         }
         btnSuvF.setOnClickListener{
             viewModel.buscar("diesel", "fuel_type")
-            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
+            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
             Log.d("btnSuvF", "diesel")
             findNavController().navigate(action)
         }
         btnElectricF.setOnClickListener{
             viewModel.buscar("electric", "fuel_type")
             Log.d("btnElectricF", "electric")
-            val action = Home_fragmentDirections.actionHomeFragmentToAutoFragment()
+            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
             findNavController().navigate(action)
         }
     }

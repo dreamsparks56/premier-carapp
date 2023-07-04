@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FCFCFF"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="20dp"
@@ -22,13 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="Generales"
-            android:textColor="@color/celeste" />
+            android:text="@string/main_settings"
+            android:textColor="?attr/colorSecondary" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/textView8"
@@ -37,9 +37,9 @@
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
                 android:text="@string/notificaciones"
-                android:textColor="@color/black" />
+                android:textColor="?attr/colorOnSurface" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/textView9"
@@ -57,9 +58,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/modo_oscuro"
-                android:textColor="@color/black" />
+                android:textColor="?attr/colorOnSurface" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

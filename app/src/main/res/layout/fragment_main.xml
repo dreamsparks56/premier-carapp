@@ -36,7 +36,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardCornerRadius="@dimen/default_corner_radius_card"
-                app:cardBackgroundColor="?attr/colorOnBackground"
                 style="?attr/materialCardViewFilledStyle"
                 app:cardPreventCornerOverlap="true"
                 >

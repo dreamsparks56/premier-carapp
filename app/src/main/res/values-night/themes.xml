@@ -2,23 +2,21 @@
     <!-- Base application theme. -->
     <style name="Theme.ParcialTp3Ort" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_700</item>
-        <item name="colorPrimaryVariant">@color/purple_500</item>
-        <item name="colorOnPrimary">@color/light</item>
+        <item name="colorPrimary">@color/light</item>
+        <item name="colorOnPrimary">@color/secondary_blue</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary_blue</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/light</item>
+        <item name="colorOnSecondary">@color/purple_700</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
         <!--item name="android:colorBackground">?attr/colorSecondary</item-->
-        <item name="colorSurface">@color/secondary_blue</item>
+        <item name="colorSurface">@color/secondary_blue_900</item>
         <item name="colorSecondaryContainer">?attr/colorSurface</item>
         <item name="colorOnBackground">@color/dark</item>
-        <item name="colorOnSurface">?attr/colorOnPrimary</item>
-        <item name="colorOnSurfaceVariant">?attr/colorOnSecondary</item>
+        <item name="colorOnSurface">?attr/colorPrimary</item>
         <item name="colorOutline">?attr/colorOnSecondary</item>
-        <item name="colorSurfaceVariant">@color/purple_900</item>
+        <item name="colorSurfaceVariant">@color/secondary_blue_500</item>
+        <item name="colorPrimaryContainer">@color/purple_500</item>
     </style>
 </resources>

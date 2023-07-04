@@ -5,8 +5,6 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stylo_borde_perfil"
-    android:backgroundTint="?attr/colorSurface"
     android:paddingVertical="@dimen/profile_main_padding"
     tools:context=".fragments.PerfilFragment">
 
@@ -31,9 +29,8 @@
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:src="@drawable/fotoperfil"
-            app:shapeAppearanceOverlay="@style/CircleShape"
-            app:strokeWidth="3dp"
-            app:strokeColor="?attr/colorPrimary"/>
+            style="@style/CircleShape"
+            app:shapeAppearanceOverlay="@style/CircleShape"/>
 
         <TextView
             android:id="@+id/nameUser_perfil"
@@ -43,7 +40,7 @@
             android:textAlignment="center"
             android:layout_marginBottom="15sp"
             android:text="@string/name"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorSecondary"
             android:textSize="@dimen/profile_title" />
         <TextView
             android:id="@+id/emailUser_perfil"
@@ -72,9 +69,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:shadowColor="?attr/colorOnSecondary"
+                android:shadowColor="?attr/colorSecondary"
                 android:text="@string/notificaciones"
-                android:textColor="?attr/colorOnSecondary"
+                android:textColor="?attr/colorSecondary"
                 />
 
             <LinearLayout

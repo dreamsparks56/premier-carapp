@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.R
-import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -50,16 +49,15 @@ class RegistroUsuarioFragment : Fragment() {
                     //createAccount(mail.text.toString(), pass1.text.toString())
                     createAccountConMailDeCofirmacion(mail.text.toString(), pass1.text.toString())
                 }else {
-                    pass1.error="Las claves no son iguales"
-                    pass2.error="Las claves no son iguales"
+                    Toast.makeText(this.context, "Error, las claves no son iguales", Toast.LENGTH_SHORT).show()
                     pass1.requestFocus()
                     pass2.requestFocus()
                 }
             }else {
                 Toast.makeText(this.context, "Error, los campos no cumplen con criterios de longitud mínima", Toast.LENGTH_SHORT).show()
                 println(mail.text.toString())
-                println(pass1.text.toString())
-                println(pass2.text.toString())
+                println(pass1.text.toString().toString())
+                println(pass2.text.toString().toString())
             }
 
         }
@@ -75,7 +73,7 @@ class RegistroUsuarioFragment : Fragment() {
                 if(task.isSuccessful) {
                     val user = fireBaseAuth.currentUser!!
                     updateDisplayName(username.text.toString())
-                    sentEmailVerification(user)
+                    sentEmailVerification(username)
                     Toast.makeText(this.context, "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
 
                     println("x ahora no hay error")

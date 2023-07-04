@@ -29,6 +29,7 @@ class PerfilFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         vista=  inflater.inflate(R.layout.fragment_perfil, container, false)
 
         nombre = vista.findViewById(R.id.nameUser_perfil)
@@ -53,9 +54,6 @@ class PerfilFragment : Fragment() {
 
         return vista
     }
-
-
-
 
 
 }

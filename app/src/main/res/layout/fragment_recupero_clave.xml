@@ -58,7 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:backgroundTint="#212121"
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
             android:paddingRight="40dp"

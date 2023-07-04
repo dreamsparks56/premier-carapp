@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.R
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -20,10 +20,10 @@ import com.google.firebase.ktx.Firebase
 
 class RegistroUsuarioFragment : Fragment() {
     lateinit var v:View
-    lateinit var mail: TextInputLayout
-    lateinit var username: TextInputLayout
-    lateinit var pass1: TextInputLayout
-    lateinit var pass2: TextInputLayout
+    lateinit var mail: EditText
+    lateinit var username: EditText
+    lateinit var pass1: EditText
+    lateinit var pass2: EditText
     lateinit var btnRegistro: MaterialButton
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -45,10 +45,10 @@ class RegistroUsuarioFragment : Fragment() {
         btnRegistro =  v.findViewById(R.id.button_registro_id)
 
         btnRegistro.setOnClickListener {
-            if(mail.editText.toString().length> 2 && pass1.editText.toString().length > 2  && pass2.editText.toString().length > 2) {
-                if(pass1.editText.toString().equals(pass2.editText.toString())) {
+            if(mail.text.toString().length> 2 && pass1.text.toString().length > 2  && pass2.text.toString().length > 2) {
+                if(pass1.text.toString().equals(pass2.text.toString())) {
                     //createAccount(mail.text.toString(), pass1.text.toString())
-                    createAccountConMailDeCofirmacion(mail.editText.toString(), pass1.editText.toString())
+                    createAccountConMailDeCofirmacion(mail.text.toString(), pass1.text.toString())
                 }else {
                     pass1.error="Las claves no son iguales"
                     pass2.error="Las claves no son iguales"
@@ -57,9 +57,9 @@ class RegistroUsuarioFragment : Fragment() {
                 }
             }else {
                 Toast.makeText(this.context, "Error, los campos no cumplen con criterios de longitud mínima", Toast.LENGTH_SHORT).show()
-                println(mail.editText.toString())
-                println(pass1.editText.toString())
-                println(pass2.editText.toString())
+                println(mail.text.toString())
+                println(pass1.text.toString())
+                println(pass2.text.toString())
             }
 
         }
@@ -74,7 +74,7 @@ class RegistroUsuarioFragment : Fragment() {
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
                     val user = fireBaseAuth.currentUser!!
-                    updateDisplayName(username.editText.toString())
+                    updateDisplayName(username.text.toString())
                     sentEmailVerification(user)
                     Toast.makeText(this.context, "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
 

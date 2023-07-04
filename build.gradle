@@ -3,7 +3,6 @@
 buildscript {
     repositories {
         google()
-        maven { url "https://jitpack.io" }  //Make sure to add this in your project for uCrop - an internal library
     }
     dependencies {
         def nav_version = "2.5.3"

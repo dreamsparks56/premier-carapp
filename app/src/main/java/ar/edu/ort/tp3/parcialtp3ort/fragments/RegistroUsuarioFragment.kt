@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.R
 import com.google.android.material.button.MaterialButton
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 
 
 class RegistroUsuarioFragment : Fragment() {
@@ -73,13 +75,16 @@ class RegistroUsuarioFragment : Fragment() {
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
                     val user = fireBaseAuth.currentUser!!
-                    updateDisplayName(username.text.toString())
-                    sentEmailVerification(user)
-                    Toast.makeText(this.context, "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
-
-                    println("x ahora no hay error")
                     val action = RegistroUsuarioFragmentDirections.actionRegistroUsuarioFragmentToLoginFragment()
-                    v.findNavController().navigate(action)
+                    this.lifecycleScope.launch{
+                        updateDisplayName(username.text.toString())
+                        sentEmailVerification(user)
+                        Toast.makeText(requireContext(), "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
+                        println("x ahora no hay error")
+                        view
+                        v.findNavController().navigate(action)
+                    }
+
                 }else {
                     Toast.makeText(this.context,"Algo salió mal" + task.exception,Toast.LENGTH_SHORT).show()
                 }

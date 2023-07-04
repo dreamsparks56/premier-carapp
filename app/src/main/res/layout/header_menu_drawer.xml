@@ -29,9 +29,8 @@
             android:src="@drawable/avatar_car"
             android:clickable="true"
             app:layout_constraintStart_toStartOf="parent"
+            style="@style/CircleShape"
             app:shapeAppearanceOverlay="@style/CircleShape"
-            app:strokeColor="?attr/colorPrimary"
-            app:strokeWidth="3dp"
             tools:layout_editor_absoluteY="22dp" />
 
         <LinearLayout

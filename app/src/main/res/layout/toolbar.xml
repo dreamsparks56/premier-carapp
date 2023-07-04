@@ -43,8 +43,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="@string/profile_description"
-        app:shapeAppearanceOverlay="@style/CircleShape"
-        app:strokeWidth="3dp"
-        app:strokeColor="?attr/colorPrimary"/>
+        style="@style/CircleShape"
+        app:shapeAppearanceOverlay="@style/CircleShape"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

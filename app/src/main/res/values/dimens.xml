@@ -25,7 +25,7 @@
     <dimen name="main_section_title_size">32sp</dimen>
     <dimen name="profile_mail">20sp</dimen>
     <dimen name="profile_field">15sp</dimen>
-    <dimen name="profile_main_padding">16dp</dimen>
+    <dimen name="main_section_title_padding">16dp</dimen>
     <dimen name="list_item_height">48dp</dimen>
     <!-->login values -->
     <dimen name="login_font_size">19sp</dimen>

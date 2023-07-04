@@ -41,7 +41,7 @@
             android:layout_marginBottom="15sp"
             android:text="@string/name"
             android:textColor="?attr/colorSecondary"
-            android:textSize="@dimen/profile_title" />
+            android:textSize="@dimen/main_section_title_size" />
         <TextView
             android:id="@+id/emailUser_perfil"
             android:layout_width="wrap_content"

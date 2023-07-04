@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 class ImageFetching {
 
     companion object {
-        fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String?) {
+        fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String? = null, defaultImg: Int) {
             val defaultImg = R.drawable.avatar_car
             Glide
                 .with(view)

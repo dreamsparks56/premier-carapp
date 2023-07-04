@@ -1,6 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -18,7 +20,7 @@ import com.google.firebase.ktx.Firebase
 class RegistroUsuarioFragment : Fragment() {
     lateinit var v:View
     lateinit var mail: EditText
-    lateinit var user:EditText
+    lateinit var username:EditText
     lateinit var pass1:EditText
     lateinit var pass2:EditText
     lateinit var btnRegistro: Button
@@ -39,6 +41,9 @@ class RegistroUsuarioFragment : Fragment() {
         pass1 = v.findViewById(R.id.pass_registro1)
         pass2 = v.findViewById(R.id.pass_registro2)
         btnRegistro =  v.findViewById(R.id.button_registro_id)
+        username = v.findViewById(R.id.usuario_registro)
+
+
 
         btnRegistro.setOnClickListener {
             if(mail.text.toString().length> 2 && pass1.text.toString().length > 2  && pass2.text.toString().length > 2) {
@@ -70,6 +75,7 @@ class RegistroUsuarioFragment : Fragment() {
                 if(task.isSuccessful) {
 
                     sentEmailVerification()
+                    updateDisplayName(username.text.toString())
                     Toast.makeText(this.context, "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
                     println("x ahora no hay error")
                     val action = RegistroUsuarioFragmentDirections.actionRegistroUsuarioFragmentToLoginFragment()
@@ -92,6 +98,22 @@ class RegistroUsuarioFragment : Fragment() {
         }
     }
 
+    private fun updateDisplayName(name: String){
+        val user = fireBaseAuth.currentUser!!
+        val nameChange = UserProfileChangeRequest.Builder()
+            .setDisplayName(name)
+            .build()
 
-
+        user.updateProfile(nameChange)
+            .addOnCompleteListener(this.requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    Log.d("El nombre actualizado", user.displayName!!)
+                } else {
+                    Log.d("nombre error","Algo salió mal en el cambio de usuario")
+                }
+            }
+    }
 }
+
+
+

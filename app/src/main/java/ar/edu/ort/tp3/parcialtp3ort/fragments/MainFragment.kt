@@ -112,7 +112,6 @@ class MainFragment : Fragment() {
             //TODO: Solve crash on signout
         }
         //esto lo llamo desde la toolbar q ya tiene el manejo del action bar original.
-
     }
 
     private fun asignarNombreUsuarioAlMenu(){
@@ -125,6 +124,13 @@ class MainFragment : Fragment() {
         drawerPic = headerView.findViewById(R.id.perfilFragment)
         ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
         ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
+        toolbarPic.setOnClickListener {
+            navController.navigate(R.id.action_global_perfilFragment)
+        }
+        drawerPic.setOnClickListener {
+            navController.navigate(R.id.action_global_perfilFragment)
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
     }
 
      private fun onSupportNavigateUp(): Boolean {

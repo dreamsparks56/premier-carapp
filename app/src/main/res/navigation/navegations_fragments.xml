@@ -34,5 +34,5 @@
         android:id="@+id/favoritosFragment"
         android:name="ar.edu.ort.tp3.parcialtp3ort.fragments.FavoritosFragment"
         android:label="fragment_favoritos"
-        tools:layout="@layout/fragment_favoritos" />
+        tools:layout="@layout/fragment_favoritos" /><action android:id="@+id/action_global_perfilFragment" app:destination="@id/perfilFragment"/>
 </navigation>

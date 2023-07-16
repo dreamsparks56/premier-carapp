@@ -170,14 +170,8 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(this.requireActivity()){task ->
                 if(task.isSuccessful) {
                     val user = auth.currentUser
-                   val verificado = user?.isEmailVerified
-                   if(verificado == true) {
-                        Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
-                        updateUI(user) // Este método lo derivará al inicio.
-                  } else {
-                      auth.signOut()
-                      Toast.makeText(this.context,"Error. Falta confirmar cuenta. Revisá tu mail", Toast.LENGTH_SHORT).show()
-                  }
+                    Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
+                    updateUI(user!!) // Este método lo derivará al inicio.
 
                 }else {
                     Toast.makeText(this.context,"Error de email y/o password", Toast.LENGTH_SHORT).show()

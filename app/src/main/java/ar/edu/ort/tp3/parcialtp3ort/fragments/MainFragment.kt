@@ -15,12 +15,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
-//import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
@@ -69,10 +68,8 @@ class MainFragment : Fragment() {
         //Asigno mi toolbar nueva en el lugar del appBar.
         toolbar = viewMainFrag.findViewById(R.id.toolbar)
         activity = requireActivity() as AppCompatActivity
-        activity.setSupportActionBar(toolbar)
-        activity.supportActionBar?.setDisplayShowTitleEnabled(false) //Elimine el titulo del fragment
-        setupBottomNavBar()
         setupDrawerLayout()
+        setupBottomNavBar()
         viewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
         headerView = navigationView.getHeaderView(0)
         asignarNombreUsuarioAlMenu()
@@ -93,18 +90,12 @@ class MainFragment : Fragment() {
 
 
     private fun setupDrawerLayout() {
-        val activity = requireActivity() as AppCompatActivity
-
+        val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
         navigationView.setupWithNavController(navController)
-
-        NavigationUI.setupActionBarWithNavController(activity, navController, drawerLayout)
-
-
-        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        activity.supportActionBar?.setHomeAsUpIndicator(R.drawable.menu_icon)
-        toolbar.setNavigationOnClickListener {
-            onSupportNavigateUp()
+        toolbar.setupWithNavController(navController, appBarConfiguration)
+        navController.addOnDestinationChangedListener{ _, _, _ ->
+                toolbar.title = ""
         }
         navigationView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
             signOutDialog()
@@ -131,17 +122,6 @@ class MainFragment : Fragment() {
             navController.navigate(R.id.action_global_perfilFragment)
             drawerLayout.closeDrawer(GravityCompat.START)
         }
-    }
-
-     private fun onSupportNavigateUp(): Boolean {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            drawerLayout.openDrawer(GravityCompat.START)
-        }
-
-
-        return false
     }
     private fun signOutDialog() {
         val dialog = MaterialAlertDialogBuilder(requireContext())

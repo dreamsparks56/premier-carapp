@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_header">Hola</string>
+
+    <!-- Settings -->
+    <string name="main_settings">Generales</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="modo_oscuro">Modo oscuro</string>
+    <string name="language_selection">Idioma</string>
+    <string name="language_selection_english">Inglés</string>
+    <string name="language_selection_spanish">Español</string>
+
+    <!-- Main -->
+    <string name="make_name_title">Marca</string>
+    <string name="title_marcas">Marcas</string>
+    <string name="brand_description">El logo de la marca</string>
+    <string name="usuario_placeHolder">Ingrese su nombre de usuario</string>
+
+    <!-- Car attributes-->
+    <string name="car_model">Modelo</string>
+    <string name="car_model_description">El modelo del auto</string>
+    <string name="car_fuel_text">Combustible</string>
+    <string name="car_drive_text">Motor</string>
+    <string name="car_year_text">Año de fabricación</string>
+    <string name="car_class_text">Tipo</string>
+
+    <!--Search  -->
+    <string name="opcionHome">Inicio</string>
+    <string name="opcionAutos">Autos</string>
+    <string name="opcionBusqueda">Buscar</string>
+    <string name="opcionPerfil">Perfil</string>
+    <string name="opcionConfiguracion">Configuración</string>
+    <string name="opcionFavoritos">Favoritos</string>
+    <string name="opcionCerrarSesion">Cerrar sesión</string>
+
+    <string name="electric_filter">Autos eléctricos</string>
+    <string name="suv_filter">SUVs</string>
+    <string name="sport_filter">Deportivos</string>
+    <string name="profile_description">Foto de perfil</string>
+    <string name="notifications_description">Ícono de notificaciones</string>
+
+    <!-- Login Screen-->
+    <string name="email_placeholder">Ingrese su email…</string>
+    <string name="password_placeholder">Ingrese su contraseña</string>
+    <string name="password_forgotten">Olvidé mi contraseña</string>
+    <string name="login_signin">Ingresar</string>
+    <string name="google_sign_in">Iniciar sesion con google</string>
+    <string name="title_favs">Tus favoritos\n</string>
+    <string name="name">Nombre completo</string>
+    <string name="email">Email</string>
+
+    <!--Camera-->
+    <string name="profile_modal_title">Opciones de foto de perfil</string>
+    <string name="profile_picture_change">Nueva imagen</string>
+    <string name="take_photo">Sacar foto</string>
+
+    <string name="username">Nombre de usuario</string>
+    <string name="nuevoUsuarioLogin">Registrarme</string>
+</resources>

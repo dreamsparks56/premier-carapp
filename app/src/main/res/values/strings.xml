@@ -1,63 +1,63 @@
 <resources>
-    <string name="app_name">parcialTp3Ort</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="texto_header">Hola</string>
+    <string name="app_name" translatable="false">parcialTp3Ort</string>
+    <string name="texto_header">Hi</string>
 
-    <!-- Configuración -->
-    <string name="main_settings">Generales</string>
-    <string name="notificaciones">Notificaciones</string>
-    <string name="modo_oscuro">Modo oscuro</string>
+    <!--  Settings -->
+    <string name="main_settings">General</string>
+    <string name="notificaciones">Notifications</string>
+    <string name="modo_oscuro">Dark theme</string>
+    <string name="language_selection">Language</string>
+    <string name="language_selection_english">English</string>
+    <string name="language_selection_spanish">Spanish</string>
+
     <!-- Main -->
-    <string name="title_part_1">Premier</string>
-    <string name="title_part_2">RentCar</string>
-    <string name="make_name_title">Marca</string>
-    <string name="makeCount">+X</string>
-    <string name="title_marcas">Marcas</string>
-    <string name="brand_description">El logo de la marca</string>
-    <string name="usuario_placeHolder">Ingrese su nombre de usuario</string>
+    <string name="title_part_1" translatable="false">Premier</string>
+    <string name="title_part_2" translatable="false">RentCar</string>
+    <string name="make_name_title">Make</string>
+    <string name="makeCount" translatable="false">+X</string>
+    <string name="title_marcas">Makes</string>
+    <string name="brand_description">Make logo</string>
+    <string name="usuario_placeHolder">Enter your username</string>
 
-
-
-    <!-- car attributes-->
-
+    <!-- Car attributes-->
     <string name="car_model">Car Model</string>
     <string name="car_model_description">The model of the car</string>
     <string name="car_fuel_text">Fuel Type</string>
     <string name="car_drive_text">Gear Type</string>
     <string name="car_year_text">Release Year</string>
     <string name="car_class_text">Class</string>
-    <!--Opciones de búsqueda -->
-    <string name="opcionHome">Home</string>
-    <string name="opcionAutos">Autos</string>
-    <string name="opcionBusqueda">Buscar</string>
-    <string name="opcionPerfil">Perfil</string>
-    <string name="opcionConfiguracion">Configuración</string>
-    <string name="opcionFavoritos">Favoritos</string>
-    <string name="opcionCerrarSesion">Cerrar sesión</string>
 
-    <string name="electric_filter">electric car filter</string>
-    <string name="suv_filter">suv car filter</string>
-    <string name="sport_filter">sport car filter</string>
+    <!-- Search -->
+    <string name="opcionHome">Home</string>
+    <string name="opcionAutos">Cars</string>
+    <string name="opcionBusqueda">Search</string>
+    <string name="opcionPerfil">Profile</string>
+    <string name="opcionConfiguracion">Settings</string>
+    <string name="opcionFavoritos">Favorites</string>
+    <string name="opcionCerrarSesion">Sign Out</string>
+
+    <string name="electric_filter">Electric Car Filter</string>
+    <string name="suv_filter">SUV Car Filter</string>
+    <string name="sport_filter">Sport Car Filter</string>
     <string name="profile_description">The profile picture</string>
     <string name="notifications_description">Notifications icon</string>
 
-    <!-- login-->
-    <string name="email_placeholder">Ingrese su email…</string>
-    <string name="password_placeholder">Ingrese su contraseña</string>
-    <string name="password_forgotten">Olvidé mi contraseña</string>
-    <string name="login_signin">Ingresar</string>
-    <string name="google_sign_in">Iniciar sesion con google</string>
-    <string name="title_favs">Tus favoritos\n</string>
-    <string name="name">Nombre completo</string>
+    <!-- Login Screen-->
+    <string name="email_placeholder">Enter your email</string>
+    <string name="password_placeholder">Enter your password</string>
+    <string name="password_forgotten">Forgot my password</string>
+    <string name="login_signin">Sign In</string>
+    <string name="google_sign_in">Sign in with Google</string>
+    <string name="title_favs">Your favorites</string>
+    <string name="name">Full name</string>
     <string name="email">Email</string>
 
-    <!--Cámara-->
-    <string name="profile_modal_title">Opciones de foto de perfil</string>
-    <string name="profile_picture_change">Nueva imagen</string>
-    <string name="take_photo">Sacar foto</string>
+    <!--Camera-->
+    <string name="profile_modal_title">Profile picture options</string>
+    <string name="profile_picture_change">New image</string>
+    <string name="take_photo">Take picture</string>
 
+    <string name="username">Username</string>
+    <string name="nuevoUsuarioLogin">Sign Up</string>
 
-    <string name="username">Nombre de usuario</string>
-    <string name="nuevoUsuarioLogin">Registrarme</string>
 </resources>

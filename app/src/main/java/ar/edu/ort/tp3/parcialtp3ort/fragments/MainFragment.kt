@@ -1,6 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -78,7 +79,18 @@ class MainFragment : Fragment() {
         return viewMainFrag
     }
 
+    override fun onResume() {
+        super.onResume()
+        actualizarImagenesDePerfil()
+        Log.d("Images", "Image has been updated: ${viewModel.photoUrl}")
+    }
 
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        actualizarImagenesDePerfil()
+        Log.d("Images on viewstaterestored", "Image has been updated: ${viewModel.photoUrl}")
+
+    }
 
     private fun setupBottomNavBar() {
         val navHostFragment =
@@ -113,8 +125,7 @@ class MainFragment : Fragment() {
     private fun asignarImagenesDePerfil() {
         toolbarPic = viewMainFrag.findViewById(R.id.perfilFragment)
         drawerPic = headerView.findViewById(R.id.perfilFragment)
-        ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
-        ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
+        actualizarImagenesDePerfil()
         toolbarPic.setOnClickListener {
             navController.navigate(R.id.action_global_perfilFragment)
         }
@@ -123,6 +134,12 @@ class MainFragment : Fragment() {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
     }
+
+    private fun actualizarImagenesDePerfil() {
+        ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
+        ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
+    }
+
     private fun signOutDialog() {
         val dialog = MaterialAlertDialogBuilder(requireContext())
         dialog.setTitle("Cerrar sesión")

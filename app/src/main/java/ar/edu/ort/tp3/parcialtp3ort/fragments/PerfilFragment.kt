@@ -1,6 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,11 +49,20 @@ class PerfilFragment : Fragment() {
         // Acceder a las propiedades o métodos del ViewModel según sea necesario
         nombre.text = viewModel.usuario.value.toString()
         email.text = viewModel.email.value.toString()
-        getImageWebOrLocal(vista, photoUrl, viewModel.photoUrl, R.drawable.fotoperfil)
-
+        Log.d("imagen", viewModel.photoUrl.toString())
+        getImage()
 
 
         return vista
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        getImage()
+    }
+
+    private fun getImage() {
+        getImageWebOrLocal(vista, photoUrl, viewModel.photoUrl, R.drawable.fotoperfil)
     }
 
 

@@ -45,6 +45,26 @@
             tools:text="@string/profile_picture_change" />
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/galleryButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:clickable="true"
+        style="?attr/materialCardViewFilledStyle">
+
+        <TextView
+            android:id="@+id/galleryModalChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="@dimen/default_car_text_icon_padding"
+            android:paddingStart="@dimen/default_car_text_icon_padding"
+            android:paddingEnd="@dimen/default_car_text_icon_padding"
+            android:text="@string/profile_picture_select"
+            app:drawableStartCompat="@drawable/baseline_photo_album_24"
+            tools:text="@string/profile_picture_change" />
+    </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>
 

@@ -2,8 +2,9 @@ package ar.edu.ort.tp3.parcialtp3ort.fragments
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Context
 import android.content.pm.PackageManager
-import android.net.Uri
+import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -24,10 +25,14 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
-import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
@@ -41,7 +46,14 @@ class CameraFragment : Fragment() {
     private lateinit var viewFinder: PreviewView
     private lateinit var v: View
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginViewModel
+
+    private var displayId: Int = -1
+
+    private val displayManager by lazy {
+        requireContext().getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,23 +67,34 @@ class CameraFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_camera, container, false)
         viewFinder = v.findViewById(R.id.viewFinder)
 
+        cameraCaptureButton = v.findViewById(R.id.image_capture_button)
+        // Set up the listener for take photo button
+        cameraCaptureButton.setOnClickListener { takePhoto() }
+
+        //Get user info
+        auth = Firebase.auth
+        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
+        // Every time the orientation of device changes, update rotation for use cases
+        displayManager.registerDisplayListener(displayListener, null)
+
         // Request camera permissions
         if (allPermissionsGranted()) {
-            startCamera()
+                startCamera()
         } else {
             ActivityCompat.requestPermissions(
                 this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CAMERA_PERMISSION
             )
         }
-        cameraCaptureButton = v.findViewById(R.id.image_capture_button)
-        // Set up the listener for take photo button
-        cameraCaptureButton.setOnClickListener { takePhoto() }
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
-        //Obtener view model
-        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
-
-        return v
     }
 
     private fun takePhoto() {
@@ -99,21 +122,33 @@ class CameraFragment : Fragment() {
         // Set up image capture listener, which is triggered after photo has
         // been taken
         imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(this.requireContext()), object : ImageCapture.OnImageSavedCallback {
+            outputOptions, cameraExecutor, object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     val msg = String.format(camFailMsg, exc.message)
                     Log.e(TAG, msg, exc)
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = output.savedUri
-                    Log.d(TAG, String.format(camSuccMsg, savedUri))
-                    updateImage(savedUri!!)
+                    lifecycleScope.launch {
+                        val savedUri = output.savedUri
+                        Log.d(TAG, String.format(camSuccMsg, savedUri))
+                        viewModel.updatePhotoUri(auth.currentUser, savedUri!!)
+                        backToMain()
+                    }
                 }
             })
-        backToMain()
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Shut down our background executor
+        cameraExecutor.shutdown()
+
+        // Unregister the broadcast receivers and listeners
+        displayManager.unregisterDisplayListener(displayListener)
     }
 
     private fun startCamera() {
@@ -151,6 +186,22 @@ class CameraFragment : Fragment() {
         }, ContextCompat.getMainExecutor(this.requireContext()))
     }
 
+    /**
+     * We need a display listener for orientation changes that do not trigger a configuration
+     * change, for example if we choose to override config change in manifest or for 180-degree
+     * orientation changes.
+     */
+    private val displayListener = object : DisplayManager.DisplayListener {
+        override fun onDisplayAdded(displayId: Int) = Unit
+        override fun onDisplayRemoved(displayId: Int) = Unit
+        override fun onDisplayChanged(displayId: Int) = view?.let { view ->
+            if (displayId == this@CameraFragment.displayId) {
+                Log.d(TAG, "Rotation changed: ${view.display.rotation}")
+                imageCapture?.targetRotation = view.display.rotation
+            }
+        } ?: Unit
+    }
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             this.requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
@@ -169,30 +220,9 @@ class CameraFragment : Fragment() {
             }
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-    private fun updateImage(imageUri: Uri){
-        val user = viewModel.currentUser()
-        val imageChange = UserProfileChangeRequest.Builder()
-            .setPhotoUri(imageUri)
-            .build()
-
-        user!!.updateProfile(imageChange)
-            .addOnCompleteListener(this.requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    Log.d("La imagen", imgUpdMsg)
-                } else {
-                    Log.e("Error con la imagen", imgFailMsg)
-                }
-            }
-    }
     private fun backToMain() {
         val action = CameraFragmentDirections.actionCameraFragmentToMainFragment()
         requireParentFragment().findNavController().navigate(action)
-        com.google.android.material.snackbar.Snackbar.make(requireView(), imgUpdMsg, LENGTH_SHORT).show()
     }
 
     companion object {
@@ -204,7 +234,5 @@ class CameraFragment : Fragment() {
 
         private const val camFailMsg =  "Error en la captura de imágenes: %s"
         private const val camSuccMsg = "La imagen fue tomada exitosamente: %s"
-        private const val imgUpdMsg = "Imagen actualizada exitosamente"
-        private const val imgFailMsg = "Algo salió mal en el cambio de imagen"
     }
 }

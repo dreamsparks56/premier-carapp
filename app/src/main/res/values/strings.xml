@@ -55,6 +55,7 @@
     <!--Camera-->
     <string name="profile_modal_title">Profile picture options</string>
     <string name="profile_picture_change">New image</string>
+    <string name="profile_picture_select">Select image from gallery</string>
     <string name="take_photo">Take picture</string>
 
     <string name="username">Username</string>

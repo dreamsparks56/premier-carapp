@@ -1,14 +1,13 @@
 package ar.edu.ort.tp3.parcialtp3ort.Models
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.UserProfileChangeRequest
 
 class LoginViewModel:ViewModel() {
-    val auth = Firebase.auth
     val usuario = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     var photoUrl: Uri? = Uri.EMPTY
@@ -35,7 +34,19 @@ class LoginViewModel:ViewModel() {
         }
     }
 
-    fun currentUser(): FirebaseUser? {
-        return auth.currentUser
+    fun updatePhotoUri(user: FirebaseUser?, uri: Uri) {
+        val imageChange = UserProfileChangeRequest.Builder()
+            .setPhotoUri(uri)
+            .build()
+
+        user!!.updateProfile(imageChange)
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    Log.d("La imagen", user.photoUrl.toString())
+                    photoUrl = user.photoUrl
+                } else {
+                    Log.e("Error con la imagen", "Algo salió mal")
+                }
+            }
     }
 }

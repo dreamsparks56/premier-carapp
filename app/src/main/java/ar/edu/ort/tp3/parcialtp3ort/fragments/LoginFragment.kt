@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -31,8 +31,8 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     lateinit var viewLogin:View
     lateinit var btnLogin: Button
-    lateinit var user: EditText
-    lateinit var pass: EditText
+    lateinit var user: TextInputLayout
+    lateinit var pass: TextInputLayout
     lateinit var  btnRegistro :TextView
     lateinit var  btnRecupero :TextView
     lateinit var  btnGoogleSignIn : MaterialButton
@@ -68,8 +68,8 @@ class LoginFragment : Fragment() {
 
         btnLogin.setOnClickListener{
 
-            if(user.text.toString().length> 2 && pass.text.toString().length > 2)  {
-                signInMilConfirmado(user.text.toString(), pass.text.toString())
+            if(user.editText?.text.toString().length> 2 && pass.editText?.text.toString().length > 2)  {
+                signInMilConfirmado(user.editText?.text.toString(), pass.editText?.text.toString())
             }else {
                 user.error="Error. El mail y el pass tiene q tener un mínimo de 2 caracteres"
 

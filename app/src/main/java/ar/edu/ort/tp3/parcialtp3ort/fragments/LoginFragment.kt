@@ -50,6 +50,12 @@ class LoginFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         viewLogin = inflater.inflate(R.layout.fragment_login, container, false)
+
+        return viewLogin
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         btnLogin = viewLogin.findViewById(R.id.button_login)
         user = viewLogin.findViewById(R.id.usuario_login)
         pass = viewLogin.findViewById(R.id.pass_login)
@@ -91,10 +97,6 @@ class LoginFragment : Fragment() {
             viewLogin.findNavController().navigate(action)
         }
 
-
-
-
-        return viewLogin
 
 
 

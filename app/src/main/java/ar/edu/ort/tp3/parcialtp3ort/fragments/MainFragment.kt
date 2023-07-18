@@ -57,14 +57,15 @@ class MainFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         viewMainFrag = inflater.inflate(R.layout.fragment_main, container, false)
+        return viewMainFrag
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         drawerLayout = viewMainFrag.findViewById(R.id.drawer_layout_main_container)
         navigationView = viewMainFrag.findViewById(R.id.nav_view)
         navHostFragment = childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
-
-
 
         //Asigno mi toolbar nueva en el lugar del appBar.
         toolbar = viewMainFrag.findViewById(R.id.toolbar)
@@ -75,21 +76,12 @@ class MainFragment : Fragment() {
         headerView = navigationView.getHeaderView(0)
         asignarNombreUsuarioAlMenu()
         asignarImagenesDePerfil()
-
-        return viewMainFrag
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d("Images onresume", "Image has been updated: ${viewModel.photoUrl}")
         actualizarImagenesDePerfil()
-        Log.d("Images", "Image has been updated: ${viewModel.photoUrl}")
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        actualizarImagenesDePerfil()
-        Log.d("Images on viewstaterestored", "Image has been updated: ${viewModel.photoUrl}")
-
     }
 
     private fun setupBottomNavBar() {

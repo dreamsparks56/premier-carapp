@@ -6,8 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginViewModel:ViewModel() {
+    val auth = Firebase.auth
     val usuario = MutableLiveData<String>()
     val email = MutableLiveData<String>()
     var photoUrl: Uri? = Uri.EMPTY
@@ -24,13 +27,6 @@ class LoginViewModel:ViewModel() {
             photoUrl = it.photoUrl
             usuario.value = it.displayName
             email.value = it.email
-            // Check if user's email is verified
-            //val emailVerified = it.isEmailVerified
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            //val uid = it.uid
         }
     }
 

@@ -7,4 +7,12 @@
         <item name="strokeColor">?attr/colorSecondary</item>
         <item name="android:padding">3dp</item>
     </style>
+
+    <style name="TextField" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
+        <item name="boxBackgroundColor">@color/m3_textfield_filled_background_color</item>
+        <item name="android:layout_marginVertical">@dimen/login_fields_default_margin</item>
+        <item name="boxStrokeWidth">3dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+    </style>
 </resources>

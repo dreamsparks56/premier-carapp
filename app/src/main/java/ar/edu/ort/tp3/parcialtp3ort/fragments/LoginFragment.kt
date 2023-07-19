@@ -67,12 +67,13 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
         btnLogin.setOnClickListener{
-
-            if(user.editText?.text.toString().length> 2 && pass.editText?.text.toString().length > 2)  {
+            if(user.editText?.text.toString().isNotEmpty() && pass.editText?.text.toString().isNotEmpty()) {
                 signInMilConfirmado(user.editText?.text.toString(), pass.editText?.text.toString())
-            }else {
-                user.error="Error. El mail y el pass tiene q tener un mínimo de 2 caracteres"
-
+            } else {
+                if(user.editText?.text.toString().isEmpty())
+                    user.error = getString(R.string.empty_field_error)
+                if(pass.editText?.text.toString().isEmpty())
+                    pass.error = getString(R.string.empty_field_error)
             }
         }
 
@@ -176,13 +177,10 @@ class LoginFragment : Fragment() {
                     updateUI(user!!) // Este método lo derivará al inicio.
 
                 }else {
-                    Toast.makeText(this.context,"Error de email y/o password", Toast.LENGTH_SHORT).show()
+                    user.error = getString(R.string.login_matching_error)
+                    pass.error = getString(R.string.login_matching_error)
                 }
             }
-
-
-
-
     }
 
 

@@ -48,6 +48,11 @@
     <string name="title_favs">Tus favoritos\n</string>
     <string name="name">Nombre completo</string>
     <string name="email">Email</string>
+    <!-- Error handling-->
+    <string name="password_matching_error">Error, las claves no son iguales</string>
+    <string name="less_than_min_length_error">Debería tener al menos %d caracteres</string>
+    <string name="login_matching_error">Usuario o contraseña incorrecta</string>
+    <string name="empty_field_error">Falta ingresar texto</string>
 
     <!--Camera-->
     <string name="profile_modal_title">Opciones de foto de perfil</string>

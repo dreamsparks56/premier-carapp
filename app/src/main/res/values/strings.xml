@@ -51,6 +51,11 @@
     <string name="title_favs">Your favorites</string>
     <string name="name">Full name</string>
     <string name="email">Email</string>
+    <!-- Error handling-->
+    <string name="password_matching_error">Passwords don\'t match</string>
+    <string name="less_than_min_length_error">Fields should be at least %d characters long</string>
+    <string name="login_matching_error">Wrong user or password</string>
+    <string name="empty_field_error">Empty field</string>
 
     <!--Camera-->
     <string name="profile_modal_title">Profile picture options</string>

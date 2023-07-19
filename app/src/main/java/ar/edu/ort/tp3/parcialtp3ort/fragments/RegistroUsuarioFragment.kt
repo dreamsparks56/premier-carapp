@@ -47,20 +47,26 @@ class RegistroUsuarioFragment : Fragment() {
         btnRegistro =  v.findViewById(R.id.button_registro_id)
 
         btnRegistro.setOnClickListener {
-            if(mail.editText?.text.toString().length> 2 && pass1.editText?.text.toString().length > 2  && pass2.editText?.text.toString().length > 2) {
-                if(pass1.editText?.text.toString().equals(pass2.editText?.text.toString())) {
+            if(mail.editText?.text.toString().length> FIELD_MIN_LENGTH
+                && pass1.editText?.text.toString().length > FIELD_MIN_LENGTH
+                && pass2.editText?.text.toString().length > FIELD_MIN_LENGTH) {
+                if(pass1.editText?.text.toString() == pass2.editText?.text.toString()) {
                     //createAccount(mail.text.toString(), pass1.text.toString())
                     createAccountConMailDeCofirmacion(mail.editText?.text.toString(), pass1.editText?.text.toString())
                 }else {
-                    Toast.makeText(this.context, "Error, las claves no son iguales", Toast.LENGTH_SHORT).show()
-                    pass1.requestFocus()
+                    pass1.error = ""
+                    pass2.error = getString(R.string.password_matching_error)
                     pass2.requestFocus()
                 }
             }else {
-                Toast.makeText(this.context, "Error, los campos no cumplen con criterios de longitud mínima", Toast.LENGTH_SHORT).show()
-                println(mail.editText?.text.toString())
-                println(pass1.editText?.text.toString())
-                println(pass2.editText?.text.toString())
+                if(mail.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
+                    mail.error = String.format(getString(R.string.less_than_min_length_error, FIELD_MIN_LENGTH))
+                    mail.requestFocus()
+                }
+                if(pass1.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
+                    pass1.error = String.format(getString(R.string.less_than_min_length_error, FIELD_MIN_LENGTH))
+                    pass1.requestFocus()
+                }
             }
 
         }
@@ -111,6 +117,10 @@ class RegistroUsuarioFragment : Fragment() {
                     Log.d("nombre error","Algo salió mal en el cambio de usuario")
                 }
             }
+    }
+
+    companion object {
+        val FIELD_MIN_LENGTH = 2
     }
 
 

@@ -36,13 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="@dimen/login_fields_default_margin">
+            android:paddingVertical="@dimen/login_fields_default_margin_vertical"
+            android:layout_marginHorizontal="@dimen/login_fields_default_margin_horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usuario_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/login_fields_default_margin"
                 android:hint="@string/email_placeholder"
                 style="@style/TextField"
                 app:endIconMode="clear_text"
@@ -73,6 +73,7 @@
                     android:radius="50dp"
                     android:textSize="@dimen/login_font_size" />
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
 

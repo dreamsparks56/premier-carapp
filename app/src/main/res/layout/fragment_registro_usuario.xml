@@ -22,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,80 +31,89 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2"
-        app:layout_constraintVertical_bias="0.337">
+        app:layout_constraintVertical_bias="0.337"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-        <EditText
-            android:id="@+id/mail_registro1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints="username"
-            android:background="@drawable/stylo_bordes_edit_text"
-            android:hapticFeedbackEnabled="true"
-            android:hint="@string/email_placeholder"
-            android:inputType="textPersonName"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/login_fields_default_margin_horizontal"
+            android:paddingVertical="@dimen/login_fields_default_margin_vertical">
 
-        <EditText
-            android:id="@+id/usuario_registro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints="username"
-            android:background="@drawable/stylo_bordes_edit_text"
-            android:hapticFeedbackEnabled="true"
-            android:hint="@string/usuario_placeHolder"
-            android:inputType="textPersonName"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mail_registro1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_placeholder"
+                style="@style/TextField"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/alternate_email">
 
-        <EditText
-            android:id="@+id/pass_registro1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints="password"
-            android:background="@drawable/stylo_bordes_edit_text"
-            android:hint="@string/password_placeholder"
-            android:inputType="textPassword"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:radius="50dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
+                    android:hapticFeedbackEnabled="true"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/login_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/pass_registro2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:autofillHints="password"
-            android:background="@drawable/stylo_bordes_edit_text"
-            android:hint="@string/password_placeholder"
-            android:inputType="textPassword"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:radius="50dp"
-            android:textAlignment="center"
-            android:textSize="@dimen/login_font_size" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usuario_registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/login_fields_default_margin_vertical"
+                android:hint="@string/usuario_placeHolder"
+                style="@style/TextField"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/baseline_person_24">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:hapticFeedbackEnabled="true"
+                    android:inputType="textPersonName"
+                    android:textSize="@dimen/login_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_registro1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_placeholder"
+                style="@style/TextField"
+                app:endIconMode="password_toggle">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:inputType="textPassword"
+                    android:radius="50dp"
+                    android:textSize="@dimen/login_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pass_registro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_placeholder"
+                style="@style/TextField"
+                app:endIconMode="password_toggle">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:inputType="textPassword"
+                    android:radius="50dp"
+                    android:textSize="@dimen/login_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_registro_id"

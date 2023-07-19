@@ -29,7 +29,8 @@
     <dimen name="list_item_height">48dp</dimen>
     <!-->login values -->
     <dimen name="login_font_size">19sp</dimen>
-    <dimen name="login_fields_default_margin">10dp</dimen>
+    <dimen name="login_fields_default_margin_vertical">5dp</dimen>
+    <dimen name="login_fields_default_margin_horizontal">15dp</dimen>
 
     <dimen name="profile_picture_size">150dp</dimen>
     <dimen name="toolbar_profile_picture_size">50dp</dimen>

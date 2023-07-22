@@ -7,10 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.cardview.widget.CardView
 import androidx.core.os.LocaleListCompat
+import androidx.lifecycle.ViewModelProvider
+import ar.edu.ort.tp3.parcialtp3ort.Models.LoginViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class SettingsFragment : Fragment() {
@@ -18,6 +22,7 @@ class SettingsFragment : Fragment() {
     lateinit var languageEn: Button
     lateinit var languageEs: Button
     lateinit var languageGroup: RadioGroup
+    lateinit var emailButton: CardView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +39,7 @@ class SettingsFragment : Fragment() {
         languageEn = v.findViewById(R.id.languageEnglish)
         languageEs = v.findViewById(R.id.languageSpanish)
         languageGroup = v.findViewById(R.id.languageGroup)
+        emailButton = v.findViewById(R.id.email_button)
         getLanguage()
 
         languageEn.setOnClickListener {
@@ -42,6 +48,7 @@ class SettingsFragment : Fragment() {
         languageEs.setOnClickListener {
             setLanguage("es")
         }
+        setupChangeEmail()
         return v
     }
 
@@ -61,10 +68,34 @@ class SettingsFragment : Fragment() {
             "en" -> languageGroup.check(languageEn.id)
             "es" -> languageGroup.check(languageEs.id)
         }
+    }
 
+    private fun setupChangeEmail() {
+        val userViewModel = ViewModelProvider(requireActivity())[LoginViewModel::class.java]
+        val emailText: TextView = emailButton.findViewById(R.id.email_button_placeholder)
+        setupEmailText(userViewModel.email.value!!, emailText)
+        val newEmail = userViewModel.email.value!!.replaceFirstChar { 'a' }
+        emailButton.setOnClickListener {
+            val emailDialog = MaterialAlertDialogBuilder(requireContext())
+            emailDialog.setTitle("Does nothing")
+                .setMessage("New Email: ${newEmail} ?")
+                .setPositiveButton("Aceptar") { dialog, _ ->
+                    userViewModel.updateEmail(newEmail)
+                }.setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+            emailDialog.create()
+            emailDialog.setCancelable(true)
+            emailDialog.show()
+        }
 
+    }
 
-
+    private fun setupEmailText(email: String, textView: TextView) {
+        var textBefore: String = email.substringBefore('@')
+            textBefore = textBefore.replaceRange(0..textBefore.length/2, "********")
+        val textAfter: String = textBefore + "@" +  email.substringAfter('@')
+        textView.text = textAfter
     }
 
 

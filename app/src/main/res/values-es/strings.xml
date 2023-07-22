@@ -9,6 +9,8 @@
     <string name="language_selection">Idioma</string>
     <string name="language_selection_english">Inglés</string>
     <string name="language_selection_spanish">Español</string>
+    <string name="personal_data">Datos personales</string>
+    <string name="email_settings">Email</string>
 
     <!-- Main -->
     <string name="make_name_title">Marca</string>

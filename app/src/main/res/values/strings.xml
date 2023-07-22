@@ -9,6 +9,8 @@
     <string name="language_selection">Language</string>
     <string name="language_selection_english">English</string>
     <string name="language_selection_spanish">Spanish</string>
+    <string name="personal_data">Personal Data</string>
+    <string name="email_settings">Email</string>
 
     <!-- Main -->
     <string name="title_part_1" translatable="false">Premier</string>

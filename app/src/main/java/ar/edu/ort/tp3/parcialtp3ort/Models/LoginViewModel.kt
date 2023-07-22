@@ -1,5 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.Models
 
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -44,5 +45,20 @@ class LoginViewModel:ViewModel() {
                     Log.e("Error con la imagen", "Algo salió mal")
                 }
             }
+    }
+
+    fun updateEmail(email: String) {
+        val user = getCurrentUser()
+
+        user.updateEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "User email address updated.")
+                }
+            }
+    }
+
+    fun getCurrentUser():FirebaseUser {
+        return auth.currentUser!!
     }
 }

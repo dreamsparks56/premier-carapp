@@ -92,6 +92,44 @@
                 android:layout_height="wrap_content"
                 android:text="@string/language_selection_spanish" />
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/dataTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/personal_data"
+            android:textColor="?attr/colorSecondary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/emailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/email_settings"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/email_button"
+                app:cardCornerRadius="0dp"
+                style="?attr/materialCardViewFilledStyle">
+                <TextView
+                    android:id="@+id/email_button_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/email_placeholder"
+                    android:textColor="?attr/colorOnSurface" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

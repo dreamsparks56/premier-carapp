@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 
 object APIServiceBuilder {
-    private val apiKey = "L+1QgbfWdbm3sz3sL7lr/g==kDoyGb6D0ymyUi2K"
+    private val apiKey = "oujqMDp57YWMpmbZqWTuLg==58dAWzgsnRzqwFsw"
     private val BASE_URL = "https://api.api-ninjas.com/v1/"
 
     val httpClient = OkHttpClient.Builder()
@@ -29,7 +29,7 @@ object APIServiceBuilder {
     fun createCarService(): CarService {
         return retrofit.create(CarService::class.java)
     }
-    fun createLogoService(): LogoService {
+    /*fun createLogoService(): LogoService {
         return retrofit.create(LogoService::class.java)
-    }
+    }*/
 }

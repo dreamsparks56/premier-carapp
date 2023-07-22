@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
 import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
-import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
-import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getIntance
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
@@ -31,14 +29,11 @@ import retrofit2.Response
 class MarcasFragment : Fragment() {
     lateinit var v: View
     lateinit var marcasListView: RecyclerView
-    var marcasList: MutableList<Make> = ArrayList<Make>()
+    val marcasList: MutableList<Make> = ArrayList<Make>()
     lateinit var btnSportF: ImageButton
     lateinit var btnSuvF: ImageButton
     lateinit var btnElectricF: ImageButton
     private lateinit var viewModel: AutoViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,16 +41,18 @@ class MarcasFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_marcas, container, false)
-        marcasListView = v.findViewById<RecyclerView>(R.id.marcasListView)
-        btnSportF = v.findViewById<ImageButton>(R.id.sportFilter)
-        btnSuvF = v.findViewById<ImageButton>(R.id.suvFilter)
-        btnElectricF = v.findViewById<ImageButton>(R.id.electricFilter)
-        getAllCars()
-        setupRecView()
         return v
     }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        marcasListView = v.findViewById(R.id.marcasListView)
+        btnSportF = v.findViewById(R.id.sportFilter)
+        btnSuvF = v.findViewById(R.id.suvFilter)
+        btnElectricF = v.findViewById(R.id.electricFilter)
+        getAllCars()
+        setupRecView()
 
         viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
 
@@ -78,10 +75,14 @@ class MarcasFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
-    private fun getAllCars() {
-        var carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-        if(carList== null || (carList != null && carList.size <= 2)){
+    }*/
+    private fun getAllCars() {
+        val carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
+
+        if(carList == null || carList.size <= 2){
             val service = APIServiceBuilder.createCarService()
             service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
                 override fun onResponse(
@@ -146,14 +147,14 @@ class MarcasFragment : Fragment() {
                 setupRecView()
             }
     }
-    private fun getLogoImages() {
+    /*private fun getLogoImages() {
         val mDbHelper = DBHelper.getIntance()//(context,null)
         val logoList : List<LogoResponse> = mDbHelper.getAllLogos()
         if(logoList.size < marcasList.size) {
 
             val logoService = APIServiceBuilder.createLogoService()
             for (marca in marcasList) {
-                if (marca.url.isNullOrEmpty()) {
+                if (marca.url.isEmpty()) {
                     logoService.getLogoByName(marca.name)
                         .enqueue(object : Callback<List<LogoResponse>> {
                             override fun onResponse(
@@ -180,7 +181,7 @@ class MarcasFragment : Fragment() {
             }
         } else{
             for(marca in marcasList){
-                if(marca.url.isNullOrEmpty()){
+                if(marca.url.isEmpty()){
                     if(logoList.find{it.nombre == marca.name} != null){
                         marca.url = logoList.find{it.nombre == marca.name}!!.imagenURL
                         setupRecView()
@@ -188,7 +189,7 @@ class MarcasFragment : Fragment() {
                 }
             }
         }
-    }
+    }*/
     fun setupRecView() {
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         marcasListView.layoutManager = linearLayoutManager

@@ -15,9 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/carMakes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
 
             <ImageButton
                 android:id="@+id/sportFilter"
@@ -47,10 +49,23 @@
                 android:layout_height="@dimen/category_height"
                 android:background="@drawable/category_button_shape"
                 android:backgroundTint="#04D8FE"
-                android:padding="@dimen/default_corner_radius_card_category"
                 android:contentDescription="@string/electric_filter"
+                android:padding="@dimen/default_corner_radius_card_category"
                 android:src="@drawable/electric_car" />
+
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/carMakes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carTypes"
+            app:layout_constraintVertical_bias="0.5">
 
             <TextView
                 android:id="@+id/marcasTitle"
@@ -59,18 +74,21 @@
                 android:text="@string/title_marcas"
                 android:textSize="@dimen/title_size"
                 android:textStyle="bold"
-
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/carTypes" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/marcasListView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/make_list_vertical_margin"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/marcasTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/marcasTitle"
+                android:paddingBottom="@dimen/make_list_vertical_margin"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,19 @@
 package ar.edu.ort.tp3.parcialtp3ort.adapters
 
 import android.content.Context
-import android.database.sqlite.SQLiteConstraintException
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.holders.CarHolder
-import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
-class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, val reciclerFav:Boolean, val email:String): RecyclerView.Adapter<CarHolder>() {
+class CarAdapter (private val carList: MutableList<Car>, private val contexto: Context, private val reciclerFav:Boolean, val email:String): RecyclerView.Adapter<CarHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -85,12 +82,12 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
             val dialog = MaterialAlertDialogBuilder(contexto)
             dialog.setTitle("Añadir a favoritos")
                 .setMessage("¿Deseas añadir este auto a tus favoritos?")
-                .setPositiveButton("Agregar") { dialog, _ ->
-                    añadirFavorito(car)
+                .setPositiveButton("Agregar") { _, _ ->
+                    addFavorito(car)
                 }
 
-                .setNegativeButton("Cancelar") { dialog, _ ->
-                    dialog.dismiss()
+                .setNegativeButton("Cancelar") { self, _ ->
+                    self.dismiss()
                 }
             dialog.create()
             dialog.setCancelable(false)
@@ -98,7 +95,7 @@ class CarAdapter (private val carList: MutableList<Car>, val contexto: Context, 
         }
     }
 
-    private fun añadirFavorito(car: Car) {
+    private fun addFavorito(car: Car) {
 
         try {
             val fav = Favorito(email, idAuto = car.id)

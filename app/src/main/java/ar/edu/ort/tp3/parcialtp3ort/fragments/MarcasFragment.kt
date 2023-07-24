@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +15,12 @@ import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
 import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
+import ar.edu.ort.tp3.parcialtp3ort.adapters.CategoryAdapter
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getIntance
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
+import ar.edu.ort.tp3.parcialtp3ort.entities.Category
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,11 +30,10 @@ import retrofit2.Response
 class MarcasFragment : Fragment() {
     lateinit var v: View
     lateinit var marcasListView: RecyclerView
-    val marcasList: MutableList<Make> = ArrayList<Make>()
-    lateinit var btnSportF: ImageButton
-    lateinit var btnSuvF: ImageButton
-    lateinit var btnElectricF: ImageButton
+    lateinit var categoriesView: RecyclerView
+    private val marcasList: MutableList<Make> = ArrayList<Make>()
     private lateinit var viewModel: AutoViewModel
+    val categories: MutableList<Category> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,38 +47,16 @@ class MarcasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        marcasListView = v.findViewById(R.id.marcasListView)
-        btnSportF = v.findViewById(R.id.sportFilter)
-        btnSuvF = v.findViewById(R.id.suvFilter)
-        btnElectricF = v.findViewById(R.id.electricFilter)
-        getAllCars()
-        setupRecView()
-
         viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
 
-        btnSportF.setOnClickListener{
-            viewModel.buscar("gas", "fuel_type")
-            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
-            Log.d("btnSportF", "gas")
-            findNavController().navigate(action)
-        }
-        btnSuvF.setOnClickListener{
-            viewModel.buscar("diesel", "fuel_type")
-            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
-            Log.d("btnSuvF", "diesel")
-            findNavController().navigate(action)
-        }
-        btnElectricF.setOnClickListener{
-            viewModel.buscar("electric", "fuel_type")
-            Log.d("btnElectricF", "electric")
-            val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
-            findNavController().navigate(action)
-        }
-    }
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        marcasListView = v.findViewById(R.id.marcasListView)
+        categoriesView = v.findViewById(R.id.categoriesView)
 
-    }*/
+        getAllCars()
+        setupMakes()
+        setupCategories()
+    }
+
     private fun getAllCars() {
         val carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
 
@@ -143,7 +122,7 @@ class MarcasFragment : Fragment() {
                 }
                 Log.d("Lista de marcas pre setup", marcasList.size.toString())
                 //getLogoImages()
-                setupRecView()
+                setupMakes()
             }
     }
     /*private fun getLogoImages() {
@@ -189,12 +168,33 @@ class MarcasFragment : Fragment() {
             }
         }
     }*/
-    fun setupRecView() {
+    fun setupMakes() {
         Log.d("Lista de marcas", marcasList.size.toString())
         val navController = findNavController()
-
         marcasListView.adapter = MakeAdapter(marcasList,requireActivity(),navController)
+    }
 
+    fun setupCategories() {
+            categories.add(Category(getString(R.string.category_sport),
+                ContextCompat.getColor(requireContext(), R.color.yellow),
+                ContextCompat.getDrawable(requireContext(), R.drawable.category_sport),
+                "gas",
+                "fuel_type"
+            ))
+            categories.add(Category(getString(R.string.category_suv),
+                ContextCompat.getColor(requireContext(), R.color.blue),
+                ContextCompat.getDrawable(requireContext(), R.drawable.category_suv),
+                "diesel",
+                "fuel_type"
+            ))
+            categories.add(Category(getString(R.string.category_electric),
+                ContextCompat.getColor(requireContext(), R.color.teal_variant),
+                ContextCompat.getDrawable(requireContext(), R.drawable.category_electric),
+                "electric",
+                "fuel_type"))
+            Log.d("category size", categories.size.toString())
+            val navController = findNavController()
+            categoriesView.adapter = CategoryAdapter(categories, requireActivity(), navController)
     }
 
 

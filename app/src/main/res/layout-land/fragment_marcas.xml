@@ -11,50 +11,22 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <LinearLayout
-            android:id="@+id/carTypes"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/default_corner_radius_card_category"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/carMakes"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/category_card">
 
-            <ImageButton
-                android:id="@+id/sportFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/category_height"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/category_button_shape"
-                android:backgroundTint="#FECB00"
-                android:contentDescription="@string/sport_filter"
-                android:padding="@dimen/default_corner_radius_card_category"
-                android:src="@drawable/sport_car" />
-
-            <ImageButton
-                android:id="@+id/suvFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/category_height"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/category_button_shape"
-                android:backgroundTint="#3330E4"
-                android:contentDescription="@string/suv_filter"
-                android:padding="@dimen/default_corner_radius_card_category"
-                android:src="@drawable/suv_car" />
-
-            <ImageButton
-                android:id="@+id/electricFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/category_height"
-                android:background="@drawable/category_button_shape"
-                android:backgroundTint="#04D8FE"
-                android:contentDescription="@string/electric_filter"
-                android:padding="@dimen/default_corner_radius_card_category"
-                android:src="@drawable/electric_car" />
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carMakes"
@@ -66,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/carTypes"
+            app:layout_constraintStart_toEndOf="@+id/categoriesView"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView

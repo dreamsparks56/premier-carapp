@@ -21,9 +21,6 @@
     <dimen name="title_size">24sp</dimen>
     <dimen name="default_corner_radius_card">24dp</dimen>
     <dimen name="default_corner_radius_card_marca">24dp</dimen>
-    <dimen name="default_corner_radius_card_category">16dp</dimen>
-    <dimen name="category_height">100dp</dimen>
-    <dimen name="category_width">232dp</dimen>
     <dimen name="main_section_title_size">32sp</dimen>
     <dimen name="profile_mail">20sp</dimen>
     <dimen name="profile_field">15sp</dimen>
@@ -42,4 +39,15 @@
     <dimen name="drawer_text_margin_top">8dp</dimen>
     <dimen name="drawer_header_margin_start">16dp</dimen>
     <dimen name="drawer_header_height">100dp</dimen>
+
+    <!-->Category -->
+    <dimen name="category_font_size">24sp</dimen>
+    <dimen name="category_filter_font_size">8sp</dimen>
+    <dimen name="default_corner_radius_card_category">16dp</dimen>
+    <dimen name="category_height">100dp</dimen>
+    <dimen name="category_width">350dp</dimen>
+    <dimen name="category_width_land">190dp</dimen>
+    <dimen name="category_height_land">270dp</dimen>
+    <dimen name="category_margin_bottom">10dp</dimen>
+    <dimen name="category_padding">10dp</dimen>
 </resources>

@@ -23,6 +23,7 @@
     <color name="secondary_blue">#001D42</color>
     <color name="secondary_blue_900">#001322</color>
     <color name="light_blue">#007BFF</color>
+    <color name="teal_variant">#04D8FE</color>
 
 
 </resources>

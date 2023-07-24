@@ -68,4 +68,12 @@
 
     <string name="username">Nombre de usuario</string>
     <string name="nuevoUsuarioLogin">Registrarme</string>
+
+    <!--Category-->
+    <string name="category">Categoría</string>
+    <string name="category_sport">Deportivos</string>
+    <string name="category_suv">SUV</string>
+    <string name="category_electric">Eléctricos</string>
+    <string name="category_filter">Filtro</string>
+    <string name="category_image_description">Auto de la categoría ${}</string>
 </resources>

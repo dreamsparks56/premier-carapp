@@ -11,8 +11,16 @@
     <style name="TextField" parent="@style/Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Full</item>
         <item name="boxBackgroundColor">@color/m3_textfield_filled_background_color</item>
-        <item name="android:layout_marginVertical">@dimen/login_fields_default_margin_vertical</item>
+        <item name="android:layout_marginVertical">@dimen/login_fields_default_margin_vertical
+        </item>
         <item name="boxStrokeWidth">3dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
+    </style>
+
+    <style name="CategoryCard" parent="@style/Widget.Material3.CardView.Filled">
+        <item name="cornerSizeTopLeft">@dimen/default_corner_radius_card_category</item>
+        <item name="cornerSizeTopRight">@dimen/default_corner_radius_card_category</item>
+        <item name="cornerSizeBottomLeft">@dimen/default_corner_radius_card_category</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 </resources>

@@ -86,4 +86,12 @@
     <string name="username">Username</string>
     <string name="nuevoUsuarioLogin">Sign Up</string>
 
+    <!--Category-->
+    <string name="category">Category</string>
+    <string name="category_sport">Sport</string>
+    <string name="category_suv">SUV</string>
+    <string name="category_electric">Electric</string>
+    <string name="category_filter">Filter</string>
+    <string name="category_image_description">Sample car from ${} category</string>
+
 </resources>

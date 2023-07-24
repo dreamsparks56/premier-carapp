@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="notifications_category"
+        android:title="Notifications">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="@string/notificaciones"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="appearance_category"
+        android:title="Appearance">
+
+        <ListPreference
+            android:key="dark_theme"
+            android:title="@string/modo_oscuro"
+            android:entries="@array/themes"
+            android:entryValues="@array/theme_values"/>
+
+        <ListPreference
+            android:key="language"
+            android:title="@string/language_selection"
+            android:entries="@array/languages"
+            android:entryValues="@array/language_values"/>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

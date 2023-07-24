@@ -4,9 +4,27 @@
 
     <!--  Settings -->
     <string name="main_settings">General</string>
-    <string name="notificaciones">Notifications</string>
+    <string name="notificaciones">Enable message notifications</string>
     <string name="modo_oscuro">Dark theme</string>
     <string name="language_selection">Language</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>en</item>
+        <item>es</item>
+    </string-array>
+    <string-array name="themes">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System Default</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>l</item>
+        <item>d</item>
+        <item>sd</item>
+    </string-array>
     <string name="language_selection_english">English</string>
     <string name="language_selection_spanish">Spanish</string>
     <string name="personal_data">Personal Data</string>

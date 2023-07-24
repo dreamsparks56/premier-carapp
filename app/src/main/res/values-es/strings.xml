@@ -7,6 +7,10 @@
     <string name="notificaciones">Notificaciones</string>
     <string name="modo_oscuro">Modo oscuro</string>
     <string name="language_selection">Idioma</string>
+    <string-array name="languages">
+        <item>Inglés</item>
+        <item>Español</item>
+    </string-array>
     <string name="language_selection_english">Inglés</string>
     <string name="language_selection_spanish">Español</string>
     <string name="personal_data">Datos personales</string>

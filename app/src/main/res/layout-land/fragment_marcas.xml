@@ -8,22 +8,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
         <LinearLayout
             android:id="@+id/carTypes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/carMakes"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/carMakes"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/sportFilter"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/category_height"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/category_button_shape"
@@ -34,7 +35,7 @@
 
             <ImageButton
                 android:id="@+id/suvFilter"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/category_height"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/category_button_shape"
@@ -45,7 +46,7 @@
 
             <ImageButton
                 android:id="@+id/electricFilter"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/category_height"
                 android:background="@drawable/category_button_shape"
                 android:backgroundTint="#04D8FE"
@@ -57,15 +58,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carMakes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carTypes"
-            app:layout_constraintVertical_bias="0.5">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/carTypes"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/marcasTitle"
@@ -74,6 +76,7 @@
                 android:text="@string/title_marcas"
                 android:textSize="@dimen/title_size"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,15 +84,16 @@
                 android:id="@+id/marcasListView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_marginTop="@dimen/make_list_vertical_margin"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/make_list_vertical_margin"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/marcasTitle"
-                android:paddingBottom="@dimen/make_list_vertical_margin"/>
+                app:layout_constraintTop_toBottomOf="@+id/marcasTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

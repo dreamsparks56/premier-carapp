@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
 import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
@@ -191,8 +190,6 @@ class MarcasFragment : Fragment() {
         }
     }*/
     fun setupRecView() {
-        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        marcasListView.layoutManager = linearLayoutManager
         Log.d("Lista de marcas", marcasList.size.toString())
         val navController = findNavController()
 

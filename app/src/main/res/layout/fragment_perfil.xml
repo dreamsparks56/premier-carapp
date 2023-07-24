@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:src="@drawable/fotoperfil"
             style="@style/CircleShape"
-            app:shapeAppearanceOverlay="@style/CircleShape"/>
+            app:shapeAppearanceOverlay="@style/CircleShape" />
 
         <TextView
             android:id="@+id/nameUser_perfil"
@@ -42,6 +42,7 @@
             android:text="@string/name"
             android:textColor="?attr/colorSecondary"
             android:textSize="@dimen/main_section_title_size" />
+
         <TextView
             android:id="@+id/emailUser_perfil"
             android:layout_width="wrap_content"
@@ -71,8 +72,7 @@
                 android:layout_gravity="center_horizontal"
                 android:shadowColor="?attr/colorSecondary"
                 android:text="@string/notificaciones"
-                android:textColor="?attr/colorSecondary"
-                />
+                android:textColor="?attr/colorSecondary" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:text="@string/notificaciones"
                     android:textSize="15sp"
                     app:drawableStartCompat="@drawable/notificaciones_vacio_icon"
-                    android:drawablePadding="@dimen/default_car_text_icon_padding"/>
+                    android:drawablePadding="@dimen/default_car_text_icon_padding" />
             </LinearLayout>
 
         </LinearLayout>

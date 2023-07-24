@@ -84,7 +84,7 @@ class CameraFragment : Fragment() {
 
         // Request camera permissions
         if (allPermissionsGranted()) {
-                startCamera()
+            startCamera()
         } else {
             ActivityCompat.requestPermissions(
                 this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CAMERA_PERMISSION
@@ -103,16 +103,21 @@ class CameraFragment : Fragment() {
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/${getString(R.string.app_name)}")
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                put(
+                    MediaStore.Images.Media.RELATIVE_PATH,
+                    "Pictures/${getString(R.string.app_name)}"
+                )
             }
         }
 
         // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(this.requireContext().contentResolver,
+            .Builder(
+                this.requireContext().contentResolver,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues)
+                contentValues
+            )
             .build()
 
         // Set up image capture listener, which is triggered after photo has
@@ -150,7 +155,7 @@ class CameraFragment : Fragment() {
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this.requireContext())
 
-        cameraProviderFuture.addListener( {
+        cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
@@ -173,9 +178,10 @@ class CameraFragment : Fragment() {
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture)
+                    this, cameraSelector, preview, imageCapture
+                )
 
-            } catch(exc: Exception) {
+            } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
 
@@ -200,22 +206,27 @@ class CameraFragment : Fragment() {
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-            this.requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+            this.requireContext(), Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
+        IntArray
+    ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                Toast.makeText(this.requireContext(),
+                Toast.makeText(
+                    this.requireContext(),
                     "Permissions not granted by the user.",
-                    LENGTH_SHORT).show()
+                    LENGTH_SHORT
+                ).show()
             }
         }
     }
+
     private fun backToMain() {
         val action = CameraFragmentDirections.actionCameraFragmentToMainFragment()
         requireParentFragment().findNavController().navigate(action)
@@ -228,7 +239,7 @@ class CameraFragment : Fragment() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CAMERA_PERMISSION = 10
 
-        private const val camFailMsg =  "Error en la captura de imágenes: %s"
+        private const val camFailMsg = "Error en la captura de imágenes: %s"
         private const val camSuccMsg = "La imagen fue tomada exitosamente: %s"
     }
 }

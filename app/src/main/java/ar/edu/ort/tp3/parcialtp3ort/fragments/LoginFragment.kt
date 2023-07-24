@@ -29,13 +29,13 @@ import com.google.firebase.ktx.Firebase
 class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginViewModel
-    lateinit var viewLogin:View
+    lateinit var viewLogin: View
     lateinit var btnLogin: Button
     lateinit var user: TextInputLayout
     lateinit var pass: TextInputLayout
-    lateinit var  btnRegistro :TextView
-    lateinit var  btnRecupero :TextView
-    lateinit var  btnGoogleSignIn : MaterialButton
+    lateinit var btnRegistro: TextView
+    lateinit var btnRecupero: TextView
+    lateinit var btnGoogleSignIn: MaterialButton
     private lateinit var googleSignInClient: GoogleSignInClient
     private val RC_SIGN_IN = 62870
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,13 +66,15 @@ class LoginFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
-        btnLogin.setOnClickListener{
-            if(user.editText?.text.toString().isNotEmpty() && pass.editText?.text.toString().isNotEmpty()) {
+        btnLogin.setOnClickListener {
+            if (user.editText?.text.toString().isNotEmpty() && pass.editText?.text.toString()
+                    .isNotEmpty()
+            ) {
                 signInMilConfirmado(user.editText?.text.toString(), pass.editText?.text.toString())
             } else {
-                if(user.editText?.text.toString().isEmpty())
+                if (user.editText?.text.toString().isEmpty())
                     user.error = getString(R.string.empty_field_error)
-                if(pass.editText?.text.toString().isEmpty())
+                if (pass.editText?.text.toString().isEmpty())
                     pass.error = getString(R.string.empty_field_error)
             }
         }
@@ -81,10 +83,11 @@ class LoginFragment : Fragment() {
             signInGoogle()
         }
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) // Esto crea un nuevo constructor de opciones de inicio de sesión de Google.
-            .requestIdToken(getString(R.string.default_web_client_id)) //Aquí se solicita el token de identificación (idToken) del usuario. El método
-            .requestEmail() //Esto es necesario para obtener el correo electrónico del usuario desde la cuenta de Google y utilizarlo en tu aplicación si es necesario.
-            .build() // Finalmente, este método construye y devuelve la instancia de GoogleSignInOptions con la configuración proporcionada.
+        val gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) // Esto crea un nuevo constructor de opciones de inicio de sesión de Google.
+                .requestIdToken(getString(R.string.default_web_client_id)) //Aquí se solicita el token de identificación (idToken) del usuario. El método
+                .requestEmail() //Esto es necesario para obtener el correo electrónico del usuario desde la cuenta de Google y utilizarlo en tu aplicación si es necesario.
+                .build() // Finalmente, este método construye y devuelve la instancia de GoogleSignInOptions con la configuración proporcionada.
 
         googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
@@ -99,8 +102,6 @@ class LoginFragment : Fragment() {
         }
 
 
-
-
     }
 
     private fun signInGoogle() {
@@ -112,21 +113,30 @@ class LoginFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data) //Consiga la cuenta de google q se inicio sesion
+            val task =
+                GoogleSignIn.getSignedInAccountFromIntent(data) //Consiga la cuenta de google q se inicio sesion
 
             if (task.isSuccessful) {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
-                    println( "firebaseAuthWithGoogle:" + account.id)
+                    println("firebaseAuthWithGoogle:" + account.id)
                     firebaseAuthWithGoogle(account.idToken!!)
                     print(account.idToken!!)
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
-                    Toast.makeText(requireContext(), "Fallo inicio de sesión de google:(", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Fallo inicio de sesión de google:(",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } else {
-                Toast.makeText(requireContext(), "Hubo algun error con google:(", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Hubo algun error con google:(",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
         }
@@ -138,7 +148,11 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this.context, "Inicio de sesión con google correcto :)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this.context,
+                        "Inicio de sesión con google correcto :)",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     val user = auth.currentUser
                     updateUI(user!!)
                     //Aca voy a ir al HOME.
@@ -146,7 +160,11 @@ class LoginFragment : Fragment() {
 
                 } else {
                     // Error con el log
-                    Toast.makeText(this.context, "Fallo el  login con google :(", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this.context,
+                        "Fallo el  login con google :(",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -164,19 +182,20 @@ class LoginFragment : Fragment() {
 
     private fun updateUI(user: FirebaseUser) {
         viewModel.guardarCredenciales(user)
-        val action =  LoginFragmentDirections.actionLoginFragmentToMainFragment()
+        val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
         viewLogin.findNavController().navigate(action)
     }
 
-   private fun signInMilConfirmado(email:String, password:String){
-        auth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this.requireActivity()){task ->
-                if(task.isSuccessful) {
+    private fun signInMilConfirmado(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this.requireActivity()) { task ->
+                if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Toast.makeText(this.context,"Authenticación exitosa", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, "Authenticación exitosa", Toast.LENGTH_SHORT)
+                        .show()
                     updateUI(user!!) // Este método lo derivará al inicio.
 
-                }else {
+                } else {
                     user.error = getString(R.string.login_matching_error)
                     pass.error = getString(R.string.login_matching_error)
                 }

@@ -8,9 +8,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.R
 
-class CategoryHolder( v: View) : RecyclerView.ViewHolder(v) {
+class CategoryHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     private var view: View
+
     init {
         this.view = v
     }
@@ -20,7 +21,7 @@ class CategoryHolder( v: View) : RecyclerView.ViewHolder(v) {
         category.text = name
     }
 
-    fun getCardLayout (): CardView {
+    fun getCardLayout(): CardView {
         return view.findViewById(R.id.categoryCardBase)
     }
 

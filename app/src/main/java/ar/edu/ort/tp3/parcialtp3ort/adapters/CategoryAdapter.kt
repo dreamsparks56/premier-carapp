@@ -12,13 +12,18 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Category
 import ar.edu.ort.tp3.parcialtp3ort.fragments.InicioFragmentDirections
 import ar.edu.ort.tp3.parcialtp3ort.holders.CategoryHolder
 
-class CategoryAdapter(private val categoryList: MutableList<Category>, private val viewModelStoreOwner: ViewModelStoreOwner, private val navController: NavController): RecyclerView.Adapter<CategoryHolder>() {
+class CategoryAdapter(
+    private val categoryList: MutableList<Category>,
+    private val viewModelStoreOwner: ViewModelStoreOwner,
+    private val navController: NavController
+) : RecyclerView.Adapter<CategoryHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): CategoryHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_card, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.category_card, parent, false)
         return CategoryHolder(view)
     }
 
@@ -28,7 +33,10 @@ class CategoryAdapter(private val categoryList: MutableList<Category>, private v
         val viewModel = ViewModelProvider(viewModelStoreOwner)[AutoViewModel::class.java]
         holder.setName(category.name)
         layout.setCardBackgroundColor(category.color)
-        holder.setImage(category.image, String.format(R.string.category_image_description.toString(), category.name))
+        holder.setImage(
+            category.image,
+            String.format(R.string.category_image_description.toString(), category.name)
+        )
         layout.setOnClickListener {
             viewModel.buscar(category.type, category.field)
             val action = InicioFragmentDirections.actionHomeFragmentToAutoFragment()
@@ -37,7 +45,6 @@ class CategoryAdapter(private val categoryList: MutableList<Category>, private v
     }
 
     override fun getItemCount() = categoryList.size
-
 
 
 }

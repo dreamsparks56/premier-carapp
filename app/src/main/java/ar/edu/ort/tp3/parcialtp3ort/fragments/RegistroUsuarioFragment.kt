@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 
 class RegistroUsuarioFragment : Fragment() {
-    lateinit var v:View
+    lateinit var v: View
     lateinit var mail: TextInputLayout
     lateinit var username: TextInputLayout
     lateinit var pass1: TextInputLayout
@@ -44,27 +44,41 @@ class RegistroUsuarioFragment : Fragment() {
         username = v.findViewById(R.id.usuario_registro)
         pass1 = v.findViewById(R.id.pass_registro1)
         pass2 = v.findViewById(R.id.pass_registro2)
-        btnRegistro =  v.findViewById(R.id.button_registro_id)
+        btnRegistro = v.findViewById(R.id.button_registro_id)
 
         btnRegistro.setOnClickListener {
-            if(mail.editText?.text.toString().length> FIELD_MIN_LENGTH
+            if (mail.editText?.text.toString().length > FIELD_MIN_LENGTH
                 && pass1.editText?.text.toString().length > FIELD_MIN_LENGTH
-                && pass2.editText?.text.toString().length > FIELD_MIN_LENGTH) {
-                if(pass1.editText?.text.toString() == pass2.editText?.text.toString()) {
+                && pass2.editText?.text.toString().length > FIELD_MIN_LENGTH
+            ) {
+                if (pass1.editText?.text.toString() == pass2.editText?.text.toString()) {
                     //createAccount(mail.text.toString(), pass1.text.toString())
-                    createAccountConMailDeCofirmacion(mail.editText?.text.toString(), pass1.editText?.text.toString())
-                }else {
+                    createAccountConMailDeCofirmacion(
+                        mail.editText?.text.toString(),
+                        pass1.editText?.text.toString()
+                    )
+                } else {
                     pass1.error = ""
                     pass2.error = getString(R.string.password_matching_error)
                     pass2.requestFocus()
                 }
-            }else {
-                if(mail.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
-                    mail.error = String.format(getString(R.string.less_than_min_length_error, FIELD_MIN_LENGTH))
+            } else {
+                if (mail.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
+                    mail.error = String.format(
+                        getString(
+                            R.string.less_than_min_length_error,
+                            FIELD_MIN_LENGTH
+                        )
+                    )
                     mail.requestFocus()
                 }
-                if(pass1.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
-                    pass1.error = String.format(getString(R.string.less_than_min_length_error, FIELD_MIN_LENGTH))
+                if (pass1.editText?.text.toString().length <= FIELD_MIN_LENGTH) {
+                    pass1.error = String.format(
+                        getString(
+                            R.string.less_than_min_length_error,
+                            FIELD_MIN_LENGTH
+                        )
+                    )
                     pass1.requestFocus()
                 }
             }
@@ -76,33 +90,42 @@ class RegistroUsuarioFragment : Fragment() {
         return v
     }
 
-    private fun createAccountConMailDeCofirmacion(mail:String, pass:String) {
+    private fun createAccountConMailDeCofirmacion(mail: String, pass: String) {
         fireBaseAuth.createUserWithEmailAndPassword(mail, pass)
-            .addOnCompleteListener(this.requireActivity()){task ->
-                if(task.isSuccessful) {
+            .addOnCompleteListener(this.requireActivity()) { task ->
+                if (task.isSuccessful) {
                     val user = fireBaseAuth.currentUser!!
-                    val action = RegistroUsuarioFragmentDirections.actionRegistroUsuarioFragmentToLoginFragment()
-                    this.lifecycleScope.launch{
+                    val action =
+                        RegistroUsuarioFragmentDirections.actionRegistroUsuarioFragmentToLoginFragment()
+                    this.lifecycleScope.launch {
                         updateDisplayName(username.editText?.text.toString())
                         sentEmailVerification(user)
-                        Toast.makeText(requireContext(), "Cuenta creada correctamente. Se requiere verificación", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Cuenta creada correctamente. Se requiere verificación",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         println("x ahora no hay error")
                         view
                         v.findNavController().navigate(action)
                     }
 
-                }else {
-                    Toast.makeText(this.context,"Algo salió mal" + task.exception,Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this.context,
+                        "Algo salió mal" + task.exception,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
 
 
-    private fun sentEmailVerification(user: FirebaseUser){
+    private fun sentEmailVerification(user: FirebaseUser) {
         user.sendEmailVerification()
     }
 
-    private fun updateDisplayName(name: String){
+    private fun updateDisplayName(name: String) {
         val user = fireBaseAuth.currentUser!!
         Log.d("El nombre", name)
         val nameChange = UserProfileChangeRequest.Builder()
@@ -114,7 +137,7 @@ class RegistroUsuarioFragment : Fragment() {
                 if (task.isSuccessful) {
                     Log.d("El nombre actualizado", user.displayName!!)
                 } else {
-                    Log.d("nombre error","Algo salió mal en el cambio de usuario")
+                    Log.d("nombre error", "Algo salió mal en el cambio de usuario")
                 }
             }
     }
@@ -122,7 +145,6 @@ class RegistroUsuarioFragment : Fragment() {
     companion object {
         val FIELD_MIN_LENGTH = 2
     }
-
 
 
 }

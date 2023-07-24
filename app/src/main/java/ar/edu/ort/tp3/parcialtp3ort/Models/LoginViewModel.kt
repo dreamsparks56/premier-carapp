@@ -10,7 +10,7 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LoginViewModel:ViewModel() {
+class LoginViewModel : ViewModel() {
     val auth = Firebase.auth
     val usuario = MutableLiveData<String>()
     val email = MutableLiveData<String>()
@@ -58,7 +58,7 @@ class LoginViewModel:ViewModel() {
             }
     }
 
-    fun getCurrentUser():FirebaseUser {
+    fun getCurrentUser(): FirebaseUser {
         return auth.currentUser!!
     }
 }

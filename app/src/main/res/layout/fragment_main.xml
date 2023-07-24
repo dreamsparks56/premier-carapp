@@ -30,15 +30,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintWidth_default="wrap"
-            >
+            app:layout_constraintWidth_default="wrap">
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardCornerRadius="@dimen/default_corner_radius_card"
                 style="?attr/materialCardViewFilledStyle"
-                app:cardPreventCornerOverlap="true"
-                >
+                app:cardPreventCornerOverlap="true">
+
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentContainerView"
                     android:name="androidx.navigation.fragment.NavHostFragment"
@@ -51,8 +51,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:navGraph="@navigation/navegations_fragments">
-                </androidx.fragment.app.FragmentContainerView>
+                    app:navGraph="@navigation/navegations_fragments"></androidx.fragment.app.FragmentContainerView>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

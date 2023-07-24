@@ -13,7 +13,12 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
-class CarAdapter (private val carList: MutableList<Car>, private val contexto: Context, private val reciclerFav:Boolean, val email:String): RecyclerView.Adapter<CarHolder>() {
+class CarAdapter(
+    private val carList: MutableList<Car>,
+    private val contexto: Context,
+    private val reciclerFav: Boolean,
+    val email: String
+) : RecyclerView.Adapter<CarHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -31,15 +36,18 @@ class CarAdapter (private val carList: MutableList<Car>, private val contexto: C
         position: Int,
     ) {
 
-        val car= carList[position]
-        if(!reciclerFav) {
+        val car = carList[position]
+        if (!reciclerFav) {
             opcionFavoritos(holder, car)
-        }else {
-           esFavorito(holder, car, position)
+        } else {
+            esFavorito(holder, car, position)
         }
 
         val carMake = car.marca
-        val fullCarModel = String.format("%s %s", carMake.replaceFirstChar { it.titlecase() }, car.modelo.replaceFirstChar { it.titlecase() })
+        val fullCarModel = String.format(
+            "%s %s",
+            carMake.replaceFirstChar { it.titlecase() },
+            car.modelo.replaceFirstChar { it.titlecase() })
         holder.setModelName(fullCarModel)
         holder.setModelDrive(car.tipoConduccion)
         holder.setFuelType(car.combustible)
@@ -54,7 +62,7 @@ class CarAdapter (private val carList: MutableList<Car>, private val contexto: C
             dialog2.setTitle("Eliminar favorito")
                 .setMessage("¿Deseas eliminar este auto de tus favoritos?")
                 .setPositiveButton("Eliminar") { dialog, _ ->
-                  //  eliminar(car, position)
+                    //  eliminar(car, position)
                     eliminar2(car, position)
                 }.setNegativeButton("Cancelar") { dialog, _ ->
                     dialog.dismiss()
@@ -71,10 +79,9 @@ class CarAdapter (private val carList: MutableList<Car>, private val contexto: C
         appDatabase.getIntance()?.carDao()?.delete(car)
         carList.removeAt(position) //La saco de la list actual.
         notifyItemRemoved(position)
-    //Actualiza la vista xq se borro algo.
+        //Actualiza la vista xq se borro algo.
         //notifyItemRemoved(position)//Le notifico q posición se borro para q la saque de la vista.
     }
-
 
 
     private fun opcionFavoritos(holder: CarHolder, car: Car) {
@@ -101,14 +108,17 @@ class CarAdapter (private val carList: MutableList<Car>, private val contexto: C
             val fav = Favorito(email, idAuto = car.id)
             appDatabase.getIntance()?.favDao()?.insertFav(fav)
             println("------No arroja expecion-------------")
-        }catch (e: Exception){
-            Toast.makeText(contexto,"Error. Este auto ya esta registrado como favorito", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(
+                contexto,
+                "Error. Este auto ya esta registrado como favorito",
+                Toast.LENGTH_SHORT
+            ).show()
             println("------arroja expecion-------------")
 
         }
 
     }
-
 
 
 }

@@ -29,21 +29,19 @@ interface CarDao {
     fun getAllCars(): MutableList<Car>?
 
     @Query("SELECT * FROM cars WHERE combustible like '%' || :combustible || '%'  ORDER BY favorito desc, modelo")
-    fun getCarsByCombustible(combustible : String ): MutableList<Car>?
+    fun getCarsByCombustible(combustible: String): MutableList<Car>?
 
     @Query("SELECT * FROM cars WHERE marca like '%' || :marca || '%'  ORDER BY favorito desc, modelo")
-    fun getCarsByMarca(marca : String ): MutableList<Car>?
+    fun getCarsByMarca(marca: String): MutableList<Car>?
 
     @Query("SELECT * FROM cars WHERE modelo like '%' || :modelo || '%'  ORDER BY favorito desc, modelo")
-    fun getCarsByModelo(modelo : String ): MutableList<Car>?
+    fun getCarsByModelo(modelo: String): MutableList<Car>?
 
     @Query("SELECT * FROM cars WHERE favorito = :favorite  ORDER BY favorito desc, modelo")
     fun getFavoriteCars(favorite: Boolean): MutableList<Car>?
 
     @Query("SELECT a.* FROM cars a INNER JOIN favoritos f on a.id = f.idAuto AND f.mail == :email")
-    fun getFavoritosB(email:String):MutableList<Car>?
-
-
+    fun getFavoritosB(email: String): MutableList<Car>?
 
 
 }

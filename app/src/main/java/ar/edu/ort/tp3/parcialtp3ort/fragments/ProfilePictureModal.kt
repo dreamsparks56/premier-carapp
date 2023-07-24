@@ -21,22 +21,23 @@ class ProfilePictureModal : BottomSheetDialogFragment() {
     lateinit var v: View
     private lateinit var auth: FirebaseAuth
     private lateinit var model: LoginViewModel
-    private var getImage = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(2)) { uri: List<Uri>? ->
-        if (uri != null) {
-            Log.d("PhotoPicker", "Selected URI: $uri")
-            auth = Firebase.auth
-            model.updatePhotoUri(auth.currentUser, uri[0])
-        } else {
-            Log.d("PhotoPicker", "No media selected")
+    private var getImage =
+        registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(2)) { uri: List<Uri>? ->
+            if (uri != null) {
+                Log.d("PhotoPicker", "Selected URI: $uri")
+                auth = Firebase.auth
+                model.updatePhotoUri(auth.currentUser, uri[0])
+            } else {
+                Log.d("PhotoPicker", "No media selected")
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        v =  inflater.inflate(R.layout.fragment_profile_picture_modal, container, false)
+        v = inflater.inflate(R.layout.fragment_profile_picture_modal, container, false)
 
         return v
     }
@@ -48,7 +49,8 @@ class ProfilePictureModal : BottomSheetDialogFragment() {
 
         changePicture.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToCameraFragment()
-            this.requireParentFragment().requireParentFragment().findNavController().navigate(action)
+            this.requireParentFragment().requireParentFragment().findNavController()
+                .navigate(action)
             dismiss()
         }
         selectPicture.setOnClickListener {

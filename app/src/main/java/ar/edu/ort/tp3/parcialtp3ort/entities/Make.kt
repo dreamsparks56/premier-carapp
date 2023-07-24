@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 class Make(name: String?, url: String?, count: Int?) : Parcelable {
     var name: String = ""
-    var url : String=""
+    var url: String = ""
     var count: Int = 0
 
     constructor(parcel: Parcel) : this(
@@ -16,7 +16,9 @@ class Make(name: String?, url: String?, count: Int?) : Parcelable {
 
     class Constants {
         companion object {
-            val THUMB_IMAGE_DIRECTION: String = "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/%s.png"
+            val THUMB_IMAGE_DIRECTION: String =
+                "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/thumb/%s.png"
+
             fun getImage(carMake: String?): String = String.format(THUMB_IMAGE_DIRECTION, carMake)
         }
 

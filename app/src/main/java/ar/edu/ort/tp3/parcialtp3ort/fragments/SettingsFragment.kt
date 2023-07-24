@@ -19,7 +19,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-        val localePreference: ListPreference?  = findPreference("language")
+        val localePreference: ListPreference? = findPreference("language")
         val themePreference: ListPreference? = findPreference("dark_theme")
         getLanguage(localePreference!!)
         localePreference.setOnPreferenceChangeListener { _, newValue ->
@@ -28,7 +28,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
         themePreference?.setOnPreferenceChangeListener { _, newValue ->
             Log.d("new value", newValue.toString())
-            when(newValue.toString()) {
+            when (newValue.toString()) {
                 "l" -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
                 "d" -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
                 "sd" -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
@@ -36,7 +36,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
     }
-
 
 
     private fun setLanguage(language: String) {
@@ -53,10 +52,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 when (locale?.language) {
                     preference.entryValues[0] -> preference.entries[0]
                     preference.entries[1] -> preference.entries[1]
-                    else -> {preference.entries[0]}
+                    else -> {
+                        preference.entries[0]
+                    }
                 }
             }
-        }
+    }
 
 
     /*private fun setupChangeEmail() {

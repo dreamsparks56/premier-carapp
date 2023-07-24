@@ -16,9 +16,10 @@ import com.google.firebase.ktx.Firebase
 
 
 class RecuperoClaveFragment : Fragment() {
-    lateinit var v:View
+    lateinit var v: View
     lateinit var btnRecupero: Button
     lateinit var mail: TextInputLayout
+
     //---Variables de fireBase
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -32,12 +33,12 @@ class RecuperoClaveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        v =  inflater.inflate(R.layout.fragment_recupero_clave, container, false)
+        v = inflater.inflate(R.layout.fragment_recupero_clave, container, false)
         mail = v.findViewById(R.id.mail_recuperoClave)
         btnRecupero = v.findViewById(R.id.button_recuperoClave)
 
         btnRecupero.setOnClickListener {
-            if(mail.editText?.text.toString().isNotEmpty()) {
+            if (mail.editText?.text.toString().isNotEmpty()) {
                 enviarPassNueva(mail.editText?.text.toString())
             }
         }
@@ -45,15 +46,20 @@ class RecuperoClaveFragment : Fragment() {
         return v
     }
 
-    private fun enviarPassNueva(mail:String){
+    private fun enviarPassNueva(mail: String) {
         fireBaseAuth.sendPasswordResetEmail(mail)
-            .addOnCompleteListener { task->
-                if(task.isSuccessful) {
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     Toast.makeText(this.context, "Mail enviado", Toast.LENGTH_SHORT).show()
-                    val action =  RecuperoClaveFragmentDirections.actionRecuperoClaveFragmentToLoginFragment()
+                    val action =
+                        RecuperoClaveFragmentDirections.actionRecuperoClaveFragmentToLoginFragment()
                     v.findNavController().navigate(action)
-                }else {
-                    Toast.makeText(this.context,"Error. No se pudo procesar el pedido", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this.context,
+                        "Error. No se pudo procesar el pedido",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }

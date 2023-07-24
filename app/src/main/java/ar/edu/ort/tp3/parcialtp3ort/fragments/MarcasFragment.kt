@@ -58,73 +58,78 @@ class MarcasFragment : Fragment() {
     }
 
     private fun getAllCars() {
-        val carList : MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
+        val carList: MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
 
-        if(carList == null || carList.size <= 2){
+        if (carList == null || carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("gas").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getIntance()?.carDao()
+                        ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("gas"))
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-            service.getCarsByFuel("diesel").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("diesel").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getIntance()?.carDao()
+                        ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("diesel"))
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-            service.getCarsByFuel("electricity").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("electricity").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()?.insertAll(getCarEntityFromCarResponse(response.body()!!))
+                    getIntance()?.carDao()
+                        ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
                     getData(getIntance()?.carDao()?.getCarsByCombustible("electricity"))
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                 }
             })
 
-        }else{
+        } else {
             getData(carList)
         }
     }
 
     fun getData(carList: MutableList<Car>?) {
-            if(carList != null)
-            {
-                for(car in carList)
-                {
-                    var exists = false
-                    for(marca in marcasList) {
-                        val isEqual = marca.name == car.marca
-                        if(isEqual) {
-                            marca.count++
-                            exists = true
-                        }
-                    }
-                    if(!exists) {
-                        marcasList.add(Make(car.marca, car.image,1))
+        if (carList != null) {
+            for (car in carList) {
+                var exists = false
+                for (marca in marcasList) {
+                    val isEqual = marca.name == car.marca
+                    if (isEqual) {
+                        marca.count++
+                        exists = true
                     }
                 }
-                Log.d("Lista de marcas pre setup", marcasList.size.toString())
-                //getLogoImages()
-                setupMakes()
+                if (!exists) {
+                    marcasList.add(Make(car.marca, car.image, 1))
+                }
             }
+            Log.d("Lista de marcas pre setup", marcasList.size.toString())
+            //getLogoImages()
+            setupMakes()
+        }
     }
+
     /*private fun getLogoImages() {
         val mDbHelper = DBHelper.getIntance()//(context,null)
         val logoList : List<LogoResponse> = mDbHelper.getAllLogos()
@@ -171,30 +176,40 @@ class MarcasFragment : Fragment() {
     fun setupMakes() {
         Log.d("Lista de marcas", marcasList.size.toString())
         val navController = findNavController()
-        marcasListView.adapter = MakeAdapter(marcasList,requireActivity(),navController)
+        marcasListView.adapter = MakeAdapter(marcasList, requireActivity(), navController)
     }
 
     fun setupCategories() {
-            categories.add(Category(getString(R.string.category_sport),
+        categories.add(
+            Category(
+                getString(R.string.category_sport),
                 ContextCompat.getColor(requireContext(), R.color.yellow),
                 ContextCompat.getDrawable(requireContext(), R.drawable.category_sport),
                 "gas",
                 "fuel_type"
-            ))
-            categories.add(Category(getString(R.string.category_suv),
+            )
+        )
+        categories.add(
+            Category(
+                getString(R.string.category_suv),
                 ContextCompat.getColor(requireContext(), R.color.blue),
                 ContextCompat.getDrawable(requireContext(), R.drawable.category_suv),
                 "diesel",
                 "fuel_type"
-            ))
-            categories.add(Category(getString(R.string.category_electric),
+            )
+        )
+        categories.add(
+            Category(
+                getString(R.string.category_electric),
                 ContextCompat.getColor(requireContext(), R.color.teal_variant),
                 ContextCompat.getDrawable(requireContext(), R.drawable.category_electric),
                 "electric",
-                "fuel_type"))
-            Log.d("category size", categories.size.toString())
-            val navController = findNavController()
-            categoriesView.adapter = CategoryAdapter(categories, requireActivity(), navController)
+                "fuel_type"
+            )
+        )
+        Log.d("category size", categories.size.toString())
+        val navController = findNavController()
+        categoriesView.adapter = CategoryAdapter(categories, requireActivity(), navController)
     }
 
 

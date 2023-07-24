@@ -23,7 +23,7 @@ object APIServiceBuilder {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(httpClient)
-        .apply {  }
+        .apply { }
         .build()
 
     fun createCarService(): CarService {

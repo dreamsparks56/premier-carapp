@@ -9,7 +9,13 @@ import com.bumptech.glide.Glide
 class ImageFetching {
 
     companion object {
-        fun getImageManaged(view: View, element: ImageView, path: String?, altPath: String? = null, defaultImg: Int) {
+        fun getImageManaged(
+            view: View,
+            element: ImageView,
+            path: String?,
+            altPath: String? = null,
+            defaultImg: Int
+        ) {
             Glide
                 .with(view)
                 .load(path).fitCenter()
@@ -23,7 +29,8 @@ class ImageFetching {
                         .error(
                             Glide
                                 .with(view)
-                                .load(defaultImg))
+                                .load(defaultImg)
+                        )
                 )
                 .into(element)
         }

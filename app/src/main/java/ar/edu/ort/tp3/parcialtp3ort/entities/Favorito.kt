@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "favoritos",
-    primaryKeys = ["mail","idAuto"],
+    primaryKeys = ["mail", "idAuto"],
     foreignKeys = [ForeignKey(
         entity = Car::class,
         parentColumns = ["id"],
@@ -15,14 +15,14 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-class Favorito(mail:String, idAuto:Int) {
+class Favorito(mail: String, idAuto: Int) {
 
-     var mail: String
+    var mail: String
 
 
     var idAuto: Int = idAuto
 
-    init{
+    init {
         this.mail = mail
         this.idAuto = idAuto
     }

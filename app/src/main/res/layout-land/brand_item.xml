@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="@dimen/default_make_card_width_land"
-        android:layout_height="@dimen/default_make_card_width"
-        android:layout_marginVertical="@dimen/default_brand_card_separation"
-        android:id="@+id/cardView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="@dimen/default_corner_radius_card_marca"
-        style="?attr/materialCardViewElevatedStyle"
-        android:elevation="6dp">
+    android:layout_width="@dimen/default_make_card_width_land"
+    android:layout_height="@dimen/default_make_card_width"
+    android:layout_marginVertical="@dimen/default_brand_card_separation"
+    android:id="@+id/cardView"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardCornerRadius="@dimen/default_corner_radius_card_marca"
+    style="?attr/materialCardViewElevatedStyle"
+    android:elevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,4 +67,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>

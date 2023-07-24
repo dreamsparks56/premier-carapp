@@ -8,10 +8,11 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 
-class CarHolder( v: View) : RecyclerView.ViewHolder(v) {
+class CarHolder(v: View) : RecyclerView.ViewHolder(v) {
     val carModelImg: ImageView = itemView.findViewById<ImageView>(R.id.carModelImg)
 
     private var view: View
+
     init {
         this.view = v
     }
@@ -42,10 +43,14 @@ class CarHolder( v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun callImg(makeN: String?, make: String?) {
-        ImageFetching.getImageManaged(this.itemView, this.carModelImg, makeN, make, R.drawable.avatar_car)
+        ImageFetching.getImageManaged(
+            this.itemView,
+            this.carModelImg,
+            makeN,
+            make,
+            R.drawable.avatar_car
+        )
     }
-
-
 
 
 }

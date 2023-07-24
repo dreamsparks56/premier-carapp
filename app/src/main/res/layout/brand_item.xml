@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="@dimen/default_make_card_width"
-        android:layout_height="@dimen/default_make_card_height"
-        android:layout_marginHorizontal="@dimen/default_brand_card_separation"
-        android:id="@+id/cardView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="@dimen/default_corner_radius_card_marca"
-        style="?attr/materialCardViewElevatedStyle"
-        android:elevation="6dp">
+    android:layout_width="@dimen/default_make_card_width"
+    android:layout_height="@dimen/default_make_card_height"
+    android:layout_marginHorizontal="@dimen/default_brand_card_separation"
+    android:id="@+id/cardView"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardCornerRadius="@dimen/default_corner_radius_card_marca"
+    style="?attr/materialCardViewElevatedStyle"
+    android:elevation="6dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="@dimen/make_padding">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="@dimen/make_padding">
 
-            <ImageView
-                android:id="@+id/marcaImg"
-                android:layout_width="@dimen/default_make_size"
-                android:layout_height="wrap_content"
-                android:minHeight="@dimen/default_make_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/avatar_car"
-                android:contentDescription="@string/brand_description"/>
+        <ImageView
+            android:id="@+id/marcaImg"
+            android:layout_width="@dimen/default_make_size"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/default_make_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/avatar_car"
+            android:contentDescription="@string/brand_description" />
 
-            <TextView
-                android:id="@+id/makeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/make_name_margin_top"
-                android:breakStrategy="simple"
-                android:ellipsize="marquee"
-                android:focusable="false"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="@string/make_name_title"
-                android:textAlignment="center"
-                android:textSize="@dimen/make_name_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/marcaImg" />
+        <TextView
+            android:id="@+id/makeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/make_name_margin_top"
+            android:breakStrategy="simple"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="@string/make_name_title"
+            android:textAlignment="center"
+            android:textSize="@dimen/make_name_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marcaImg" />
 
-            <TextView
-                android:id="@+id/makeCount"
-                android:breakStrategy="simple"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/make_count_margin_top"
-                android:text="@string/makeCount"
-                android:textColor="@color/light_blue"
-                android:textSize="@dimen/make_count_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/makeName" />
+        <TextView
+            android:id="@+id/makeCount"
+            android:breakStrategy="simple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/make_count_margin_top"
+            android:text="@string/makeCount"
+            android:textColor="@color/light_blue"
+            android:textSize="@dimen/make_count_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/makeName" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>

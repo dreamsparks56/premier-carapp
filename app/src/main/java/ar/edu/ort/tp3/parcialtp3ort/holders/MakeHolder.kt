@@ -13,7 +13,11 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.fragments.InicioFragmentDirections
 import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching
 
-class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val navController: NavController) : RecyclerView.ViewHolder(v) {
+class MakeHolder(
+    v: View,
+    private val store: ViewModelStoreOwner,
+    private val navController: NavController
+) : RecyclerView.ViewHolder(v) {
 
     private var view: View
     private var viewModel: AutoViewModel
@@ -40,8 +44,15 @@ class MakeHolder(v: View, private val store: ViewModelStoreOwner, private val na
         val txt = this.view.findViewById<TextView>(R.id.makeCount)
         txt.text = String.format("+%s", count.toString())
     }
+
     fun callImg(makeN: String?, make: String?) {
-        ImageFetching.getImageManaged(this.itemView, this.carMakeImg, makeN, make, R.drawable.avatar_car)
+        ImageFetching.getImageManaged(
+            this.itemView,
+            this.carMakeImg,
+            makeN,
+            make,
+            R.drawable.avatar_car
+        )
     }
 
 }

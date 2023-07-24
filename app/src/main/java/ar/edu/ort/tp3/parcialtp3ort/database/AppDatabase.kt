@@ -25,8 +25,10 @@ abstract class appDatabase : RoomDatabase() {
                         context.applicationContext,
                         appDatabase::class.java,
                         "PremierRentCarRoom"
-                    )   .fallbackToDestructiveMigration() // Permitir migraciones destructivas xq cambie la version de la BD.
-                        .allowMainThreadQueries().build() // No es lo mas recomendable que se ejecute en el mainthread
+                    )
+                        .fallbackToDestructiveMigration() // Permitir migraciones destructivas xq cambie la version de la BD.
+                        .allowMainThreadQueries()
+                        .build() // No es lo mas recomendable que se ejecute en el mainthread
 
                 }
             }
@@ -37,7 +39,7 @@ abstract class appDatabase : RoomDatabase() {
             return INSTANCE
         }
 
-        fun destroyDataBase(){
+        fun destroyDataBase() {
             INSTANCE = null
         }
     }

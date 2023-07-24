@@ -31,7 +31,7 @@ class AutoFragment : Fragment() {
     private lateinit var v: View
     private lateinit var carList: RecyclerView
     var marcasList: MutableList<Make> = ArrayList<Make>()
-    private lateinit var cars : MutableList<Car>
+    private lateinit var cars: MutableList<Car>
     private lateinit var viewModel: AutoViewModel
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -40,37 +40,37 @@ class AutoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        v =  inflater.inflate(R.layout.fragment_auto, container, false)
-        carList =  v.findViewById<RecyclerView>(R.id.carListView)
+        v = inflater.inflate(R.layout.fragment_auto, container, false)
+        carList = v.findViewById<RecyclerView>(R.id.carListView)
         viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
-        cars  = mutableListOf<Car>()
+        cars = mutableListOf<Car>()
         fireBaseAuth = Firebase.auth
         carList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = CarAdapter(cars, context, false, fireBaseAuth.currentUser?.email.toString())
         }
-        if(viewModel.campo.value.toString().isEmpty()) {
+        if (viewModel.campo.value.toString().isEmpty()) {
             Log.d("VIEWMODEL empty", viewModel.tipoBusqueda.value.toString())
             Log.d("VIEWMODEL empty", viewModel.campo.value.toString())
             getAllCars()
-        }else if(viewModel.tipoBusqueda.value.toString()=="gas"){
-            Log.d(viewModel.campo.value.toString(),viewModel.tipoBusqueda.value.toString() )
+        } else if (viewModel.tipoBusqueda.value.toString() == "gas") {
+            Log.d(viewModel.campo.value.toString(), viewModel.tipoBusqueda.value.toString())
             getGasCars()
-        }else if(viewModel.tipoBusqueda.value.toString()=="diesel"){
-            Log.d(viewModel.campo.value.toString(),viewModel.tipoBusqueda.value.toString() )
+        } else if (viewModel.tipoBusqueda.value.toString() == "diesel") {
+            Log.d(viewModel.campo.value.toString(), viewModel.tipoBusqueda.value.toString())
             getDieselCars()
-        }else if(viewModel.tipoBusqueda.value.toString()=="electric"){
-            Log.d(viewModel.campo.value.toString(),viewModel.tipoBusqueda.value.toString() )
+        } else if (viewModel.tipoBusqueda.value.toString() == "electric") {
+            Log.d(viewModel.campo.value.toString(), viewModel.tipoBusqueda.value.toString())
             getElectricCars()
-        }else{
+        } else {
             Log.d("VIEWMODEL Else", viewModel.tipoBusqueda.value.toString())
             Log.d("VIEWMODEL Else", viewModel.campo.value.toString())
-            if(viewModel.campo.value.toString()=="make"){
+            if (viewModel.campo.value.toString() == "make") {
                 searchCarsByMake(viewModel.tipoBusqueda.value.toString())
-            }else if(viewModel.campo.value.toString()=="model"){
+            } else if (viewModel.campo.value.toString() == "model") {
                 //TODO: Pasar ViewModel con campo Model y tipoDeBusqueda = Search.text
                 searchCarsByModel(viewModel.tipoBusqueda.value.toString())
-            }else{
+            } else {
                 getAllCars()
             }
         }
@@ -80,17 +80,17 @@ class AutoFragment : Fragment() {
 
     private fun getData(carList: MutableList<Car>?) {//(carList: List<CarResponse>) {
         if (carList != null) {
-            for(car in carList) {
+            for (car in carList) {
                 var exists = false
-                for(marca in marcasList) {
+                for (marca in marcasList) {
                     val isEqual = marca.name == car.marca
-                    if(isEqual) {
+                    if (isEqual) {
                         marca.count++
                         exists = true
                     }
                 }
-                if(!exists) {
-                    marcasList.add(Make(car.marca, car.image,1))
+                if (!exists) {
+                    marcasList.add(Make(car.marca, car.image, 1))
                 }
             }
             Log.d("Lista de marcas pre setup", marcasList.size.toString())
@@ -98,134 +98,154 @@ class AutoFragment : Fragment() {
             showData(cars)
         }
     }
-    private fun getGasCars(){
+
+    private fun getGasCars() {
         //val mDbHelper = DBHelper.getIntance()//(context,null)
         //val carList : List<CarResponse> = mDbHelper.searchCars("gas","combustible")
-        var carList : MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas")
-        if( carList== null || (carList != null && carList.size <= 2)){
+        var carList: MutableList<Car>? =
+            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas")
+        if (carList == null || (carList != null && carList.size <= 2)) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByFuel("gas").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("gas").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
+                    appDatabase.getIntance()?.carDao()
+                        ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
                     carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas")
-                    if( !carList.isNullOrEmpty() ){
+                    if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
                         getData(appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas"))
                     }
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-        }else{
+        } else {
             cars.addAll(carList!!)
             getData(cars)
         }
     }
-    private fun getDieselCars(){
-        var carList : MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel")
-        if(carList != null && carList.size <= 2){
+
+    private fun getDieselCars() {
+        var carList: MutableList<Car>? =
+            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel")
+        if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByFuel("diesel").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("diesel").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
+                    appDatabase.getIntance()?.carDao()
+                        ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
                     carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel")
-                    if( !carList.isNullOrEmpty() ){
+                    if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
                         getData(appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel"))
                     }
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-        }else{
+        } else {
             cars.addAll(carList!!)
             getData(cars)
         }
     }
-    private fun getElectricCars(){
-        var carList : MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
-        if(carList != null && carList.size <= 2){
+
+    private fun getElectricCars() {
+        var carList: MutableList<Car>? =
+            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
+        if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByFuel("electricity").enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByFuel("electricity").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
+                    appDatabase.getIntance()?.carDao()
+                        ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
                     carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
-                    if( !carList.isNullOrEmpty() ){
+                    if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
-                        getData(appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric"))
+                        getData(
+                            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
+                        )
                     }
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-        }else{
+        } else {
             cars.addAll(carList!!)
             getData(cars)
         }
     }
-    private fun searchCarsByMake(manu : String){
-        var carList : MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu)
-        if(carList != null && carList.size <= 2){
+
+    private fun searchCarsByMake(manu: String) {
+        var carList: MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu)
+        if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByManufacturer(manu).enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByManufacturer(manu).enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
                     if (response.isSuccessful) {
-                        appDatabase.getIntance()?.carDao()?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
+                        appDatabase.getIntance()?.carDao()
+                            ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
                         carList = appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu)
-                        if( !carList.isNullOrEmpty() ){
+                        if (!carList.isNullOrEmpty()) {
                             cars.addAll(carList!!)
                             getData(appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu))
                         }
                     }
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-        }else{
+        } else {
             cars.addAll(carList!!)
             getData(cars)
         }
     }
-    private fun searchCarsByModel(model:String){
-        var carList : MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByModelo(model)
 
-        if(carList != null && carList.size <= 2){
+    private fun searchCarsByModel(model: String) {
+        var carList: MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByModelo(model)
+
+        if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
-            service.getCarsByModel(model).enqueue(object: Callback<List<CarResponse>> {
+            service.getCarsByModel(model).enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
                     if (response.isSuccessful) {
-                        appDatabase.getIntance()?.carDao()?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
+                        appDatabase.getIntance()?.carDao()
+                            ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
                         carList = appDatabase.getIntance()?.carDao()?.getCarsByModelo(model)
-                        if( !carList.isNullOrEmpty() ){
+                        if (!carList.isNullOrEmpty()) {
                             cars.addAll(carList!!)
                             getData(appDatabase.getIntance()?.carDao()?.getCarsByModelo(model))
                         }
                     }
                 }
+
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
                     //Not yet implemented
                 }
             })
-        }else{
+        } else {
             cars.addAll(carList!!)
             getData(cars)
         }
@@ -236,6 +256,7 @@ class AutoFragment : Fragment() {
         getDieselCars()
         getElectricCars()
     }
+
     /*private fun getLogoImages() {
         val mDbHelper = DBHelper.getIntance()//(context,null)
         val logoList : List<LogoResponse> = mDbHelper.getAllLogos()
@@ -274,11 +295,12 @@ class AutoFragment : Fragment() {
     }*/
     private fun showData(carBunch: MutableList<Car>) {
         Log.d("showData: ", carBunch.size.toString())
-        carList =  v.findViewById<RecyclerView>(R.id.carListView)
+        carList = v.findViewById<RecyclerView>(R.id.carListView)
 
         carList.apply {
-           layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(carBunch, context, false, fireBaseAuth.currentUser?.email.toString())
+            layoutManager = LinearLayoutManager(context)
+            adapter =
+                CarAdapter(carBunch, context, false, fireBaseAuth.currentUser?.email.toString())
         }
         //CleanUp
         viewModel.buscar("", "")

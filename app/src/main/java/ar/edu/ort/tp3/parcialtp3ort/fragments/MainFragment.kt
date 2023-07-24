@@ -32,17 +32,17 @@ import com.google.firebase.ktx.Firebase
 
 class MainFragment : Fragment() {
     lateinit var viewModel: LoginViewModel
-    lateinit var viewMainFrag:View
+    lateinit var viewMainFrag: View
     lateinit var navHostFragment: NavHostFragment
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
     lateinit var headerView: View
     lateinit var navController: NavController
-    lateinit var nombreUsuario:TextView
-    lateinit var toolbar:Toolbar
+    lateinit var nombreUsuario: TextView
+    lateinit var toolbar: Toolbar
     lateinit var toolbarPic: ShapeableImageView
     lateinit var drawerPic: ShapeableImageView
-    lateinit var activity:AppCompatActivity
+    lateinit var activity: AppCompatActivity
     private lateinit var fireBaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         drawerLayout = viewMainFrag.findViewById(R.id.drawer_layout_main_container)
         navigationView = viewMainFrag.findViewById(R.id.nav_view)
-        navHostFragment = childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navHostFragment =
+            childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
         //Asigno mi toolbar nueva en el lugar del appBar.
@@ -89,7 +90,8 @@ class MainFragment : Fragment() {
             childFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
-        viewMainFrag.findViewById<BottomNavigationView>(R.id.bottom_bar).setupWithNavController(navController)
+        viewMainFrag.findViewById<BottomNavigationView>(R.id.bottom_bar)
+            .setupWithNavController(navController)
     }
 
 
@@ -98,8 +100,8 @@ class MainFragment : Fragment() {
 
         navigationView.setupWithNavController(navController)
         toolbar.setupWithNavController(navController, appBarConfiguration)
-        navController.addOnDestinationChangedListener{ _, _, _ ->
-                toolbar.title = ""
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            toolbar.title = ""
         }
         navigationView.menu.findItem(R.id.loginFragment).setOnMenuItemClickListener {
             signOutDialog()
@@ -109,7 +111,7 @@ class MainFragment : Fragment() {
         //esto lo llamo desde la toolbar q ya tiene el manejo del action bar original.
     }
 
-    private fun asignarNombreUsuarioAlMenu(){
+    private fun asignarNombreUsuarioAlMenu() {
         nombreUsuario = headerView.findViewById<TextView>(R.id.nameUser_headerNav)
         nombreUsuario.text = viewModel.usuario.value.toString()
     }
@@ -128,8 +130,18 @@ class MainFragment : Fragment() {
     }
 
     private fun actualizarImagenesDePerfil() {
-        ImageFetching.getImageWebOrLocal(toolbar, toolbarPic, viewModel.photoUrl, R.drawable.avatar_car)
-        ImageFetching.getImageWebOrLocal(drawerLayout, drawerPic, viewModel.photoUrl, R.drawable.avatar_car)
+        ImageFetching.getImageWebOrLocal(
+            toolbar,
+            toolbarPic,
+            viewModel.photoUrl,
+            R.drawable.avatar_car
+        )
+        ImageFetching.getImageWebOrLocal(
+            drawerLayout,
+            drawerPic,
+            viewModel.photoUrl,
+            R.drawable.avatar_car
+        )
     }
 
     private fun signOutDialog() {
@@ -150,20 +162,10 @@ class MainFragment : Fragment() {
 
     private fun signOut() {
         fireBaseAuth.signOut()
-        Toast.makeText(this.context,"Log Out Ok", Toast.LENGTH_SHORT).show()
-        val action =  MainFragmentDirections.actionMainFragmentToLoginFragment()
+        Toast.makeText(this.context, "Log Out Ok", Toast.LENGTH_SHORT).show()
+        val action = MainFragmentDirections.actionMainFragmentToLoginFragment()
         viewMainFrag.findNavController().navigate(action)
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

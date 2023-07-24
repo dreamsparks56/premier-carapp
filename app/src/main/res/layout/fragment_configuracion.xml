@@ -121,6 +121,7 @@
                 android:id="@+id/email_button"
                 app:cardCornerRadius="0dp"
                 style="?attr/materialCardViewFilledStyle">
+
                 <TextView
                     android:id="@+id/email_button_placeholder"
                     android:layout_width="wrap_content"

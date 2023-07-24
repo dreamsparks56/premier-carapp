@@ -17,9 +17,9 @@ import com.google.firebase.ktx.Firebase
 
 
 class FavoritosFragment : Fragment() {
-    lateinit var v:View
-    lateinit var vistaReciclable:RecyclerView
-    lateinit var autos:MutableList<Car>
+    lateinit var v: View
+    lateinit var vistaReciclable: RecyclerView
+    lateinit var autos: MutableList<Car>
     private lateinit var fireBaseAuth: FirebaseAuth
 
 
@@ -28,7 +28,7 @@ class FavoritosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        v =  inflater.inflate(R.layout.fragment_favoritos, container, false)
+        v = inflater.inflate(R.layout.fragment_favoritos, container, false)
         vistaReciclable = v.findViewById(R.id.reciclyerFavs)
         fireBaseAuth = Firebase.auth
         showData()
@@ -36,10 +36,11 @@ class FavoritosFragment : Fragment() {
     }
 
     private fun showData() {
-       autos = appDatabase.getIntance()?.carDao()?.getFavoritosB(fireBaseAuth.currentUser?.email.toString())!!
+        autos = appDatabase.getIntance()?.carDao()
+            ?.getFavoritosB(fireBaseAuth.currentUser?.email.toString())!!
         vistaReciclable.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = CarAdapter(autos, context, true,fireBaseAuth.currentUser?.email.toString())
+            adapter = CarAdapter(autos, context, true, fireBaseAuth.currentUser?.email.toString())
         }
     }
 

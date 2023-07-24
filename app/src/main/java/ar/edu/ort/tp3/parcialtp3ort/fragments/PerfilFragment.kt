@@ -15,23 +15,23 @@ import ar.edu.ort.tp3.parcialtp3ort.tools.ImageFetching.Companion.getImageWebOrL
 
 
 class PerfilFragment : Fragment() {
-    lateinit var vista:View
-    lateinit var viewModel:LoginViewModel
-    lateinit var nombre:TextView
-    lateinit var email:TextView
-    lateinit var photoUrl:ImageView
+    lateinit var vista: View
+    lateinit var viewModel: LoginViewModel
+    lateinit var nombre: TextView
+    lateinit var email: TextView
+    lateinit var photoUrl: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        vista=  inflater.inflate(R.layout.fragment_perfil, container, false)
+        vista = inflater.inflate(R.layout.fragment_perfil, container, false)
 
         nombre = vista.findViewById(R.id.nameUser_perfil)
         email = vista.findViewById(R.id.emailUser_perfil)
         photoUrl = vista.findViewById(R.id.img_perfil)
-        photoUrl.setOnClickListener{
+        photoUrl.setOnClickListener {
             val bottomSheet = ProfilePictureModal()
 
             bottomSheet.show(this.parentFragmentManager, ProfilePictureModal.TAG)

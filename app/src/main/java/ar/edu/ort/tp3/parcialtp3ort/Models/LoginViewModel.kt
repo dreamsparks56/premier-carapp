@@ -37,7 +37,7 @@ class LoginViewModel:ViewModel() {
             .build()
 
         user!!.updateProfile(imageChange)
-            .addOnCompleteListener() { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("La imagen", user.photoUrl.toString())
                     photoUrl = user.photoUrl

@@ -47,7 +47,7 @@ class RecuperoClaveFragment : Fragment() {
 
     private fun enviarPassNueva(mail:String){
         fireBaseAuth.sendPasswordResetEmail(mail)
-            .addOnCompleteListener(){task->
+            .addOnCompleteListener { task->
                 if(task.isSuccessful) {
                     Toast.makeText(this.context, "Mail enviado", Toast.LENGTH_SHORT).show()
                     val action =  RecuperoClaveFragmentDirections.actionRecuperoClaveFragmentToLoginFragment()

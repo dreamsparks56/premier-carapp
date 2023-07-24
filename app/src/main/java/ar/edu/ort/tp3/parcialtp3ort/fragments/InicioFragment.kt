@@ -10,9 +10,6 @@ import ar.edu.ort.tp3.parcialtp3ort.R
 
 class InicioFragment : Fragment() {
     lateinit var viewHome: View
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

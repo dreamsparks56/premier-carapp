@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //Probando repo git
         //DBHelper.initDatabaseInstance(getApplicationContext())
-        appDatabase.getAppDataBase(getApplicationContext())
+        appDatabase.getAppDataBase(applicationContext)
 
         //val db : DBHelper = DBHelper(getApplicationContext(),null)
 

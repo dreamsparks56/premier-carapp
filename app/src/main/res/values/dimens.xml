@@ -43,6 +43,7 @@
     <!-->Category -->
     <dimen name="category_font_size">24sp</dimen>
     <dimen name="category_filter_font_size">8sp</dimen>
+    <dimen name="category_filter_icon_size">8dp</dimen>
     <dimen name="default_corner_radius_card_category">16dp</dimen>
     <dimen name="category_height">100dp</dimen>
     <dimen name="category_width">350dp</dimen>

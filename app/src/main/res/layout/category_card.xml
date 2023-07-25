@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/category_height"
     style="@style/CategoryCard"
+    app:cardBackgroundColor="?attr/colorPrimary"
     app:shapeAppearanceOverlay="@style/CategoryCard"
     android:padding="@dimen/category_padding"
     android:layout_marginBottom="@dimen/category_margin_bottom">
@@ -37,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/categoryFilterText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,6 +46,7 @@
             app:drawableEndCompat="@drawable/baseline_arrow_forward_24"
             app:drawableTint="@color/light"
             android:text="@string/category_filter"
+            android:gravity="center"
             android:textAlignment="center"
             android:textSize="@dimen/category_filter_font_size"
             android:textStyle="bold"

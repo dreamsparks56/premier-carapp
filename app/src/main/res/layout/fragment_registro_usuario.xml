@@ -125,7 +125,7 @@
             android:paddingTop="20dp"
             android:paddingRight="40dp"
             android:paddingBottom="20dp"
-            android:text="@string/login_signin"
+            android:text="@string/login_sign_in"
             android:textSize="@dimen/login_font_size"
             app:cornerRadius="74sp"
             app:layout_constraintBottom_toBottomOf="parent"

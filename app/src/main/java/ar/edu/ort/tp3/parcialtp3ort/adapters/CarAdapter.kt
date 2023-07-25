@@ -1,6 +1,7 @@
 package ar.edu.ort.tp3.parcialtp3ort.adapters
 
 import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -59,12 +60,11 @@ class CarAdapter(
     private fun esFavorito(holder: CarHolder, car: Car, position: Int) {
         holder.itemView.setOnClickListener {
             val dialog2 = MaterialAlertDialogBuilder(contexto)
-            dialog2.setTitle("Eliminar favorito")
-                .setMessage("¿Deseas eliminar este auto de tus favoritos?")
-                .setPositiveButton("Eliminar") { dialog, _ ->
-                    //  eliminar(car, position)
-                    eliminar2(car, position)
-                }.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog2.setTitle(Resources.getSystem().getString(R.string.favorites_delete))
+                .setMessage(Resources.getSystem().getString(R.string.favorites_delete_prompt))
+                .setPositiveButton(Resources.getSystem().getString(R.string.actions_remove)) { dialog, _ ->
+                    eliminar(car, position)
+                }.setNegativeButton(Resources.getSystem().getString(R.string.actions_cancel)) { dialog, _ ->
                     dialog.dismiss()
                 }
             dialog2.create()
@@ -75,8 +75,8 @@ class CarAdapter(
     }
 
 
-    private fun eliminar2(car: Car, position: Int) {
-        appDatabase.getIntance()?.carDao()?.delete(car)
+    private fun eliminar(car: Car, position: Int) {
+        appDatabase.getInstance()?.carDao()?.delete(car)
         carList.removeAt(position) //La saco de la list actual.
         notifyItemRemoved(position)
         //Actualiza la vista xq se borro algo.
@@ -87,13 +87,13 @@ class CarAdapter(
     private fun opcionFavoritos(holder: CarHolder, car: Car) {
         holder.itemView.setOnClickListener {
             val dialog = MaterialAlertDialogBuilder(contexto)
-            dialog.setTitle("Añadir a favoritos")
-                .setMessage("¿Deseas añadir este auto a tus favoritos?")
-                .setPositiveButton("Agregar") { _, _ ->
+            dialog.setTitle(Resources.getSystem().getString(R.string.favorites_add))
+                .setMessage(Resources.getSystem().getString(R.string.favorites_add_prompt))
+                .setPositiveButton(Resources.getSystem().getString(R.string.actions_add)) { _, _ ->
                     addFavorito(car)
                 }
 
-                .setNegativeButton("Cancelar") { self, _ ->
+                .setNegativeButton(Resources.getSystem().getString(R.string.actions_cancel)) { self, _ ->
                     self.dismiss()
                 }
             dialog.create()
@@ -106,15 +106,15 @@ class CarAdapter(
 
         try {
             val fav = Favorito(email, idAuto = car.id)
-            appDatabase.getIntance()?.favDao()?.insertFav(fav)
-            println("------No arroja expecion-------------")
+            appDatabase.getInstance()?.favDao()?.insertFav(fav)
+            println("------No arroja excepción-------------")
         } catch (e: Exception) {
             Toast.makeText(
                 contexto,
-                "Error. Este auto ya esta registrado como favorito",
+                Resources.getSystem().getString(R.string.favorites_already_added),
                 Toast.LENGTH_SHORT
             ).show()
-            println("------arroja expecion-------------")
+            println("------Arroja excepción-------------")
 
         }
 

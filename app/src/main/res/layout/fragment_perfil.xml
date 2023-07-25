@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:shadowColor="?attr/colorSecondary"
-                android:text="@string/notificaciones"
+                android:text="@string/notifications"
                 android:textColor="?attr/colorSecondary" />
 
             <LinearLayout
@@ -85,7 +85,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/notificaciones"
+                    android:text="@string/notifications"
                     android:textSize="15sp"
                     app:drawableStartCompat="@drawable/notificaciones_vacio_icon"
                     android:drawablePadding="@dimen/default_car_text_icon_padding" />

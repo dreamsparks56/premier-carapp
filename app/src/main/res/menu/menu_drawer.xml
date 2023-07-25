@@ -3,19 +3,19 @@
 
 
 
-    <item android:title="@string/opcionPerfil"
+    <item android:title="@string/profile"
         android:id="@+id/perfilFragment"
         android:icon="@drawable/profile_icon"/>
 
-    <item android:title="@string/opcionConfiguracion"
+    <item android:title="@string/settings"
         android:id="@+id/configuracionFragment"
         android:icon="@drawable/settings_icon"/>
 
-    <item android:title="@string/opcionFavoritos"
+    <item android:title="@string/favorites"
         android:id="@+id/favoritosFragment"
         android:icon="@drawable/notificaciones_vacio_icon"/>
 
-    <item android:title="@string/opcionCerrarSesion"
+    <item android:title="@string/logout"
         android:id="@+id/loginFragment"
         android:icon="@drawable/baseline_logout_24"/>
 

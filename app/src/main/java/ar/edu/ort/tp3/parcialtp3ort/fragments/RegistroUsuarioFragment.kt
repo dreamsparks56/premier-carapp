@@ -102,7 +102,7 @@ class RegistroUsuarioFragment : Fragment() {
                         sentEmailVerification(user)
                         Toast.makeText(
                             requireContext(),
-                            "Cuenta creada correctamente. Se requiere verificación",
+                            getText(R.string.register_success),
                             Toast.LENGTH_SHORT
                         ).show()
                         println("x ahora no hay error")
@@ -113,7 +113,7 @@ class RegistroUsuarioFragment : Fragment() {
                 } else {
                     Toast.makeText(
                         this.context,
-                        "Algo salió mal" + task.exception,
+                        getString(R.string.error_something_wrong, task.exception),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

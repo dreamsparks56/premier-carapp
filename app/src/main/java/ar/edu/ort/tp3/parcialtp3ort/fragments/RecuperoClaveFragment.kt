@@ -50,14 +50,14 @@ class RecuperoClaveFragment : Fragment() {
         fireBaseAuth.sendPasswordResetEmail(mail)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this.context, "Mail enviado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this.context, getString(R.string.recovery_email_sent), Toast.LENGTH_SHORT).show()
                     val action =
                         RecuperoClaveFragmentDirections.actionRecuperoClaveFragmentToLoginFragment()
                     v.findNavController().navigate(action)
                 } else {
                     Toast.makeText(
                         this.context,
-                        "Error. No se pudo procesar el pedido",
+                        getString(R.string.recovery_email_error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -4,8 +4,8 @@
 
     <!-- Settings -->
     <string name="main_settings">Generales</string>
-    <string name="notificaciones">Notificaciones</string>
-    <string name="modo_oscuro">Modo oscuro</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="dark_theme">Modo oscuro</string>
     <string name="language_selection">Idioma</string>
     <string-array name="languages">
         <item>Inglés</item>
@@ -22,6 +22,13 @@
     <string name="brand_description">El logo de la marca</string>
     <string name="usuario_placeHolder">Ingrese su nombre de usuario</string>
 
+    <!-- Actions -->
+    <string name="actions_ok">Aceptar</string>
+    <string name="actions_add">Agregar</string>
+    <string name="actions_cancel">Cancelar</string>
+    <string name="actions_remove">Eliminar</string>
+    <string name="actions_cancel_result">Cancelado</string>
+
     <!-- Car attributes-->
     <string name="car_model">Modelo</string>
     <string name="car_model_description">El modelo del auto</string>
@@ -31,13 +38,13 @@
     <string name="car_class_text">Tipo</string>
 
     <!--Search  -->
-    <string name="opcionHome">Inicio</string>
-    <string name="opcionAutos">Autos</string>
-    <string name="opcionBusqueda">Buscar</string>
-    <string name="opcionPerfil">Perfil</string>
-    <string name="opcionConfiguracion">Configuración</string>
-    <string name="opcionFavoritos">Favoritos</string>
-    <string name="opcionCerrarSesion">Cerrar sesión</string>
+    <string name="home">Inicio</string>
+    <string name="cars">Autos</string>
+    <string name="search">Buscar</string>
+    <string name="profile">Perfil</string>
+    <string name="settings">Configuración</string>
+    <string name="favorites">Favoritos</string>
+    <string name="logout">Cerrar sesión</string>
 
     <string name="electric_filter">Autos eléctricos</string>
     <string name="suv_filter">SUVs</string>
@@ -49,16 +56,30 @@
     <string name="email_placeholder">Ingrese su email…</string>
     <string name="password_placeholder">Ingrese su contraseña</string>
     <string name="password_forgotten">Olvidé mi contraseña</string>
-    <string name="login_signin">Ingresar</string>
+    <string name="login_sign_in">Ingresar</string>
     <string name="google_sign_in">Iniciar sesion con google</string>
     <string name="title_favs">Tus favoritos\n</string>
     <string name="name">Nombre completo</string>
     <string name="email">Email</string>
+    <string name="recovery_email_sent">Mail enviado</string>
+    <string name="recovery_email_error">Error enviando el mensaje de recuperación</string>
+    <string name="google_sign_in_auth_error">Fallo inicio de sesión de Google:(</string>
+    <string name="google_sign_in_error">Hubo algún error con Google:(</string>
+    <string name="google_sign_in_success">Inicio de sesión con Google correcto :)</string>
+    <string name="email_sign_in_success">Authenticación exitosa</string>
+    <string name="register_success">Cuenta creada correctamente.</string>
+
+    <!-- Logout -->
+    <string name="logout_prompt">¿Estás seguro que querés cerrar sesión?</string>
+    <string name="logout_success">Cierre de sesión exitoso</string>
+
+
     <!-- Error handling-->
     <string name="password_matching_error">Error, las claves no son iguales</string>
     <string name="less_than_min_length_error">Debería tener al menos %d caracteres</string>
     <string name="login_matching_error">Usuario o contraseña incorrecta</string>
     <string name="empty_field_error">Falta ingresar texto</string>
+    <string name="error_something_wrong">Algo salió mal; %1s</string>
 
     <!--Camera-->
     <string name="profile_modal_title">Opciones de foto de perfil</string>
@@ -67,7 +88,7 @@
     <string name="take_photo">Sacar foto</string>
 
     <string name="username">Nombre de usuario</string>
-    <string name="nuevoUsuarioLogin">Registrarme</string>
+    <string name="register">Registrarme</string>
 
     <!--Category-->
     <string name="category">Categoría</string>
@@ -76,4 +97,11 @@
     <string name="category_electric">Eléctricos</string>
     <string name="category_filter">Filtro</string>
     <string name="category_image_description">Auto de la categoría %1s</string>
+
+    <!-- Favorites-->
+    <string name="favorites_add">Añadir a favoritos</string>
+    <string name="favorites_add_prompt">¿Deseas añadir este auto a tus favoritos?</string>
+    <string name="favorites_delete">Eliminar favorito</string>
+    <string name="favorites_delete_prompt">¿Deseas eliminar este auto de tus favoritos?</string>
+    <string name="favorites_already_added">Este auto ya esta registrado como favorito</string>
 </resources>

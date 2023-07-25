@@ -17,7 +17,7 @@ import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.CategoryAdapter
 import ar.edu.ort.tp3.parcialtp3ort.adapters.MakeAdapter
-import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getIntance
+import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase.Companion.getInstance
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
 import ar.edu.ort.tp3.parcialtp3ort.entities.Category
@@ -58,7 +58,7 @@ class MarcasFragment : Fragment() {
     }
 
     private fun getAllCars() {
-        val carList: MutableList<Car>? = getIntance()?.carDao()?.getAllCars()
+        val carList: MutableList<Car>? = getInstance()?.carDao()?.getAllCars()
 
         if (carList == null || carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
@@ -67,9 +67,9 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()
+                    getInstance()?.carDao()
                         ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
-                    getData(getIntance()?.carDao()?.getCarsByCombustible("gas"))
+                    getData(getInstance()?.carDao()?.getCarsByCombustible("gas"))
                 }
 
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
@@ -81,9 +81,9 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()
+                    getInstance()?.carDao()
                         ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
-                    getData(getIntance()?.carDao()?.getCarsByCombustible("diesel"))
+                    getData(getInstance()?.carDao()?.getCarsByCombustible("diesel"))
                 }
 
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {
@@ -95,9 +95,9 @@ class MarcasFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    getIntance()?.carDao()
+                    getInstance()?.carDao()
                         ?.insertAll(getCarEntityFromCarResponse(response.body()!!))
-                    getData(getIntance()?.carDao()?.getCarsByCombustible("electricity"))
+                    getData(getInstance()?.carDao()?.getCarsByCombustible("electricity"))
                 }
 
                 override fun onFailure(call: Call<List<CarResponse>>, t: Throwable) {

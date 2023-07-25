@@ -14,9 +14,7 @@ import ar.edu.ort.tp3.parcialtp3ort.Models.AutoViewModel
 import ar.edu.ort.tp3.parcialtp3ort.R
 import ar.edu.ort.tp3.parcialtp3ort.adapters.CarAdapter
 import ar.edu.ort.tp3.parcialtp3ort.Models.CarResponse
-import ar.edu.ort.tp3.parcialtp3ort.Models.LogoResponse
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
-import ar.edu.ort.tp3.parcialtp3ort.database.DBHelper
 import ar.edu.ort.tp3.parcialtp3ort.database.appDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import com.google.firebase.auth.FirebaseAuth
@@ -100,23 +98,23 @@ class AutoFragment : Fragment() {
     }
 
     private fun getGasCars() {
-        //val mDbHelper = DBHelper.getIntance()//(context,null)
+        //val mDbHelper = DBHelper.getInstance()//(context,null)
         //val carList : List<CarResponse> = mDbHelper.searchCars("gas","combustible")
         var carList: MutableList<Car>? =
-            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas")
-        if (carList == null || (carList != null && carList.size <= 2)) {
+            appDatabase.getInstance()?.carDao()?.getCarsByCombustible("gas")
+        if (carList == null || carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
             service.getCarsByFuel("gas").enqueue(object : Callback<List<CarResponse>> {
                 override fun onResponse(
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()
+                    appDatabase.getInstance()?.carDao()
                         ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
-                    carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas")
+                    carList = appDatabase.getInstance()?.carDao()?.getCarsByCombustible("gas")
                     if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
-                        getData(appDatabase.getIntance()?.carDao()?.getCarsByCombustible("gas"))
+                        getData(appDatabase.getInstance()?.carDao()?.getCarsByCombustible("gas"))
                     }
                 }
 
@@ -132,7 +130,7 @@ class AutoFragment : Fragment() {
 
     private fun getDieselCars() {
         var carList: MutableList<Car>? =
-            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel")
+            appDatabase.getInstance()?.carDao()?.getCarsByCombustible("diesel")
         if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
             service.getCarsByFuel("diesel").enqueue(object : Callback<List<CarResponse>> {
@@ -140,12 +138,12 @@ class AutoFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()
+                    appDatabase.getInstance()?.carDao()
                         ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
-                    carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel")
+                    carList = appDatabase.getInstance()?.carDao()?.getCarsByCombustible("diesel")
                     if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
-                        getData(appDatabase.getIntance()?.carDao()?.getCarsByCombustible("diesel"))
+                        getData(appDatabase.getInstance()?.carDao()?.getCarsByCombustible("diesel"))
                     }
                 }
 
@@ -161,7 +159,7 @@ class AutoFragment : Fragment() {
 
     private fun getElectricCars() {
         var carList: MutableList<Car>? =
-            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
+            appDatabase.getInstance()?.carDao()?.getCarsByCombustible("electric")
         if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
             service.getCarsByFuel("electricity").enqueue(object : Callback<List<CarResponse>> {
@@ -169,13 +167,13 @@ class AutoFragment : Fragment() {
                     call: Call<List<CarResponse>>,
                     response: Response<List<CarResponse>>
                 ) {
-                    appDatabase.getIntance()?.carDao()
+                    appDatabase.getInstance()?.carDao()
                         ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
-                    carList = appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
+                    carList = appDatabase.getInstance()?.carDao()?.getCarsByCombustible("electric")
                     if (!carList.isNullOrEmpty()) {
                         cars.addAll(carList!!)
                         getData(
-                            appDatabase.getIntance()?.carDao()?.getCarsByCombustible("electric")
+                            appDatabase.getInstance()?.carDao()?.getCarsByCombustible("electric")
                         )
                     }
                 }
@@ -191,7 +189,7 @@ class AutoFragment : Fragment() {
     }
 
     private fun searchCarsByMake(manu: String) {
-        var carList: MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu)
+        var carList: MutableList<Car>? = appDatabase.getInstance()?.carDao()?.getCarsByMarca(manu)
         if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
             service.getCarsByManufacturer(manu).enqueue(object : Callback<List<CarResponse>> {
@@ -200,12 +198,12 @@ class AutoFragment : Fragment() {
                     response: Response<List<CarResponse>>
                 ) {
                     if (response.isSuccessful) {
-                        appDatabase.getIntance()?.carDao()
+                        appDatabase.getInstance()?.carDao()
                             ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
-                        carList = appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu)
+                        carList = appDatabase.getInstance()?.carDao()?.getCarsByMarca(manu)
                         if (!carList.isNullOrEmpty()) {
                             cars.addAll(carList!!)
-                            getData(appDatabase.getIntance()?.carDao()?.getCarsByMarca(manu))
+                            getData(appDatabase.getInstance()?.carDao()?.getCarsByMarca(manu))
                         }
                     }
                 }
@@ -221,7 +219,7 @@ class AutoFragment : Fragment() {
     }
 
     private fun searchCarsByModel(model: String) {
-        var carList: MutableList<Car>? = appDatabase.getIntance()?.carDao()?.getCarsByModelo(model)
+        var carList: MutableList<Car>? = appDatabase.getInstance()?.carDao()?.getCarsByModelo(model)
 
         if (carList != null && carList.size <= 2) {
             val service = APIServiceBuilder.createCarService()
@@ -231,12 +229,12 @@ class AutoFragment : Fragment() {
                     response: Response<List<CarResponse>>
                 ) {
                     if (response.isSuccessful) {
-                        appDatabase.getIntance()?.carDao()
+                        appDatabase.getInstance()?.carDao()
                             ?.insertAll(Car.getCarEntityFromCarResponse(response.body()!!))
-                        carList = appDatabase.getIntance()?.carDao()?.getCarsByModelo(model)
+                        carList = appDatabase.getInstance()?.carDao()?.getCarsByModelo(model)
                         if (!carList.isNullOrEmpty()) {
                             cars.addAll(carList!!)
-                            getData(appDatabase.getIntance()?.carDao()?.getCarsByModelo(model))
+                            getData(appDatabase.getInstance()?.carDao()?.getCarsByModelo(model))
                         }
                     }
                 }

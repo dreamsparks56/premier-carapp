@@ -36,7 +36,7 @@ class FavoritosFragment : Fragment() {
     }
 
     private fun showData() {
-        autos = appDatabase.getIntance()?.carDao()
+        autos = appDatabase.getInstance()?.carDao()
             ?.getFavoritosB(fireBaseAuth.currentUser?.email.toString())!!
         vistaReciclable.apply {
             layoutManager = LinearLayoutManager(context)

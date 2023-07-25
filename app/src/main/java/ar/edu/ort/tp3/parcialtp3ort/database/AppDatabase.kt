@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car
-import ar.edu.ort.tp3.parcialtp3ort.database.CarDao
 import ar.edu.ort.tp3.parcialtp3ort.entities.Favorito
 
 @Database(entities = [Car::class, Favorito::class], version = 2, exportSchema = false)
@@ -35,12 +34,12 @@ abstract class appDatabase : RoomDatabase() {
             return INSTANCE
         }
 
-        fun getIntance(): appDatabase? {
+        fun getInstance(): appDatabase? {
             return INSTANCE
         }
 
-        fun destroyDataBase() {
+        /*fun destroyDataBase() {
             INSTANCE = null
-        }
+        }*/
     }
 }

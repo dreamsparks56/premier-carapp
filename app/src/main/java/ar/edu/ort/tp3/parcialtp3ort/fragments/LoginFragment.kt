@@ -127,14 +127,14 @@ class LoginFragment : Fragment() {
                     // Google Sign In failed, update UI appropriately
                     Toast.makeText(
                         requireContext(),
-                        "Fallo inicio de sesión de google:(",
+                        getString(R.string.google_sign_in_auth_error),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Hubo algun error con google:(",
+                    getString(R.string.google_sign_in_error),
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -150,21 +150,12 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     Toast.makeText(
                         this.context,
-                        "Inicio de sesión con google correcto :)",
+                        getString(R.string.google_sign_in_success),
                         Toast.LENGTH_SHORT
                     ).show()
                     val user = auth.currentUser
                     updateUI(user!!)
                     //Aca voy a ir al HOME.
-
-
-                } else {
-                    // Error con el log
-                    Toast.makeText(
-                        this.context,
-                        "Fallo el  login con google :(",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
     }
@@ -191,7 +182,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(this.requireActivity()) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    Toast.makeText(this.context, "Authenticación exitosa", Toast.LENGTH_SHORT)
+                    Toast.makeText(this.context, getText(R.string.email_sign_in_success), Toast.LENGTH_SHORT)
                         .show()
                     updateUI(user!!) // Este método lo derivará al inicio.
 

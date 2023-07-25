@@ -146,14 +146,14 @@ class MainFragment : Fragment() {
 
     private fun signOutDialog() {
         val dialog = MaterialAlertDialogBuilder(requireContext())
-        dialog.setTitle("Cerrar sesión")
-        dialog.setMessage("¿Estas seguro que queres cerrar sesión?")
+        dialog.setTitle(getString(R.string.logout))
+        dialog.setMessage(getString(R.string.logout_prompt))
 
-        dialog.setPositiveButton("Yeah") { _, _ ->
+        dialog.setPositiveButton(getString(R.string.actions_ok)) { _, _ ->
             signOut()
         }
-        dialog.setNeutralButton("Cancel") { _, _ ->
-            Toast.makeText(this.context, "Cancelled", Toast.LENGTH_SHORT).show()
+        dialog.setNeutralButton(getString(R.string.actions_cancel)) { _, _ ->
+            Toast.makeText(this.context, getText(R.string.actions_cancel_result), Toast.LENGTH_SHORT).show()
         }
         dialog.create()
         dialog.setCancelable(false)
@@ -162,7 +162,7 @@ class MainFragment : Fragment() {
 
     private fun signOut() {
         fireBaseAuth.signOut()
-        Toast.makeText(this.context, "Log Out Ok", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, getText(R.string.logout_success), Toast.LENGTH_SHORT).show()
         val action = MainFragmentDirections.actionMainFragmentToLoginFragment()
         viewMainFrag.findNavController().navigate(action)
     }

@@ -7,7 +7,7 @@
 
         <SwitchPreferenceCompat
             android:key="notifications"
-            android:title="@string/notificaciones"/>
+            android:title="@string/notifications"/>
 
     </PreferenceCategory>
 
@@ -17,7 +17,7 @@
 
         <ListPreference
             android:key="dark_theme"
-            android:title="@string/modo_oscuro"
+            android:title="@string/dark_theme"
             android:entries="@array/themes"
             android:entryValues="@array/theme_values"/>
 

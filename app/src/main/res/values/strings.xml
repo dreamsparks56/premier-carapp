@@ -92,6 +92,6 @@
     <string name="category_suv">SUV</string>
     <string name="category_electric">Electric</string>
     <string name="category_filter">Filter</string>
-    <string name="category_image_description">Sample car from ${} category</string>
+    <string name="category_image_description">Sample car from %1s category</string>
 
 </resources>

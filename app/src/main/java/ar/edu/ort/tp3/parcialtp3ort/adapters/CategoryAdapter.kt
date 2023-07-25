@@ -1,5 +1,6 @@
 package ar.edu.ort.tp3.parcialtp3ort.adapters
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -35,7 +36,7 @@ class CategoryAdapter(
         layout.setCardBackgroundColor(category.color)
         holder.setImage(
             category.image,
-            String.format(R.string.category_image_description.toString(), category.name)
+            Resources.getSystem().getString(R.string.category_image_description, category.name)
         )
         layout.setOnClickListener {
             viewModel.buscar(category.type, category.field)

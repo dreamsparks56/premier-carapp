@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.tp3.parcialtp3ort.APIServiceBuilder.APIServiceBuilder
@@ -22,6 +23,7 @@ import ar.edu.ort.tp3.parcialtp3ort.entities.Car
 import ar.edu.ort.tp3.parcialtp3ort.entities.Car.Companion.getCarEntityFromCarResponse
 import ar.edu.ort.tp3.parcialtp3ort.entities.Category
 import ar.edu.ort.tp3.parcialtp3ort.entities.Make
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,15 +48,18 @@ class MarcasFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
 
-        viewModel = ViewModelProvider(requireActivity()).get(AutoViewModel::class.java)
+            marcasListView = v.findViewById(R.id.marcasListView)
+            categoriesView = v.findViewById(R.id.categoriesView)
 
-        marcasListView = v.findViewById(R.id.marcasListView)
-        categoriesView = v.findViewById(R.id.categoriesView)
+            getAllCars()
+            setupMakes()
+            setupCategories()
+        }
 
-        getAllCars()
-        setupMakes()
-        setupCategories()
+
     }
 
     private fun getAllCars() {

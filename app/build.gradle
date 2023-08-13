@@ -43,12 +43,12 @@ android {
 
 
 dependencies {
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference:1.2.1'
 
 
     //implementation 'androidx.core:core-ktx:1.10.1'
     //implementation 'androidx.core:core-ktx:1.7.0'
-    def nav_version = "2.5.2"
+    def nav_version = "2.7.0"
     def room_version = "2.5.2"
     def mat_version = "1.1.1"
 
